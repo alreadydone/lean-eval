@@ -1,0 +1,12 @@
+{
+  "id": "honeycomb_connective_constant",
+  "module": "LeanEval.Combinatorics.HoneycombConnectiveConstant",
+  "holes": [
+    {
+      "name": "LeanEval.Combinatorics.HoneycombConnectiveConstant.honeycomb_connective_constant",
+      "basename": "honeycomb_connective_constant",
+      "kind": "theorem",
+      "body": "/-- **Duminil-Copin-Smirnov honeycomb connective-constant theorem.** The\nexponential growth rate of the number of self-avoiding walks is\n`sqrt (2 + sqrt 2)`. -/\ntheorem honeycomb_connective_constant :\n    Tendsto\n      (fun n \u21a6 (walkCount n : \u211d) ^ (1 / n : \u211d))\n      atTop\n      (nhds (Real.sqrt (2 + Real.sqrt 2))) := by\n  sorry"
+    }
+  ]
+}

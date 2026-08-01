@@ -1,0 +1,12 @@
+{
+  "id": "ten_martini_problem",
+  "module": "LeanEval.Analysis.TenMartini",
+  "holes": [
+    {
+      "name": "LeanEval.Analysis.TenMartini.ten_martini_problem",
+      "basename": "ten_martini_problem",
+      "kind": "theorem",
+      "body": "/-- **Avila-Jitomirskaya Ten Martini theorem.** For irrational frequency\nand nonzero coupling, the spectrum of the almost Mathieu operator is a\nCantor set. Here this means nonempty, compact, perfect, and totally\ndisconnected. -/\ntheorem ten_martini_problem (\u03b1 coupling \u03b8 : \u211d)\n    (h\u03b1 : Irrational \u03b1) (hcoupling : coupling \u2260 0) :\n    \u2203 H : EllTwo \u2192L[\u2102] EllTwo,\n      IsAlmostMathieuOperator \u03b1 coupling \u03b8 H \u2227\n        (spectrum \u2102 H).Nonempty \u2227\n        IsCompact (spectrum \u2102 H) \u2227\n        Perfect (spectrum \u2102 H) \u2227\n        IsTotallyDisconnected (spectrum \u2102 H) := by\n  sorry"
+    }
+  ]
+}

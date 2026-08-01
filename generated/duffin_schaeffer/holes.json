@@ -1,0 +1,12 @@
+{
+  "id": "duffin_schaeffer",
+  "module": "LeanEval.NumberTheory.DuffinSchaeffer",
+  "holes": [
+    {
+      "name": "LeanEval.NumberTheory.DuffinSchaeffer.duffin_schaeffer",
+      "basename": "duffin_schaeffer",
+      "kind": "theorem",
+      "body": "/-- **Koukoulopoulos-Maynard theorem (Duffin-Schaeffer conjecture).** For nonnegative\napproximation radii `delta`, the corresponding limsup set of reduced\nrational approximations has full measure exactly when\n`sum_n phi(n) * delta(n)` diverges. -/\ntheorem duffin_schaeffer (\u03b4 : \u2115 \u2192 \u211d) (h\u03b4 : \u2200 n, 0 \u2264 \u03b4 n) :\n    volume (addWellApproximable UnitAddCircle \u03b4) = 1 \u2194\n      \u00ac Summable fun n : \u2115 => n.totient * \u03b4 n := by\n  sorry"
+    }
+  ]
+}
