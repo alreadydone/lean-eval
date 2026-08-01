@@ -1,0 +1,12 @@
+{
+  "id": "strong_mason_conjecture",
+  "module": "LeanEval.Combinatorics.StrongMason",
+  "holes": [
+    {
+      "name": "LeanEval.Combinatorics.StrongMason.strong_mason_conjecture",
+      "basename": "strong_mason_conjecture",
+      "kind": "theorem",
+      "body": "/-- **The strong Mason conjecture** (Branden-Huh; independently\nAnari-Liu-Oveis Gharan-Vinzant). If `I k` counts the independent sets of\nsize `k` in a finite matroid on `n` elements, then\n\n`I k ^ 2 * k * (n - k) >= I (k - 1) * I (k + 1) * (k + 1) * (n - k + 1)`.\n\nEquivalently, `I k / n.choose k` is a log-concave sequence. -/\ntheorem strong_mason_conjecture {\u03b1 : Type*} (M : Matroid \u03b1) [M.Finite]\n    (k : \u2115) (hk : 0 < k) (hkn : k < M.E.ncard) :\n    independentSetCount M (k - 1) * independentSetCount M (k + 1) *\n          (k + 1) * (M.E.ncard - k + 1) \u2264\n      independentSetCount M k ^ 2 * k * (M.E.ncard - k) := by\n  sorry"
+    }
+  ]
+}

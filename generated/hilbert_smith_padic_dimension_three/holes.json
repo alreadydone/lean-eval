@@ -1,0 +1,12 @@
+{
+  "id": "hilbert_smith_padic_dimension_three",
+  "module": "LeanEval.Topology.HilbertSmith3D",
+  "holes": [
+    {
+      "name": "LeanEval.Topology.hilbert_smith_padic_dimension_three",
+      "basename": "hilbert_smith_padic_dimension_three",
+      "kind": "theorem",
+      "body": "/-- **No continuous faithful `\u2124_p` action on a connected 3-manifold** (Pardon\n2013, Theorem 1.5). The additive group of `p`-adic integers cannot act\ncontinuously and faithfully on a connected topological three-manifold.\n\nThis is the `p`-adic step, not the full Hilbert\u2013Smith conjecture: deducing that\nevery locally compact group acting faithfully on a connected three-manifold is\na Lie group additionally requires the classical reduction to `\u2124_p` actions,\nwhich is not part of this statement. -/\ntheorem hilbert_smith_padic_dimension_three\n    (p : \u2115) [Fact p.Prime]\n    (M : Type*) [TopologicalSpace M] [T2Space M] [SecondCountableTopology M]\n    [ConnectedSpace M] [ChartedSpace (EuclideanSpace \u211d (Fin 3)) M]\n    [AddAction (PadicInt p) M] [ContinuousVAdd (PadicInt p) M]\n    [FaithfulVAdd (PadicInt p) M] :\n    False := by\n  sorry"
+    }
+  ]
+}

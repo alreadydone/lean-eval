@@ -1,0 +1,12 @@
+{
+  "id": "pardon_torus_knot_distortion",
+  "module": "LeanEval.KnotTheory.PardonDistortion",
+  "holes": [
+    {
+      "name": "LeanEval.KnotTheory.PardonDistortion.pardon_torus_knot_distortion",
+      "basename": "pardon_torus_knot_distortion",
+      "kind": "theorem",
+      "body": "/-- **Pardon's torus-knot distortion bound (smooth specialization).**\n\nIf `p` and `q` are positive and coprime, every smooth knot in the\norientation-preserving smooth ambient-isotopy class of the explicit standard\n`(p, q)`-torus curve has distortion at least `min(p, q) / 160`. -/\ntheorem pardon_torus_knot_distortion\n    (p q : \u2115) (_hp : 0 < p) (_hq : 0 < q) (_hc : Nat.Coprime p q)\n    (K : Knot)\n    (_hclass : \u2203 \u03a6 : AmbientIsotopy, \u2203 \u03c3 : CircleReparam,\n      \u2200 t, \u03a6.H 1 (K.curve t) = standardTorusCurve p q (\u03c3.f t)) :\n    (1 / 160 : \u211d\u22650\u221e) * (Nat.min p q : \u211d\u22650\u221e) \u2264 distortion K := by\n  sorry"
+    }
+  ]
+}
