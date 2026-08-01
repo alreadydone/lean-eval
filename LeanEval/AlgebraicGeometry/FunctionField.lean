@@ -1,9 +1,4 @@
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Defs
-import Mathlib.NumberTheory.FunctionField
-import Mathlib.NumberTheory.NumberField.Basic
-import Mathlib.RingTheory.DiscreteValuationRing.Basic
-import Mathlib.RingTheory.Valuation.ValuationSubring
-import Mathlib.Topology.Algebra.RestrictedProduct.Basic
+import Mathlib
 import EvalTools.Markers
 
 /-!
@@ -59,22 +54,11 @@ instance : IsScalarTower K v F := inferInstanceAs (IsScalarTower K v.toSubalgebr
 instance : IsFractionRing v F := inferInstanceAs (IsFractionRing v.toValuationSubring F)
 instance : ValuationRing v := inferInstanceAs (ValuationRing v.toValuationSubring)
 
-namespace Place
-
-variable {K F} in
-/-- [Stichtenoth, Theorem 1.1.6]. -/
-@[eval_problem]
-instance isDiscreteValuationRing [BundledFunctionField K F] : IsDiscreteValuationRing v := by
-  sorry
-
 variable {F} in
 /-- [Stichtenoth, Corollary 1.3.4] (finitely many poles). -/
-@[eval_problem]
-theorem finite_setOf_notMem [BundledFunctionField K F] (x : F) :
+theorem Place.finite_setOf_notMem [BundledFunctionField K F] (x : F) :
     {v : Place K F | x ∉ v}.Finite := by
   sorry
-
-end Place
 
 open scoped RestrictedProduct
 
@@ -120,11 +104,6 @@ def integralAdele : Submodule K (Adele K F) where
   add_mem' h₁ h₂ v := add_mem (h₁ v) (h₂ v)
   zero_mem' _ := zero_mem _
   smul_mem' _ _ h v := v.smul_mem (h v) _
-
-@[eval_problem]
-instance genus_finite [BundledFunctionField K F] : FiniteDimensional K
-    (Adele K F ⧸ integralAdele K F ⊔ (IsScalarTower.toAlgHom K F _).toLinearMap.range) := by
-  sorry
 
 /-- The genus of a function field, [Stichtenoth, Corollary 1.5.5]. -/
 noncomputable def genus [BundledFunctionField K F] : ℕ := Module.finrank K
