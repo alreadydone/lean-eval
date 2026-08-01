@@ -2,10 +2,10 @@ import Mathlib
 import EvalTools.Markers
 
 /-!
-# Function fields of one variable
+# Faltings' theorem (Mordell conjecture)
 
-This file develops the basic theory of function fields of one variable following [Stichtenoth], with
-several sorries left as LeanEval problems, and ends with a very hard sorry (Faltings' theorem).
+This file defines basic objects associated to function fields of one variable following
+[Stichtenoth] just enough to state Faltings' theorem.
 
 [Stichtenoth] Henning Stichtenoth, *Algebraic Function Fields and Codes*, Second Edition.
 -/
