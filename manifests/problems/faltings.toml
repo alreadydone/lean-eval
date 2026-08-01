@@ -1,6 +1,6 @@
 id = "faltings"
 title = "Faltings' theorem (Mordell conjecture)"
 test = false
-module = "LeanEval.AlgebraicGeometry.FunctionField"
+module = "LeanEval.AlgebraicGeometry.Faltings"
 holes = ["faltings"]
 submitter = "Junyan Xu"
