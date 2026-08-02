@@ -34,7 +34,7 @@ described by the vanishing of a linear form with coefficients in ℤ. -/
     (alg : ∀ i j, IsAlgebraic ℚ (L i j)) (ind : LinearIndependent ℂ L)
     (ε : ℝ) (pos : 0 < ε) :
     ∃ s : Finset (σ → ℤ), 0 ∉ s ∧ ∀ x : σ → ℤ,
-      ‖∏ i, ∑ j, L i j * x j‖ ≤ ‖x‖ ^ (-ε) → ∃ c ∈ s, ∑ i, c i * x i = 0 := by
+      ‖∏ i, ∑ j, L i j * x j‖ < ‖x‖ ^ (-ε) → ∃ c ∈ s, ∑ i, c i * x i = 0 := by
   sorry
 
 end LeanEval.NumberTheory.SchmidtSubspace
