@@ -23,7 +23,7 @@ versions of Schmidt’s subspace theorem.
 https://pub.math.leidenuniv.nl/~evertsejh/dio19-7.pdf (course notes)
 -/
 
-namespace NumberTheory.SchmidtSubspace
+namespace LeanEval.NumberTheory.SchmidtSubspace
 
 /-- **Schmidt's subspace theorem**.
 
@@ -37,4 +37,4 @@ described by the vanishing of a linear form with coefficients in ℤ. -/
       ‖∏ i, ∑ j, L i j * x j‖ ≤ ‖x‖ ^ (-ε) → ∃ c ∈ s, ∑ i, c i * x i = 0 := by
   sorry
 
-end NumberTheory.SchmidtSubspace
+end LeanEval.NumberTheory.SchmidtSubspace
