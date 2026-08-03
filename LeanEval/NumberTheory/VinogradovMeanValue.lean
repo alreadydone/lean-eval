@@ -20,7 +20,7 @@ https://arxiv.org/abs/1707.00119
 
 Bourgain, Jean; Demeter, Ciprian; Guth, Larry (2016).
 "Proof of the main conjecture in Vinogradov's Mean Value Theorem for degrees higher than three".
-Ann. of Math. 184 (2): 633–682. arXiv:1512.01565. doi:10.4007/annals.2016.184.2.7. 
+Ann. of Math. 184 (2): 633–682. arXiv:1512.01565. doi:10.4007/annals.2016.184.2.7.
 
 Wooley, Trevor D. (2019). "Nested efficient congruencing and relatives of Vinogradov's mean value theorem".
 Proceedings of the London Mathematical Society. 118 (4): 942–1016. arXiv:1708.01220. doi:10.1112/plms.12204.
@@ -31,13 +31,13 @@ namespace LeanEval.NumberTheory.VinogradovMeanValue
 /-- The quantity J_{s,k}(X) that counts solutions of a certain system of
 Diophantine equations in a cube. -/
 def J (s k X : ℕ) : ℝ :=
-  Finset.card {(x, y) : (Fin s → Finset.Icc 1 X) × (Fin s → Finset.Icc 1 X) | 
+  Finset.card {(x, y) : (Fin s → Finset.Icc 1 X) × (Fin s → Finset.Icc 1 X) |
     ∀ j ≤ k, ∑ i, (x i).1 ^ j = ∑ i, (y i).1 ^ j}
 
 @[eval_problem]
 theorem vinogradov_mean_value (s k : ℕ) (ε : ℝ) (hε : 0 < ε) :
     J s k =O[Filter.atTop]
-      fun X ↦ (X ^ (s + ε) + X ^ (2 * s - k * (k + 1) / 2 + ε) : ℝ) := by
+      fun X ↦ (X ^ (s + ε) + X ^ ((2 * s : ℝ) - k * (k + 1) / 2 + ε) : ℝ) := by
   sorry
 
 end LeanEval.NumberTheory.VinogradovMeanValue
