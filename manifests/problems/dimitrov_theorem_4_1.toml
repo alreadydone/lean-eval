@@ -1,4 +1,4 @@
-id = "dimitrov"
+id = "dimitrov_theorem_4_1"
 title = "Dimitrov's lower bound for the house of a nonzero algebraic integer that is not a root of unity"
 test = false
 module = "LeanEval.NumberTheory.SchinzelZassenhaus"
