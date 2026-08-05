@@ -2132,6 +2132,17 @@
     "generated_path": "generated/schlafli_classification"
   },
   {
+    "id": "schmidt_subspace",
+    "title": "Schmidt's subspace theorem",
+    "test": false,
+    "submitter": "Junyan Xu",
+    "module": "LeanEval.NumberTheory.SchmidtSubspace",
+    "holes": [
+      "schmidt_subspace"
+    ],
+    "generated_path": "generated/schmidt_subspace"
+  },
+  {
     "id": "schoenflies",
     "title": "Schoenflies theorem",
     "test": false,
@@ -2504,6 +2515,17 @@
       "variable_binder_example"
     ],
     "generated_path": "generated/variable_binder_example"
+  },
+  {
+    "id": "vinogradov_mean_value",
+    "title": "Vinogradov mean value theorem",
+    "test": false,
+    "submitter": "Junyan Xu",
+    "module": "LeanEval.NumberTheory.VinogradovMeanValue",
+    "holes": [
+      "vinogradov_mean_value"
+    ],
+    "generated_path": "generated/vinogradov_mean_value"
   },
   {
     "id": "vonNeumann_doubleCommutant_tfae",
