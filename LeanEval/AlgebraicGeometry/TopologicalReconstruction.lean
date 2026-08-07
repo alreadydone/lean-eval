@@ -10,13 +10,24 @@ Assume that
 * dim X ≥ 3 and the fields are finitely generated field extensions of ℚ, or
 * dim X ≥ 2 and the fields are uncountable.
 Then every homeomorphism between X and Y extends to an isomorphism of schemes.
+This theorem is the culmination of several reconstruction results proved in [KLOS20, Kol20].
+
+The approach in [KLOS] naturally breaks into two parts:
+* Reconstruction of a scheme from the underlying topological space together with the
+  additional information of the linear equivalence relation on divisors.
+• Reconstruction of linear equivalence from the topological space.
 
 ## Reference
 
-János Kollár, Max Lieblich, Martin Olsson, and Will Sawin.
-The Zariski topology, linear systems, and algebraic varieties.
-https://williamsawin.com/ReconstructionBook.pdf or 
-https://max.lieblich.us/wp-content/uploads/2021/09/reconstructionweb.pdf
+* [KLOS] János Kollár, Max Lieblich, Martin Olsson, and Will Sawin.
+  The Zariski topology, linear systems, and algebraic varieties.
+  https://williamsawin.com/ReconstructionBook.pdf or 
+  https://max.lieblich.us/wp-content/uploads/2021/09/reconstructionweb.pdf
+
+* [KLOS20] János Kollár, Max Lieblich, Martin Olsson, and Will Sawin.
+  Topological reconstruction theorems for varieties. https://arxiv.org/abs/2003.04847
+
+* [Kol20] János Kollár. What determines a variety? https://arxiv.org/abs/2002.12424
 -/
 
 open CategoryTheory AlgebraicGeometry
@@ -41,6 +52,7 @@ def IsNormalScheme (X : Scheme) : Prop :=
 
 universe u
 
+/-- Theorem 1.4.3 in the reference. -/
 @[eval_problem] theorem kollar_lieblich_olsson_sawin (X Y : Scheme.{u}) (K L : Type u)
     [Field K] [Field L] [CharZero K] [CharZero L]
     (norm_X : IsNormalScheme X) (f : X ⟶ Spec (.of K)) (proj_f : IsProjectiveHom f)
