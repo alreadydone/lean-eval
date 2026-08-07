@@ -1,10 +1,4 @@
-import Mathlib.Algebra.Star.Unitary
-import Mathlib.Data.Real.Star
-import Mathlib.LinearAlgebra.Matrix.ConjTranspose
-import Mathlib.MeasureTheory.Group.FundamentalDomain
-import Mathlib.MeasureTheory.Measure.Haar.Basic
-import Mathlib.Topology.Instances.Matrix
-import Mathlib.Topology.MetricSpace.Pseudo.Defs
+import Mathlib
 import EvalTools.Markers
 
 /-!
@@ -19,12 +13,13 @@ isomorphic iff they are conjugate in PO(n,1). In this file we define the group P
 state this algebraic form of Mostow rigidity.
 
 References:
-https://en.wikipedia.org/wiki/Mostow_rigidity_theorem#Algebraic_form
-Riccardo Benedetti, Carlo Petronio. *Lectures on Hyperbolic Geometry*, Chapter C
-(proof of geometric form in compact case in 50 pages).
+* https://en.wikipedia.org/wiki/Mostow_rigidity_theorem#Algebraic_form
+* Riccardo Benedetti, Carlo Petronio. *Lectures on Hyperbolic Geometry*, Chapter C
+  (proof of geometric form in compact case in 50 pages).
+* Gopal Prasad, *Strong rigidity of ℚ-rank 1 lattices*, Invent. Math. 21 (1973), 255–286.
 -/
 
-namespace LeanEval.Geometry
+namespace LeanEval.Geometry.MostowRigidity
 
 universe u
 
@@ -120,17 +115,18 @@ open MeasureTheory
 
 noncomputable instance : MeasureSpace (PO p q) := ⟨.haar⟩
 
-end LeanEval.Geometry
+end LeanEval.Geometry.MostowRigidity
 
-namespace LeanEval.Geometry
+namespace LeanEval.Geometry.MostowRigidity
 
 open MeasureTheory
 
 @[eval_problem]
 theorem mostow_rigidity (n : ℕ) (hn : 3 ≤ n) (Γ Λ : Subgroup (PO n 1))
-    (disc_Γ : IsDiscrete (SetLike.coe Γ)) (covol_Γ : covolume Γ (PO n 1) ≠ ⊤)
-    (disc_Λ : IsDiscrete (SetLike.coe Λ)) (covol_Λ : covolume Λ (PO n 1) ≠ ⊤)
-    (f : Γ ≃* Λ) : ∃ g : PO n 1, Γ.map (MulAut.conj g) = Λ := by
+    (disc_Γ : IsDiscrete (SetLike.coe Γ)) (disc_Λ : IsDiscrete (SetLike.coe Λ))
+    [HasFundamentalDomain Γ (PO n 1)] [HasFundamentalDomain Λ (PO n 1)]
+    (covol_Γ : covolume Γ (PO n 1) ≠ ⊤) (covol_Λ : covolume Λ (PO n 1) ≠ ⊤)
+    (f : Γ ≃* Λ) : ∃ g : PO n 1, ∀ γ : Γ, f γ = g * γ * g⁻¹ := by
   sorry
 
-end LeanEval.Geometry
+end LeanEval.Geometry.MostowRigidity
