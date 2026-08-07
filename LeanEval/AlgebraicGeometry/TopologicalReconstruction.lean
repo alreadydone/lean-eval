@@ -15,7 +15,7 @@ This theorem is the culmination of several reconstruction results proved in [KLO
 The approach in [KLOS] naturally breaks into two parts:
 * Reconstruction of a scheme from the underlying topological space together with the
   additional information of the linear equivalence relation on divisors.
-• Reconstruction of linear equivalence from the topological space.
+* Reconstruction of linear equivalence from the topological space.
 
 ## Reference
 
