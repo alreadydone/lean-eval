@@ -7,8 +7,13 @@ import EvalTools.Markers
 This file defines basic objects associated to function fields of one variable following
 [Stichtenoth] just enough to state Faltings' theorem.
 
+The repository https://github.com/vaca22/riemann-roch-function-fields contains more
+advanced development of the theory of function fields.
+
 [Stichtenoth] Henning Stichtenoth, *Algebraic Function Fields and Codes*, Second Edition.
 -/
+
+namespace LeanEval.AlgebraicGeometry.Faltings
 
 section ValuationSubalgebra
 
@@ -18,12 +23,10 @@ variable (R F : Type*) [CommSemiring R] [Field F] [Algebra R F]
 
 end ValuationSubalgebra
 
-variable (K F: Type*) [Field K] [Field F] [Algebra K F]
+variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 
 class BundledFunctionField extends
   Algebra (RatFunc K) F, IsScalarTower K (RatFunc K) F, FunctionField K F
-
-namespace FunctionField
 
 /-- The type of places of a 1-dimensional function field. See [Stichtenoth,
 Definition 1.1.4 and 1.1.8]. We omit the condition `toSubalgebra ≠ ⊥` since it is automatic. -/
@@ -56,7 +59,7 @@ instance : ValuationRing v := inferInstanceAs (ValuationRing v.toValuationSubrin
 
 variable {F} in
 /-- [Stichtenoth, Corollary 1.3.4] (finitely many poles). -/
-theorem Place.finite_setOf_notMem [BundledFunctionField K F] (x : F) :
+@[eval_problem] theorem finite_setOf_place_notMem [BundledFunctionField K F] (x : F) :
     {v : Place K F | x ∉ v}.Finite := by
   sorry
 
@@ -72,7 +75,7 @@ open RestrictedProduct
 variable {F} in
 /-- The principal adele associated to an element in the function field. -/
 def Adele.principal [BundledFunctionField K F] : F →+* Adele K F where
-  toFun x := ⟨fun _ ↦ x, Place.finite_setOf_notMem K x⟩
+  toFun x := ⟨fun _ ↦ x, finite_setOf_place_notMem K x⟩
   map_one' := rfl
   map_mul' _ _ := rfl
   map_zero' := rfl
@@ -118,4 +121,4 @@ theorem faltings [NumberField K] [BundledFunctionField K F] (h : 2 ≤ genus K F
     {v : Place K F | Module.rank K (IsLocalRing.ResidueField v) = 1}.Finite := by
   sorry
 
-end FunctionField
+end LeanEval.AlgebraicGeometry.Faltings
