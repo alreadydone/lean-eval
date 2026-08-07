@@ -4,4 +4,4 @@ test = false
 module = "LeanEval.Geometry.MostowRigidity"
 holes = ["mostow_rigidity"]
 submitter = "Junyan Xu"
-source = "https://en.wikipedia.org/wiki/Mostow_rigidity_theorem#Algebraic_form"
+source = "https://en.wikipedia.org/wiki/Mostow_rigidity_theorem#Algebraic_form and Gopal Prasad, *Strong rigidity of ℚ-rank 1 lattices*, Invent. Math. 21 (1973), 255–286."
