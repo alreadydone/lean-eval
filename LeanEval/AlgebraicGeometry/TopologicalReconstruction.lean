@@ -34,6 +34,8 @@ open CategoryTheory AlgebraicGeometry
 
 namespace LeanEval.AlgebraicGeometry.TopologicalReconstruction
 
+universe u
+
 /-- The structure morphism from a projective space `ℙⁿ_R` to `Spec R`. -/
 noncomputable def projToSpec {R A : Type u} [CommRing R] [CommRing A] [Algebra R A]
     (𝒜 : ℕ → Submodule R A) [GradedAlgebra 𝒜] : Proj 𝒜 ⟶ Spec (.of R) :=
@@ -49,8 +51,6 @@ def IsProjectiveHom {X : Scheme} {R : Type*} [CommRing R] (f : X ⟶ Spec (.of R
 /-- A scheme X is normal if for all `x : X` the local ring O_{X,x} is a normal domain. -/
 def IsNormalScheme (X : Scheme) : Prop :=
   ∀ x : X, IsDomain (X.presheaf.stalk x) ∧ IsIntegrallyClosed (X.presheaf.stalk x)
-
-universe u
 
 /-- Theorem 1.4.3 in the reference. -/
 @[eval_problem] theorem kollar_lieblich_olsson_sawin (X Y : Scheme.{u}) (K L : Type u)
