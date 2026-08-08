@@ -54,7 +54,7 @@ def IsNormalScheme (X : Scheme) : Prop :=
 
 /-- Theorem 1.4.3 in the reference. -/
 @[eval_problem] theorem kollar_lieblich_olsson_sawin (X Y : Scheme.{u}) (K L : Type u)
-    [Field K] [Field L] [CharZero K] [CharZero L]
+    [Field K] [Field L] [CharZero K] [CharZero L] [IrreducibleSpace X] [IrreducibleSpace Y]
     (norm_X : IsNormalScheme X) (f : X ⟶ Spec (.of K)) (proj_f : IsProjectiveHom f)
     (norm_Y : IsNormalScheme Y) (g : Y ⟶ Spec (.of L)) (proj_g : IsProjectiveHom g)
     (h : 4 ≤ topologicalKrullDim X ∨
