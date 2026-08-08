@@ -66,7 +66,7 @@ variable {F} in
 open scoped RestrictedProduct
 
 /-- [Stichtenoth, Definition 1.5.2]. -/
-abbrev Adele : Type _ := Πʳ v : Place K F, [F, v]
+abbrev Adele : Type _ := RestrictedProduct (fun _ ↦ F) (fun v : Place K F ↦ v) Filter.cofinite
 
 instance : CommRing (Adele K F) := RestrictedProduct.instCommRingCoeOfSubringClass ..
 
