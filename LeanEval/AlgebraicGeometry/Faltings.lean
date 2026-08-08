@@ -57,11 +57,14 @@ instance : IsScalarTower K v F := inferInstanceAs (IsScalarTower K v.toSubalgebr
 instance : IsFractionRing v F := inferInstanceAs (IsFractionRing v.toValuationSubring F)
 instance : ValuationRing v := inferInstanceAs (ValuationRing v.toValuationSubring)
 
-variable {F} in
+variable {F}
+
 /-- [Stichtenoth, Corollary 1.3.4] (finitely many poles). -/
 @[eval_problem] theorem finite_setOf_place_notMem [BundledFunctionField K F] (x : F) :
     {v : Place K F | x ∉ v}.Finite := by
   sorry
+
+variable (F)
 
 open scoped RestrictedProduct
 
@@ -72,7 +75,8 @@ instance : CommRing (Adele K F) := RestrictedProduct.instCommRingCoeOfSubringCla
 
 open RestrictedProduct
 
-variable {F} in
+variable {F}
+
 /-- The principal adele associated to an element in the function field. -/
 def Adele.principal [BundledFunctionField K F] : F →+* Adele K F where
   toFun x := ⟨fun _ ↦ x, finite_setOf_place_notMem K x⟩
@@ -80,6 +84,8 @@ def Adele.principal [BundledFunctionField K F] : F →+* Adele K F where
   map_mul' _ _ := rfl
   map_zero' := rfl
   map_add' _ _ := rfl
+
+variable (F)
 
 instance [BundledFunctionField K F] : Algebra F (Adele K F) where
   smul x a := ⟨x • a, (.principal K x * a).2⟩
