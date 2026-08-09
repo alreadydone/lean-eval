@@ -33,7 +33,7 @@ Katok and Lindenstrauss proved this conjecture under the additional hypothesis t
   London: Springer. 2010. https://doi.org/10.1007/978-0-85729-021-2
 -/
 
-namespace LeanEval.NumberTheory.EinsiedlerKatokLindenstrauss
+namespace LeanEval.Dynamics.EinsiedlerKatokLindenstrauss
 
 /-- The distance from a real number to the nearest integer. -/
 noncomputable def distToNearestInt (x : ℝ) : ℝ := |x - round x|
@@ -43,4 +43,4 @@ noncomputable def distToNearestInt (x : ℝ) : ℝ := |x - round x|
       (fun n : ℕ ↦ n * distToNearestInt (n * α) * distToNearestInt (n * β)) > 0} = 0 := by
   sorry
 
-end LeanEval.NumberTheory.EinsiedlerKatokLindenstrauss
+end LeanEval.Dynamics.EinsiedlerKatokLindenstrauss
