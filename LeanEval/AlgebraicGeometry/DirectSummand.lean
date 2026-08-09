@@ -20,17 +20,13 @@ then A ⟶ RΓ(X, 𝒪_X) splits in the derived category D(A).
 * Linquan Ma, a short proof of the direct summand theorem via the flatness lemma, https://www.math.purdue.edu/~ma326/DSC.pdf
 -/
 
-namespace LeanEval.AlgebraicGeometry.DirectSummand
-
-variable (A B : Type*) [CommRing A] [IsRegularRing A]
-
-@[eval_problem] theorem direct_summand [CommRing B] [Algebra A B] [Module.Finite A B] :
-    ∃ π : B →ₗ[A] A, π ∘ₗ Algebra.linearMap A B = .id := by
-  sorry
-
 open CategoryTheory AlgebraicGeometry
 
-noncomputable def singleFunctorMapHomotopyCategory {W₁ W₂ : Type*} [Category W₁] [Category W₂]
+namespace LeanEval.AlgebraicGeometry.DirectSummand
+
+variable (A : Type*) [CommRing A] [IsRegularRing A]
+
+noncomputable def singleFunctorMapHomotopyCategory {W₁ W₂ : Type*} [Category* W₁] [Category* W₂]
     [Preadditive W₁] [Preadditive W₂] [Limits.HasZeroObject W₁] [Limits.HasZeroObject W₂]
     (F : W₁ ⥤ W₂) [F.Additive] (n : ℤ) :
     HomotopyCategory.singleFunctor W₁ n ⋙ F.mapHomotopyCategory _ ≅
@@ -39,7 +35,7 @@ noncomputable def singleFunctorMapHomotopyCategory {W₁ W₂ : Type*} [Category
     (Functor.associator ..).symm ≪≫
     Functor.isoWhiskerRight (HomologicalComplex.singleMapHomologicalComplex F ..) _
 
-noncomputable def singleFunctorMapHomotopyCategoryPlus {W₁ W₂ : Type*} [Category W₁] [Category W₂]
+noncomputable def singleFunctorMapHomotopyCategoryPlus {W₁ W₂ : Type*} [Category* W₁] [Category* W₂]
     [Preadditive W₁] [Preadditive W₂] [Limits.HasZeroObject W₁] [Limits.HasZeroObject W₂]
     (F : W₁ ⥤ W₂) [F.Additive] (n : ℤ) :
     HomotopyCategory.Plus.singleFunctor W₁ n ⋙ F.mapHomotopyCategoryPlus ≅
@@ -48,7 +44,7 @@ noncomputable def singleFunctorMapHomotopyCategoryPlus {W₁ W₂ : Type*} [Cate
     (fun X ↦ ObjectProperty.isoMk _ <| (singleFunctorMapHomotopyCategory F n).app X) <| by
     intros; ext; exact (singleFunctorMapHomotopyCategory F n).hom.naturality _
 
-noncomputable def rightDerivedFunctorPlusUnit' {C D : Type*} [Category C] [Category D]
+noncomputable def rightDerivedFunctorPlusUnit' {C D : Type*} [Category* C] [Category* D]
     [Abelian C] [Abelian D] [HasDerivedCategory C] [HasDerivedCategory D]
     (F : C ⥤ D) [F.Additive] [EnoughInjectives C] (n : ℤ) :
     F ⋙ DerivedCategory.Plus.singleFunctor _ n ⟶
@@ -56,7 +52,7 @@ noncomputable def rightDerivedFunctorPlusUnit' {C D : Type*} [Category C] [Categ
   Functor.whiskerRight (singleFunctorMapHomotopyCategoryPlus F n).inv DerivedCategory.Plus.Qh ≫
     (HomotopyCategory.Plus.singleFunctor _ n).whiskerLeft F.rightDerivedFunctorPlusUnit
 
-instance {C : Type*} [Category C] {J : GrothendieckTopology C} (R : Sheaf J RingCat) (X : Cᵒᵖ) :
+instance {C : Type*} [Category* C] {J : GrothendieckTopology C} (R : Sheaf J RingCat) (X : Cᵒᵖ) :
     (SheafOfModules.evaluation R X).Additive where
   map_add := rfl
 
@@ -70,6 +66,11 @@ instance {C : Type*} [Category C] {J : GrothendieckTopology C} (R : Sheaf J Ring
         (ModuleCat.ofHom (Algebra.linearMap A Γ(X, ⊤))) ≫
       (rightDerivedFunctorPlusUnit' (SheafOfModules.evaluation X.ringCatSheaf ⟨⊤⟩ ⋙
         ModuleCat.restrictScalars φ) 0).app (SheafOfModules.unit X.ringCatSheaf) := by
+  sorry
+
+@[eval_problem] theorem direct_summand (B : Type*) [CommRing B] [Algebra A B]
+    [Module.Finite A B] [FaithfulSMul A B] :
+    ∃ π : B →ₗ[A] A, π ∘ₗ Algebra.linearMap A B = .id := by
   sorry
 
 end LeanEval.AlgebraicGeometry.DirectSummand
