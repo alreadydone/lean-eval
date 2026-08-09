@@ -154,6 +154,17 @@
     "generated_path": "generated/bauer_extreme_point_uniqueness"
   },
   {
+    "id": "bender_suzuki",
+    "title": "Bender\u2013Suzuki theorem (classification of finite simple groups with a strongly-embedded subgroup)",
+    "test": false,
+    "submitter": "Tianjiao Nie",
+    "module": "LeanEval.GroupTheory.BenderSuzuki",
+    "holes": [
+      "bender_suzuki"
+    ],
+    "generated_path": "generated/bender_suzuki"
+  },
+  {
     "id": "bezout_projective_multiplicity",
     "title": "B\u00e9zout's theorem (projective, with multiplicity)",
     "test": false,
@@ -1663,6 +1674,17 @@
       "morse_inequality"
     ],
     "generated_path": "generated/morse_inequality"
+  },
+  {
+    "id": "mostow_rigidity",
+    "title": "Mostow rigidity",
+    "test": false,
+    "submitter": "Junyan Xu",
+    "module": "LeanEval.Geometry.MostowRigidity",
+    "holes": [
+      "mostow_rigidity"
+    ],
+    "generated_path": "generated/mostow_rigidity"
   },
   {
     "id": "mountain_pass",
