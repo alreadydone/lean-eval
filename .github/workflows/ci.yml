@@ -22,22 +22,28 @@ jobs:
           docker-images: true
           swap-storage: true
 
-      # actions/checkout pinned to 11bd7190 (= refs/tags/v4.2.2 as of 2026-05-04).
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      # actions/checkout pinned to 3d3c42e5 (= refs/tags/v7.0.1 as of 2026-07-30).
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       # leanprover/lean-action pinned to 38fbc41a (= refs/tags/v1.5.0, also v1 HEAD as of 2026-05-04).
       - uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
         with:
           use-mathlib-cache: true
 
-      # actions/setup-go pinned to d35c59ab (= refs/tags/v5.5.0 as of 2026-05-04).
-      - uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5
+      # actions/setup-go pinned to b7ad1dad (= refs/tags/v7.0.0 as of 2026-07-30).
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e
         with:
           # Concrete Go version, not `stable`, so a runner-image bump cannot
-          # silently change the toolchain we install landrun with.
-          go-version: '1.24.0'
+          # silently change the toolchain we install landrun with. setup-go
+          # v6+ sets GOTOOLCHAIN=local, so this is also the compiler actually
+          # used rather than a minimum that Go may silently replace.
+          go-version: '1.25.12'
+          # This repository has no Go module dependency file for setup-go to
+          # hash; the only Go dependency is pinned directly in `go install`.
+          cache: false
 
       - name: Install landrun
         run: |
@@ -48,11 +54,13 @@ jobs:
 
       - name: Build lean4export
         run: |
+          set -euo pipefail
           git clone https://github.com/leanprover/lean4export.git .ci/lean4export
           cd .ci/lean4export
-          # lean4export pinned to 3de59f10 (= refs/tags/v4.32.0-rc1 as of 2026-06-27).
+          # lean4export pinned to 4e791520 (= refs/tags/v4.32.0 as of 2026-07-29).
           # Bump procedure: SECURITY.md > "Bumping pinned dependencies".
-          git checkout 3de59f10bc4b4a0f2de698597aeb1246caa0df0a  # pin-audit: exempt -- SHA, see comment
+          git checkout 4e7915201d3f9f04470d9eae002fa695f7cdc589  # pin-audit: exempt -- SHA, see comment
+          cp "$GITHUB_WORKSPACE/lean-toolchain" lean-toolchain
           lake build lean4export
           echo "$PWD/.lake/build/bin" >> "$GITHUB_PATH"
 
@@ -65,6 +73,23 @@ jobs:
           git checkout 71b52ec29e06d4b7d882726553b1ceb99a2499e0  # pin-audit: exempt -- SHA, see comment
           lake build comparator
           echo "$PWD/.lake/build/bin" >> "$GITHUB_PATH"
+
+      - name: Build nanoda
+        run: |
+          set -euo pipefail
+          # The external checker. WorkspaceTest forces `enable_nanoda: true`
+          # when it invokes comparator, so every scored Solution is replayed
+          # through nanoda's independent kernel and rejected unless `nanoda_bin`
+          # is on PATH. Built with the runner's stable cargo; the trust boundary
+          # is the pinned source commit, not the Rust compiler version.
+          git clone https://github.com/robsimmons/nanoda_lib.git .ci/nanoda
+          cd .ci/nanoda
+          # nanoda pinned to 68d5ca9 (robsimmons/nanoda_lib HEAD as of 2026-07-29,
+          # the fork comparator-live deploys). Bump procedure: SECURITY.md >
+          # "Bumping pinned dependencies".
+          git checkout 68d5ca9db226849b41a6fff59d796ff19d0a8840  # pin-audit: exempt -- SHA, see comment
+          cargo build --release
+          echo "$PWD/target/release" >> "$GITHUB_PATH"
 
       - name: Audit workflow action pins
         run: python scripts/action_pin_audit.py

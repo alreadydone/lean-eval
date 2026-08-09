@@ -107,8 +107,8 @@ lake exe lean-eval check-problem-build
 
 `validate-manifest` checks that `@[eval_problem]` declarations and manifest entries
 match. `check-problem-build` builds the problem modules so warning-producing Lean changes
-do not slip through. Both are cheap and catch the most common mistakes before a CI
-roundtrip.
+do not slip through. Both catch the most common mistakes before a CI roundtrip;
+on a clean checkout, validating the full problem inventory can take some time.
 
 ### 5. Open a PR
 
@@ -186,10 +186,12 @@ that tells comparator to check your theorem from the `Submission` namespace.
 lake test
 ```
 
-`lake test` shells out to three external tools that you must install yourself:
-`landrun` (the sandbox), `lean4export` (exports oleans to text), and `comparator`
-(the verifier). All three are pinned to immutable commits; the authoritative pin
-table lives in [`SECURITY.md`](SECURITY.md) ("Trusted dependencies and pin
+`lake test` shells out to four external tools that you must install yourself:
+`landrun` (the sandbox), `lean4export` (exports oleans to text), `comparator`
+(the verifier), and `nanoda` (the independent kernel). `WorkspaceTest` forces
+comparator to replay every Solution through nanoda, so a missing `nanoda_bin`
+fails the check. All four are pinned to immutable commits; the authoritative
+pin table lives in [`SECURITY.md`](SECURITY.md) ("Trusted dependencies and pin
 policy"), and CI installs exactly these in
 [`.github/workflows/ci.yml`](.github/workflows/ci.yml). Reproduce that setup
 locally:
@@ -201,9 +203,11 @@ go install github.com/zouuup/landrun/cmd/landrun@5ed4a3db3a4ad930d577215c6b9abaa
 export PATH="$(go env GOPATH)/bin:$PATH"
 
 # lean4export — clone, check out the pin, and build.
+lean_eval_root="$(pwd)"  # run this setup from the lean-eval repository root
 git clone https://github.com/leanprover/lean4export.git
 ( cd lean4export
-  git checkout 3de59f10bc4b4a0f2de698597aeb1246caa0df0a
+  git checkout 4e7915201d3f9f04470d9eae002fa695f7cdc589
+  cp "$lean_eval_root/lean-toolchain" lean-toolchain
   lake build lean4export )
 export PATH="$PWD/lean4export/.lake/build/bin:$PATH"
 
@@ -213,19 +217,30 @@ git clone https://github.com/leanprover/comparator.git
   git checkout 71b52ec29e06d4b7d882726553b1ceb99a2499e0
   lake build comparator )
 export PATH="$PWD/comparator/.lake/build/bin:$PATH"
+
+# nanoda — the external kernel. WorkspaceTest forces comparator to replay the
+# Solution through nanoda, so `lake test` fails unless `nanoda_bin` is on your
+# PATH. Needs a Rust toolchain (`cargo`); the pin is on the source commit, not
+# the compiler version.
+git clone https://github.com/robsimmons/nanoda_lib.git
+( cd nanoda_lib
+  git checkout 68d5ca9db226849b41a6fff59d796ff19d0a8840
+  cargo build --release )
+export PATH="$PWD/nanoda_lib/target/release:$PATH"
 ```
 
-`lean4export` and `comparator` are Lean programs: `lake build` compiles each with
-the Lean toolchain pinned in *its own* `lean-toolchain` at the commit above (the
-v4.32.0-rc1 toolchain). This must match the toolchain that builds the workspace,
-because comparator builds `Challenge.olean` with the workspace toolchain and then
-reads it back with `lean4export`. If the two differ you get
+`lean4export` and `comparator` are Lean programs. The pinned lean4export source
+uses Lean v4.32.0 by default, but its build command above deliberately selects
+the workspace's exact toolchain by copying `lean-toolchain`; Lean v4.32.0 and v4.32.2
+have incompatible olean headers. Comparator builds `Challenge.olean` with the
+workspace toolchain and then reads it back with `lean4export`, so exact
+compatibility is required. If the formats differ you get
 `failed to read file '.../Challenge.olean', incompatible header` — that error
 means a Lean/olean version mismatch (or a stale `.lake` artifact left over from
 an earlier toolchain), never a problem with your proof. If you hit it, rebuild
-`lean4export` (and `comparator`) at the pinned commits with the v4.32.0-rc1 toolchain
-rather than your `elan` default, and clear the affected workspace's `.lake/build`
-before retrying.
+`lean4export` at the pinned commit after copying this repository's
+`lean-toolchain` into its checkout, rebuild comparator at its pinned commit, and clear the affected
+workspace's `.lake/build` before retrying.
 
 Once the tools are on your `PATH`, verify the whole pipeline against the starter
 problem before attempting a real one — this builds and scores `two_plus_two` end

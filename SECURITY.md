@@ -98,6 +98,7 @@ code.
 | `rm -rf .git` | trusted | runner | No |
 | `lake build comparator` (in `.ci/comparator/`) | trusted | runner | No |
 | `lake build lean4export` (in `.ci/lean4export/`) | trusted | runner | No |
+| `cargo build --release` (in `.ci/nanoda/`) | trusted, pinned source | runner | No |
 | Submission tarball extracted | inert data | runner | No |
 | `evaluate_submission.py` overlay walk | trusted Python | runner | No |
 | `_share_packages` symlink setup | trusted Python | runner | No |
@@ -111,6 +112,7 @@ code.
 | `comparator.safeExport challengeModule` | reads trusted olean | **inside landrun** | No |
 | **`comparator.safeLakeBuild Solution`** | builds Solution -> imports Submission | **inside landrun** | **YES** |
 | `comparator.safeExport solutionModule` | reads the just-built olean | **inside landrun** | No |
+| `runNanoda solution` | pipes the export to `nanoda_bin` (independent kernel) | **inside landrun** | No |
 | `runKernel solution` | replays exported env in comparator process | runner | No |
 
 (`evaluate_submission.py` lives in the submissions repo; the steps above
@@ -124,7 +126,7 @@ verifies on every run of the test suite that `lake env -- <cmd>` (and
 nested `lake env -- lake env -- <cmd>`) on a workspace whose
 `Submission.lean` has top-level `initialize` and `#eval` markers does
 NOT produce those markers in stdout. Confirmed on the pinned toolchain
-(2026-05-04). If a future lake version starts evaluating project Lean
+(Lean v4.32.2, 2026-07-29). If a future lake version starts evaluating project Lean
 during `lake env`, this probe must be re-run before the toolchain
 bump lands.
 
@@ -146,11 +148,13 @@ reading it — getting comparator to verify against an
 attacker-controlled olean.
 
 We ran [scripts/security_probes/artifact_tamper_probe.py](scripts/security_probes/artifact_tamper_probe.py)
-on Linux (kernel 6.12 + landrun 5ed4a3db + comparator 71b52ec) on
-2026-05-04 and the attack is **structurally impossible at the spawn
-step**. Inside the sandbox, `IO.Process.spawn` succeeds only for the
-`lean` binary; `sh`, `setsid`, `bash`, `cp`, `/bin/sh`, `/usr/bin/env`
-all return exit 255 ("could not execute external process"). Comparator's
+on Linux (kernel 6.12 + Lean v4.32.2 + landrun 5ed4a3db + comparator
+71b52ec) on 2026-07-29 and the attack is **structurally impossible at
+the spawn step**. Inside the sandbox, `IO.Process.spawn` succeeds for
+the whitelisted `lean` and `git` binaries; `sh`, `setsid`, `bash`, `cp`,
+`/bin/sh`, and `/usr/bin/env` all return exit 255 ("could not execute
+external process"). Phase B also confirmed by SHA-256 that the
+deliberately distinct prepared olean was not installed. Comparator's
 `safeLakeBuild` only `--rox`-whitelists `leanPrefix` and `gitLocation`;
 landrun denies exec of anything else. The attacker has no way to
 spawn a daemon, so there is nothing to race against `safeExport`.
@@ -187,23 +191,30 @@ mechanism that forces a re-audit.
 
 ## 5. Trusted dependencies and pin policy
 
-Every external dependency of the evaluation pipeline is pinned to an
-immutable commit SHA. Tags and branches are mutable; if `landrun@main`
-or `actions/checkout@v4` is ever resolved at install time, the
-upstream publisher controls our supply chain.
+Every source dependency and CI action in the evaluation pipeline is
+pinned to an immutable commit SHA. The Lean binary toolchain is pinned
+to an exact release selector. Branches and loose action tags are mutable;
+if `landrun@main` or `actions/checkout@v4` is ever resolved at install
+time, the upstream publisher controls our supply chain.
 
 | Dependency | Repo | Pinned to | Purpose | Last bumped |
 |---|---|---|---|---|
+| Lean toolchain | leanprover/lean4 | `v4.32.2` | compiler and Lake | 2026-07-29 |
+| mathlib | leanprover-community/mathlib4 | `905b95818eb32af7874a58b427f50c1711a5e96c` | theorem library | 2026-07-29 |
+| lean4-cli | leanprover/lean4-cli | `88679d088c9720c27ebdf2ba4dafe17341747f94` | command-line parsing | 2026-07-29 |
 | landrun | zouuup/landrun | `5ed4a3db3a4ad930d577215c6b9abaa19df7f99f` | Linux landlock sandbox | 2026-05-04 |
-| lean4export | leanprover/lean4export | `3de59f10bc4b4a0f2de698597aeb1246caa0df0a` | exports olean to text | 2026-06-27 |
+| lean4export | leanprover/lean4export | `4e7915201d3f9f04470d9eae002fa695f7cdc589` | exports olean to text | 2026-07-29 |
 | comparator | leanprover/comparator | `71b52ec29e06d4b7d882726553b1ceb99a2499e0` | the verifier | pre-2026-05 |
+| nanoda | robsimmons/nanoda_lib | `68d5ca9db226849b41a6fff59d796ff19d0a8840` | independent kernel (external checker) | 2026-07-29 |
 | `jlumbroso/free-disk-space` | (action) | `54081f138730dfa15788a46383842cd2f914a1be` | runner disk cleanup | 2026-05-04 |
-| `actions/checkout` | (action) | `11bd71901bbe5b1630ceea73d27597364c9af683` | repo checkout | 2026-05-04 |
-| `actions/setup-python` | (action) | `a26af69be951a213d495a4c3e4e4022e16d87065` | python setup | 2026-05-04 |
-| `actions/setup-go` | (action) | `d35c59abb061a4a6fb18e82ac0862c26744d6ab5` | go setup | 2026-05-04 |
-| `actions/create-github-app-token` | (action) | `d72941d797fd3113feb6b93fd0dec494b13a2547` | App auth | 2026-05-04 |
+| `actions/checkout` | (action) | `3d3c42e5aac5ba805825da76410c181273ba90b1` (v7.0.1) | repo checkout | 2026-07-30 |
+| `actions/setup-python` | (action) | `5fda3b95a4ea91299a34e894583c3862153e4b97` (v7.0.0) | python setup (`lean-eval-submissions`) | 2026-07-30 |
+| `actions/setup-go` | (action) | `b7ad1dad31e06c5925ef5d2fc7ad053ef454303e` (v7.0.0) | go setup | 2026-07-30 |
+| `actions/create-github-app-token` | (action) | `bcd2ba49218906704ab6c1aa796996da409d3eb1` (v3.2.0) | App auth | 2026-07-30 |
+| `actions/upload-artifact` | (action) | `043fb46d1a93c77aae656e7c1c64a875d1fc6a0a` (v7.0.1) | submission artifact upload (`lean-eval-submissions`) | 2026-07-30 |
+| `actions/download-artifact` | (action) | `3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c` (v8.0.1) | submission artifact download (`lean-eval-submissions`) | 2026-07-30 |
 | `leanprover/lean-action` | (action) | `38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9` | Lean toolchain | 2026-05-04 |
-| Go toolchain | (setup-go arg) | `1.24.0` | concrete version, not `stable` | 2026-05-04 |
+| Go toolchain | (setup-go arg) | `1.25.12` | concrete version, not `stable` | 2026-07-30 |
 | Python | (setup-python arg) | `3.11.10` | concrete patch version | 2026-05-04 |
 | `permitted_axioms` (every workspace) | comparator config | `{propext, Quot.sound, Classical.choice}` | axioms allowed in proofs | unchanged |
 
@@ -224,9 +235,12 @@ own `submission.yml`. A bump must update both repos in lockstep.
    For branch HEAD: `git ls-remote <repo> refs/heads/main`.
 2. Update **every** site listed below in lockstep, and add a dated
    comment of the form `# <dep> pinned to <sha7> (<note> as of YYYY-MM-DD).`
-   - `.github/workflows/ci.yml` (this repo)
+   - `.github/workflows/ci.yml` (this repo; includes the nanoda pin)
    - `.github/workflows/regenerate-main.yml` (this repo)
-   - `.github/workflows/submission.yml` (leanprover/lean-eval-submissions)
+   - `.github/workflows/submission.yml` (leanprover/lean-eval-submissions;
+     includes the nanoda pin)
+   - `README.md` (this repo; the local-setup nanoda / comparator /
+     lean4export / landrun clone commands)
    - `EvalTools/CheckComparatorInstallation.lean` (`landrunInstallTarget`,
      for landrun only)
    - `lean-eval-leaderboard/.benchmark-commit` (for the lean-eval
@@ -308,11 +322,26 @@ escaping, the triage gate) are in the submissions repo's `SECURITY.md`.
    sufficiently constrain a def — and adding one would be at most a
    heuristic. The real guard is PR review of any problem that uses
    def/instance holes.
-5. **Single-kernel defence.** `enable_nanoda: false` in every
-   generated config means the alternate kernel is not run. A Lean
-   kernel soundness bug becomes a false-credit vector. Defence in
-   depth would be `enable_nanoda: true` once nanoda's string
-   handling is upstream-fixed.
+5. **Dual-kernel defence.** nanoda is a global requirement, not a
+   per-problem option. `templates/WorkspaceTest.lean` (the harness that
+   invokes comparator, propagated verbatim into every workspace and
+   rebuilt from the template by `run-eval`) reads the committed
+   `config.json`, overrides `enable_nanoda := true`, and hands that to
+   comparator — so nanoda runs regardless of what any config file says.
+   This mirrors comparator-live, which forces the flag at the invocation
+   site (`exec.ts`) and leaves project configs untouched. A single Lean
+   kernel soundness bug (e.g. the Lean-conjecture counterexample) no
+   longer suffices to claim false credit; the proof must be accepted by
+   both kernels. The residual risk narrows to a bug present in *both*
+   kernels, or in comparator's export/axiom comparison itself. Note the
+   pinned nanoda is `robsimmons/nanoda_lib` (the fork comparator-live
+   deploys); the `builtinTargets` widening in comparator's `Main.lean`
+   still carries a `TODO: fix when nanoda fixes its string handling`, so a
+   nanoda string soundness gap would not be caught. Because enforcement
+   lives in `WorkspaceTest`, a workspace whose committed `config.json`
+   still says `enable_nanoda: false` is not a bypass — the harness
+   overrides it. Bumping the nanoda pin follows the "Bumping pinned
+   dependencies" procedure above.
 
 ## References
 

@@ -22,6 +22,28 @@
     "generated_path": "generated/abel_ruffini"
   },
   {
+    "id": "adoCharZero",
+    "title": "Ado's theorem in characteristic zero",
+    "test": false,
+    "submitter": "Kim Morrison",
+    "module": "LeanEval.RepresentationTheory.AdoIwasawa",
+    "holes": [
+      "adoCharZero"
+    ],
+    "generated_path": "generated/adoCharZero"
+  },
+  {
+    "id": "adoIwasawa",
+    "title": "Ado\u2013Iwasawa theorem over an arbitrary field",
+    "test": false,
+    "submitter": "Kim Morrison",
+    "module": "LeanEval.RepresentationTheory.AdoIwasawa",
+    "holes": [
+      "adoIwasawa"
+    ],
+    "generated_path": "generated/adoIwasawa"
+  },
+  {
     "id": "alternating_sign_matrix_count",
     "title": "The alternating sign matrix theorem",
     "test": false,
@@ -264,6 +286,17 @@
     "generated_path": "generated/cauchy_kovalevskaya"
   },
   {
+    "id": "cdt_linearIndependent",
+    "title": "Linear independence results of Calegari\u2013Dimitrov\u2013Tang",
+    "test": false,
+    "submitter": "Junyan Xu",
+    "module": "LeanEval.NumberTheory.CalegariDimitrovTangLinearIndependent",
+    "holes": [
+      "cdt_linearIndependent"
+    ],
+    "generated_path": "generated/cdt_linearIndependent"
+  },
+  {
     "id": "cerf_gamma_four",
     "title": "Cerf's theorem: every self-diffeomorphism of S3 is smoothly isotopic to a linear isometry",
     "test": false,
@@ -328,6 +361,17 @@
       "ci_regenerate_main_check"
     ],
     "generated_path": "generated/ci_regenerate_main_check"
+  },
+  {
+    "id": "ckmrv_fourier_interpolation",
+    "title": "Fourier interpolation in dimensions 8 and 24",
+    "test": false,
+    "submitter": "Kim Morrison",
+    "module": "LeanEval.Analysis.CKMRVInterpolation",
+    "holes": [
+      "ckmrv_fourier_interpolation"
+    ],
+    "generated_path": "generated/ckmrv_fourier_interpolation"
   },
   {
     "id": "coherent_cohomology_finite_dimensional",
@@ -486,6 +530,28 @@
     "generated_path": "generated/dehn_sommerville"
   },
   {
+    "id": "derived_solidification_free_CW_homology",
+    "title": "Derived solidification of free CW complexes (light condensed mathematics)",
+    "test": false,
+    "submitter": "Dagur Asgeirsson",
+    "module": "LeanEval.CondensedMathematics.DerivedSolidCWHomology",
+    "holes": [
+      "LightCondensed.Solid.solidification",
+      "LightCondensed.Solid.solidification_additive",
+      "LightCondensed.Solid.solidificationAdjunction",
+      "LightCondensed.Solid.derivedSolidification",
+      "LightCondensed.Solid.derivedSolidificationCounit",
+      "LightCondensed.Solid.derivedSolidification_isLeftDerivedFunctor",
+      "LightCondensed.Solid.derivedSolidificationAdjunction",
+      "LightCondensed.Solid.derivedSolidificationFreeCWFunctor",
+      "LightCondensed.Solid.derivedSolidificationFreeCWFunctorSpec",
+      "LightCondensed.Solid.derivedSolidification_free_CW_derivedNatIso",
+      "LightCondensed.Solid.derivedSolidification_free_CW_homologyIso",
+      "LightCondensed.Solid.derivedSolidification_free_CW_homology"
+    ],
+    "generated_path": "generated/derived_solidification_free_CW_homology"
+  },
+  {
     "id": "dirichlet_eigenvalues_eq_nat_sq",
     "title": "Dirichlet eigenvalues of -y'' = lambda y on [0,pi] are n^2",
     "test": false,
@@ -495,6 +561,17 @@
       "dirichlet_eigenvalues_eq_nat_sq"
     ],
     "generated_path": "generated/dirichlet_eigenvalues_eq_nat_sq"
+  },
+  {
+    "id": "duffin_schaeffer",
+    "title": "Duffin-Schaeffer conjecture",
+    "test": false,
+    "submitter": "Kim Morrison",
+    "module": "LeanEval.NumberTheory.DuffinSchaeffer",
+    "holes": [
+      "duffin_schaeffer"
+    ],
+    "generated_path": "generated/duffin_schaeffer"
   },
   {
     "id": "dvd_card_connectedComponent_markoffGraph",
@@ -741,6 +818,17 @@
     "generated_path": "generated/fraser_kakeya_fourier_decay"
   },
   {
+    "id": "friedlander_iwaniec",
+    "title": "Friedlander\u2013Iwaniec theorem",
+    "test": false,
+    "submitter": "Bolton Bailey/Project Numina",
+    "module": "LeanEval.NumberTheory.FriedlanderIwaniec",
+    "holes": [
+      "friedlander_iwaniec"
+    ],
+    "generated_path": "generated/friedlander_iwaniec"
+  },
+  {
     "id": "frobenius_group_determinant",
     "title": "Frobenius determinant theorem",
     "test": false,
@@ -972,6 +1060,17 @@
     "generated_path": "generated/higman_infinite_simple"
   },
   {
+    "id": "hilbert_smith_padic_dimension_three",
+    "title": "No continuous faithful \u2124_p action on a connected 3-manifold (Pardon 2013)",
+    "test": false,
+    "submitter": "Jack McCarthy",
+    "module": "LeanEval.Topology.HilbertSmith3D",
+    "holes": [
+      "hilbert_smith_padic_dimension_three"
+    ],
+    "generated_path": "generated/hilbert_smith_padic_dimension_three"
+  },
+  {
     "id": "hippocrates_lunes",
     "title": "Hippocrates' theorem on lunes",
     "test": false,
@@ -981,6 +1080,17 @@
       "hippocrates_lunes"
     ],
     "generated_path": "generated/hippocrates_lunes"
+  },
+  {
+    "id": "honeycomb_connective_constant",
+    "title": "Connective constant of the honeycomb lattice",
+    "test": false,
+    "submitter": "Kim Morrison",
+    "module": "LeanEval.Combinatorics.HoneycombConnectiveConstant",
+    "holes": [
+      "honeycomb_connective_constant"
+    ],
+    "generated_path": "generated/honeycomb_connective_constant"
   },
   {
     "id": "hopf_rinow",
@@ -1299,6 +1409,17 @@
       "linear_ode_asymptotic_stability"
     ],
     "generated_path": "generated/linear_ode_asymptotic_stability"
+  },
+  {
+    "id": "linnik",
+    "title": "Linnik's theorem (L = 5.5)",
+    "test": false,
+    "submitter": "Bolton Bailey/Project Numina",
+    "module": "LeanEval.NumberTheory.Linnik",
+    "holes": [
+      "linnik"
+    ],
+    "generated_path": "generated/linnik"
   },
   {
     "id": "liouville_arnold",
@@ -1659,6 +1780,17 @@
     "generated_path": "generated/parallel_postulate_independent"
   },
   {
+    "id": "pardon_torus_knot_distortion",
+    "title": "Pardon's lower bound for torus-knot distortion",
+    "test": false,
+    "submitter": "Kim Morrison",
+    "module": "LeanEval.KnotTheory.PardonDistortion",
+    "holes": [
+      "pardon_torus_knot_distortion"
+    ],
+    "generated_path": "generated/pardon_torus_knot_distortion"
+  },
+  {
     "id": "pascal",
     "title": "Pascal's theorem",
     "test": false,
@@ -1879,6 +2011,17 @@
     "generated_path": "generated/radon_transform_inversion"
   },
   {
+    "id": "ramanujan_petersson",
+    "title": "Ramanujan\u2013Petersson conjecture for the \u03c4-function (Deligne's theorem)",
+    "test": false,
+    "submitter": "Seewoo Lee",
+    "module": "LeanEval.NumberTheory.RamanujanTau",
+    "holes": [
+      "ramanujan_petersson"
+    ],
+    "generated_path": "generated/ramanujan_petersson"
+  },
+  {
     "id": "regular_value_ae",
     "title": "Sard's regular-value corollary",
     "test": false,
@@ -1989,6 +2132,17 @@
     "generated_path": "generated/schlafli_classification"
   },
   {
+    "id": "schmidt_subspace",
+    "title": "Schmidt's subspace theorem",
+    "test": false,
+    "submitter": "Junyan Xu",
+    "module": "LeanEval.NumberTheory.SchmidtSubspace",
+    "holes": [
+      "schmidt_subspace"
+    ],
+    "generated_path": "generated/schmidt_subspace"
+  },
+  {
     "id": "schoenflies",
     "title": "Schoenflies theorem",
     "test": false,
@@ -2031,6 +2185,17 @@
       "shafarevich_relation_rank_bound"
     ],
     "generated_path": "generated/shafarevich_relation_rank_bound"
+  },
+  {
+    "id": "shafarevich_solvable_galois",
+    "title": "Shafarevich's theorem on solvable Galois groups",
+    "test": false,
+    "submitter": "Ryan Smith",
+    "module": "LeanEval.NumberTheory.ShafarevichSolvableGalois",
+    "holes": [
+      "shafarevich_solvable_galois"
+    ],
+    "generated_path": "generated/shafarevich_solvable_galois"
   },
   {
     "id": "shannon_capacity_pentagon",
@@ -2132,6 +2297,17 @@
     "generated_path": "generated/stable_unstable_manifolds"
   },
   {
+    "id": "strong_mason_conjecture",
+    "title": "Strong Mason conjecture for matroid independent sets",
+    "test": false,
+    "submitter": "Kim Morrison",
+    "module": "LeanEval.Combinatorics.StrongMason",
+    "holes": [
+      "strong_mason_conjecture"
+    ],
+    "generated_path": "generated/strong_mason_conjecture"
+  },
+  {
     "id": "strong_subadditivity",
     "title": "Strong Subadditivity of von Neumann Entropy",
     "test": false,
@@ -2209,6 +2385,17 @@
     "generated_path": "generated/szemeredi"
   },
   {
+    "id": "ten_martini_problem",
+    "title": "Avila-Jitomirskaya Ten Martini Problem",
+    "test": false,
+    "submitter": "Kim Morrison",
+    "module": "LeanEval.Analysis.TenMartini",
+    "holes": [
+      "ten_martini_problem"
+    ],
+    "generated_path": "generated/ten_martini_problem"
+  },
+  {
     "id": "thue_siegel_roth",
     "title": "Thue\u2013Siegel\u2013Roth theorem (irrationality measure \u2264 2 for algebraic irrationals)",
     "test": false,
@@ -2262,6 +2449,17 @@
       "tverberg_theorem"
     ],
     "generated_path": "generated/tverberg_theorem"
+  },
+  {
+    "id": "two_ninety_theorem",
+    "title": "The 290 theorem",
+    "test": false,
+    "submitter": "Bolton Bailey/Project Numina",
+    "module": "LeanEval.NumberTheory.TwoNinetyTheorem",
+    "holes": [
+      "two_ninety_theorem"
+    ],
+    "generated_path": "generated/two_ninety_theorem"
   },
   {
     "id": "two_plus_two",
@@ -2319,6 +2517,17 @@
     "generated_path": "generated/variable_binder_example"
   },
   {
+    "id": "vinogradov_mean_value",
+    "title": "Vinogradov mean value theorem",
+    "test": false,
+    "submitter": "Junyan Xu",
+    "module": "LeanEval.NumberTheory.VinogradovMeanValue",
+    "holes": [
+      "vinogradov_mean_value"
+    ],
+    "generated_path": "generated/vinogradov_mean_value"
+  },
+  {
     "id": "vonNeumann_doubleCommutant_tfae",
     "title": "von Neumann double commutant theorem",
     "test": false,
@@ -2341,6 +2550,17 @@
     "generated_path": "generated/wallpaper_groups_17"
   },
   {
+    "id": "wang_zahl_kakeya_dimH",
+    "title": "Wang-Zahl: the three-dimensional Kakeya conjecture",
+    "test": false,
+    "submitter": "Kim Morrison",
+    "module": "LeanEval.Analysis.WangZahlKakeya",
+    "holes": [
+      "wang_zahl_kakeya_dimH"
+    ],
+    "generated_path": "generated/wang_zahl_kakeya_dimH"
+  },
+  {
     "id": "watanabe_four_dim_smale_disproof",
     "title": "Watanabe's disproof of the 4-dimensional Smale conjecture",
     "test": false,
@@ -2361,6 +2581,17 @@
       "weak_morse_inequality"
     ],
     "generated_path": "generated/weak_morse_inequality"
+  },
+  {
+    "id": "weil_conjectures",
+    "title": "Weil conjectures in terms of point counts",
+    "test": false,
+    "submitter": "Junyan Xu",
+    "module": "LeanEval.AlgebraicGeometry.WeilConjectures",
+    "holes": [
+      "weil_conjectures"
+    ],
+    "generated_path": "generated/weil_conjectures"
   },
   {
     "id": "weinstein_conjecture_dim3",
