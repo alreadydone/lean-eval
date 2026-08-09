@@ -13,13 +13,12 @@ to encourage production of reusable code.
 ## References
 
 * Peter Keevash. The existence of designs. https://arxiv.org/abs/1401.3665
-
 * Peter Keevash. The existence of designs II. https://people.maths.ox.ac.uk/keevash/papers/designsII.pdf
-
+* Peter Keevash. Counting designs. https://arxiv.org/abs/1504.02909
 * Peter Keevash, Ashwin Sah, Mehtaab Sawhney. The existence of subspace designs. https://arxiv.org/abs/2212.00870
-
+* Stefan Glock, Daniela Kühn, Allan Lo, Deryk Osthus. The existence of designs via iterative absorption: hypergraph F-designs for arbitrary F. https://arxiv.org/abs/1611.06827
+* W. T. Gowers. Probabilistic combinatorics and the recent work of Peter Keevash. https://www.ams.org/journals/bull/2017-54-01/S0273-0979-2016-01553-9/S0273-0979-2016-01553-9.pdf
 * Gil Kalai. Designs Exist! [after Peter Keevash] http://www.bourbaki.ens.fr/TEXTES/1100.pdf
-
 * https://aperiodical.com/2014/01/proof-news-designs-exist/ includes links to multiple blog posts.
 -/
 namespace LeanEval.Combinatorics.DesignsExist
@@ -37,6 +36,14 @@ def DivisibilityCondition (n q r lam : ℕ) : Prop :=
 /-- Existence of designs. Theorem 0.1 in Kalai's Bourbaki notes. -/
 @[eval_problem] theorem keevash (q r lam : ℕ+) (hrq : r ≤ q) :
     ∃ N : ℕ, ∀ n > N, DivisibilityCondition n q r lam → Nonempty (Design (Fin n) q r lam) := by
+  sorry
+
+/-- Asymptotics on the number of Steiner triple systems: if n is 1 or 3 mod 6, then
+the number of Steiner triple systems on n vertices is (n/e² + o(n)) ^ (n²/6).
+Theorem 2.2 of *Counting designs*. -/
+@[eval_problem] theorem steiner_triple_asymptotics :
+    (fun n : ℕ ↦ Nat.card (Design (Fin n) 3 2 1) ^ (6 / n ^ 2 : ℝ) -
+      if 6 ∣ (n + 5) ∨ 6 ∣ (n + 3) then n / Real.exp 2 else 0) =o[Filter.atTop] ((↑) : ℕ → ℝ) := by
   sorry
 
 /-- Existence of resolvable designs (for which the set of blocks can be partitioned into partitions.
