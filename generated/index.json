@@ -983,6 +983,17 @@
     "generated_path": "generated/green_tao"
   },
   {
+    "id": "hSpace_sphere_iff",
+    "title": "Adams: S^n is an H-space iff n = 0, 1, 3, 7",
+    "test": false,
+    "submitter": "Vasily Ilin",
+    "module": "LeanEval.Topology.HopfInvariantOne",
+    "holes": [
+      "hSpace_sphere_iff"
+    ],
+    "generated_path": "generated/hSpace_sphere_iff"
+  },
+  {
     "id": "hadwiger",
     "title": "Hadwiger's theorem",
     "test": false,
@@ -1299,6 +1310,17 @@
       "kirk_normal_structure"
     ],
     "generated_path": "generated/kirk_normal_structure"
+  },
+  {
+    "id": "kollar_lieblich_olsson_sawin",
+    "title": "Topological reconstruction theorems for varieties",
+    "test": false,
+    "submitter": "Junyan Xu",
+    "module": "LeanEval.AlgebraicGeometry.TopologicalReconstruction",
+    "holes": [
+      "kollar_lieblich_olsson_sawin"
+    ],
+    "generated_path": "generated/kollar_lieblich_olsson_sawin"
   },
   {
     "id": "kolmogorov_arnold_superposition",
@@ -1866,6 +1888,28 @@
       "pi3_sphere_two_mulEquiv_int"
     ],
     "generated_path": "generated/pi3_sphere_two_mulEquiv_int"
+  },
+  {
+    "id": "pi6_sphere_three_mulEquiv_zmod_twelve",
+    "title": "pi_6 of the 3-sphere is Z/12",
+    "test": false,
+    "submitter": "Vasily Ilin",
+    "module": "LeanEval.Topology.PiSixSphereThree",
+    "holes": [
+      "pi6_sphere_three_mulEquiv_zmod_twelve"
+    ],
+    "generated_path": "generated/pi6_sphere_three_mulEquiv_zmod_twelve"
+  },
+  {
+    "id": "pi_sphere_infinite_iff",
+    "title": "Serre finiteness for homotopy groups of spheres",
+    "test": false,
+    "submitter": "Vasily Ilin",
+    "module": "LeanEval.Topology.SerreFiniteness",
+    "holes": [
+      "pi_sphere_infinite_iff"
+    ],
+    "generated_path": "generated/pi_sphere_infinite_iff"
   },
   {
     "id": "pi_succ_sphere_n_mulEquiv_zmod_two",
