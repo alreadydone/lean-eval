@@ -1588,6 +1588,17 @@
     "generated_path": "generated/mergelyan_theorem"
   },
   {
+    "id": "mihailescu",
+    "title": "Mih\u0103ilescu's theorem",
+    "test": false,
+    "submitter": "Vasily Ilin",
+    "module": "LeanEval.NumberTheory.Mihailescu",
+    "holes": [
+      "mihailescu"
+    ],
+    "generated_path": "generated/mihailescu"
+  },
+  {
     "id": "milnor_exotic_sphere_seven",
     "title": "Milnor's exotic 7-sphere",
     "test": false,
@@ -2614,6 +2625,17 @@
       "watanabe_four_dim_smale_disproof"
     ],
     "generated_path": "generated/watanabe_four_dim_smale_disproof"
+  },
+  {
+    "id": "weak_goldbach",
+    "title": "Weak Goldbach theorem",
+    "test": false,
+    "submitter": "Vasily Ilin",
+    "module": "LeanEval.NumberTheory.WeakGoldbach",
+    "holes": [
+      "weak_goldbach"
+    ],
+    "generated_path": "generated/weak_goldbach"
   },
   {
     "id": "weak_morse_inequality",
