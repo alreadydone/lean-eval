@@ -30,32 +30,36 @@ structure Design (X : Type*) (q r lam : ℕ) where
   card_subset : ∀ s : Set X, s.encard = r → {b ∈ blocks | s ⊆ b}.encard = lam
 
 /-- The obvious necessary condition for a design of given parameters to exist. -/
-def DivisibilityCondition (n q r lam : ℕ) : Prop := 
+def DivisibilityCondition (n q r lam : ℕ) : Prop :=
   ∀ i ∈ Finset.range r, (q - i).choose (r - i) ∣ lam * (n - i).choose (r - i)
 
 /-- Existence of designs. Theorem 0.1 in Kalai's Bourbaki notes. -/
-@[eval_problem] theorem keevash (q r lam : ℕ+) (hrq : r ≤ q) :
+@[eval_problem]
+theorem keevash (q r lam : ℕ+) (hrq : r ≤ q) :
     ∃ N : ℕ, ∀ n > N, DivisibilityCondition n q r lam → Nonempty (Design (Fin n) q r lam) := by
   sorry
 
 /-- Asymptotics on the number of Steiner triple systems: if n is 1 or 3 mod 6, then
 the number of Steiner triple systems on n vertices is (n/e² + o(n)) ^ (n²/6).
 Theorem 2.2 of *Counting designs*. -/
-@[eval_problem] theorem steiner_triple_asymptotics :
+@[eval_problem]
+theorem steiner_triple_asymptotics :
     (fun n : ℕ ↦ Nat.card (Design (Fin n) 3 2 1) ^ (6 / n ^ 2 : ℝ) -
       if 6 ∣ (n + 5) ∨ 6 ∣ (n + 3) then n / Real.exp 2 else 0) =o[Filter.atTop] ((↑) : ℕ → ℝ) := by
   sorry
 
 /-- Existence of resolvable designs (for which the set of blocks can be partitioned into partitions.
 Theorem 1.1 in *The existence of designs II*. -/
-@[eval_problem] theorem keevash_resolvable (q r lam : ℕ+) (hrq : r ≤ q) :
-    ∃ N : ℕ, ∀ n > N, DivisibilityCondition n q r lam → (q : ℕ) ∣ n → 
+@[eval_problem]
+theorem keevash_resolvable (q r lam : ℕ+) (hrq : r ≤ q) :
+    ∃ N : ℕ, ∀ n > N, DivisibilityCondition n q r lam → (q : ℕ) ∣ n →
       ∃ d : Design (Fin n) q r lam, ∃ p : Partition d.blocks,
         ∀ s ∈ p, ∃ p' : Partition (.univ : Set (Fin n)), p' = s := by
   sorry
 
 /-- Existence of a large set of designs. Theorem 1.2 in *The existence of designs II*. -/
-@[eval_problem] theorem keevash_large_set (q r : ℕ+) (hrq : r ≤ q) :
+@[eval_problem]
+theorem keevash_large_set (q r : ℕ+) (hrq : r ≤ q) :
     ∃ N : ℕ, ∀ n > N, ∀ lam : ℕ+, DivisibilityCondition n q r lam →
       (lam : ℕ) ∣ (n - r : ℕ).choose (q - r) →
       ∃ p : Partition {s : Set (Fin n) | s.encard = q},
@@ -63,10 +67,11 @@ Theorem 1.1 in *The existence of designs II*. -/
   sorry
 
 /-- Existence of a complete resolution of Kₙ^q. Theorem 1.3 in *The existence of designs II*. -/
-@[eval_problem] theorem keevash_complete_resolution (q : ℕ+) :
+@[eval_problem]
+theorem keevash_complete_resolution (q : ℕ+) :
     ∃ N : ℕ, ∀ n > N, (∀ i ≤ q, (i : ℕ) ∣ (n - q)) →
       ∃ s : Π i : Fin q, Set (Design (Fin n) q (i + 1) 1),
-        (s (.rev 0)).encard = 1 ∧ ∀ i j : Fin q, i ≤ j → 
+        (s (.rev 0)).encard = 1 ∧ ∀ i j : Fin q, i ≤ j →
           ∀ d ∈ s j, ∃ p : Partition d.blocks, ↑p ⊆ Design.blocks '' s i := by
   sorry
 
