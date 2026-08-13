@@ -56,7 +56,8 @@ instance {C : Type*} [Category* C] {J : GrothendieckTopology C} (R : Sheaf J Rin
     (SheafOfModules.evaluation R X).Additive where
   map_add := rfl
 
-@[eval_problem] theorem derived_direct_summand [HasDerivedCategory (ModuleCat A)]
+@[eval_problem]
+theorem derived_direct_summand [HasDerivedCategory (ModuleCat A)]
     (X : Scheme) (f : X ⟶ Spec (.of A)) [IsProper f] (surj : Function.Surjective f)
     [HasDerivedCategory (SheafOfModules X.ringCatSheaf)] :
     let φ : A →+* Γ(X, ⊤) := ((ΓSpec.adjunction.homEquiv _ _).symm f).unop.hom
@@ -68,7 +69,8 @@ instance {C : Type*} [Category* C] {J : GrothendieckTopology C} (R : Sheaf J Rin
         ModuleCat.restrictScalars φ) 0).app (SheafOfModules.unit X.ringCatSheaf) := by
   sorry
 
-@[eval_problem] theorem direct_summand (B : Type*) [CommRing B] [Algebra A B]
+@[eval_problem]
+theorem direct_summand (B : Type*) [CommRing B] [Algebra A B]
     [Module.Finite A B] [FaithfulSMul A B] :
     ∃ π : B →ₗ[A] A, π ∘ₗ Algebra.linearMap A B = .id := by
   sorry
