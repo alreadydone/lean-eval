@@ -196,7 +196,10 @@ def ileanPath (root : System.FilePath) (moduleName : String) : System.FilePath :
 /-! ## Source-as-Array-Char utilities
 
 Source-text manipulation works on `Array Char` so we can use `Nat` indices
-directly. This matches Python's codepoint-indexed string semantics, which the
+directly — that is, `Source` is indexed by *codepoint*. `.ilean` columns are
+UTF-16 code units and so need converting (`Source.offsetForLineUtf16Column`);
+`Lean.Position` columns are already codepoints. This matches Python's
+codepoint-indexed string semantics, which the
 upstream `scripts/generate_projects.py` relies on (e.g. when applying offsets
 from `.ilean`, which records codepoint columns). -/
 
@@ -214,10 +217,8 @@ def Source.slice (s : Source) (start endIdx : Nat) : String :=
   let start := min start endIdx
   String.mk (s.toList.drop start |>.take (endIdx - start))
 
-/-- Convert (1-indexed line, 0-indexed codepoint column) into a codepoint
-index in `s`. Mirrors `offset_for_line_column` in
-`scripts/generate_projects.py`. -/
-def Source.offsetForLineColumn (s : Source) (line col : Nat) : IO Nat := do
+/-- The codepoint index at which 1-indexed `line` starts in `s`. -/
+private def Source.lineStartOffset (s : Source) (line : Nat) : IO Nat := do
   if line < 1 then
     throw <| IO.userError s!"Invalid source line {line}"
   let mut currentLine : Nat := 1
@@ -235,7 +236,54 @@ def Source.offsetForLineColumn (s : Source) (line col : Nat) : IO Nat := do
     if !found then
       throw <| IO.userError s!"Source ended before line {line}"
     currentLine := currentLine + 1
-  return idx + col
+  return idx
+
+/-- Convert (1-indexed line, 0-indexed **codepoint** column) into a codepoint
+index in `s`. Mirrors `offset_for_line_column` in
+`scripts/generate_projects.py`.
+
+This is the convention of `Lean.Position`, so it is the one to use for every
+range that reaches us through `findDeclarationRanges?` — that is, everything
+carried on an `ExtractedTheorem`. Ranges read from a `.ilean` use the *other*
+convention; see `Source.offsetForLineUtf16Column`. -/
+def Source.offsetForLineColumn (s : Source) (line col : Nat) : IO Nat := do
+  return (← s.lineStartOffset line) + col
+
+/-- Convert (1-indexed line, 0-indexed **UTF-16 code unit** column) into a
+codepoint index in `s`.
+
+`.ilean` files store LSP ranges, and LSP columns count UTF-16 code units, while
+`Source` is an `Array Char` indexed by codepoint. The two agree only inside the
+Basic Multilingual Plane, and diverge on exactly the characters a Lean corpus is
+likely to contain: the mathematical alphanumerics (`𝓧`, `𝔽`, `𝒞`, `𝔻`, `𝔸`,
+`𝓡`, …) are all outside it and so count twice.
+
+Reading such a column as a codepoint offset runs past the end of its line. A
+declaration's computed range then swallowed the following blank line and the
+opening `/-` of the next comment, leaving an orphaned `-/` that parsed as
+`unexpected token '-'`.
+
+Throws rather than clamping. A column past the end of its line, or one landing
+inside a surrogate pair, means the `.ilean` disagrees with the source being
+resolved against it — a stale build, or a file edited since. Returning the
+nearest plausible offset would truncate a *trusted* declaration while still
+emitting text that looks reasonable. -/
+def Source.offsetForLineUtf16Column (s : Source) (line col : Nat) : IO Nat := do
+  let mut idx ← s.lineStartOffset line
+  let n := s.size
+  let mut units : Nat := 0
+  while units < col do
+    if idx ≥ n || s[idx]! == '\n' then
+      throw <| IO.userError
+        s!"`.ilean` column {col} runs past the end of line {line}; the metadata \
+           is stale relative to the source. Rebuild the module and retry."
+    units := units + (if s[idx]!.val > 0xFFFF then 2 else 1)
+    idx := idx + 1
+  if units != col then
+    throw <| IO.userError
+      s!"`.ilean` column {col} on line {line} lands inside a surrogate pair; \
+         the metadata is stale relative to the source. Rebuild and retry."
+  return idx
 
 /-- Find the first occurrence of `needle` (a `List Char`) in `s` starting at
 `start`, returning the codepoint index where the match starts. -/
@@ -471,9 +519,14 @@ def repoLocalImportModules (root : System.FilePath) (moduleName : String) :
 
 /-- A declaration's source range from the `.ilean`, as
 `[startLine, startColumn, endLine, endColumn]` (`.ilean` records these
-0-indexed; we convert lines to 1-indexed to match `offsetForLineColumn`).
+0-indexed; we convert lines to 1-indexed, the convention both offset functions
+take).
 The range spans the *whole* declaration, doc comment through the end of the
-body, so `(endLine, endColumn)` is the precise end — no heuristic needed. -/
+body, so `(endLine, endColumn)` is the precise end — no heuristic needed.
+
+The columns are LSP columns, counting UTF-16 code units, so they must be
+resolved with `Source.offsetForLineUtf16Column` and never with
+`Source.offsetForLineColumn`. -/
 structure IleanDeclEntry where
   name : String
   startLine : Nat
@@ -1358,16 +1411,16 @@ structure DeclSpan where
   declEnd : Nat
   deriving Inhabited
 
-/-- Load every top-level declaration range from the module's `.ilean`, mapped
-into character-offset spans against `sourceSrc`. Used everywhere the generator
-needs to slice the source by declaration. -/
-def loadDeclSpans (root : System.FilePath) (entry : EvalProblemMetadata)
-    (sourceSrc : Source) : IO (Array DeclSpan) := do
-  let declRanges ← loadIleanDeclRanges root entry.moduleName
+/-- Map `.ilean` declaration entries onto character-offset spans against
+`sourceSrc`. Split out from `loadDeclSpans` so the column-convention routing is
+reachable from tests without a compiled fixture on disk. -/
+def declSpansOfIleanEntries (sourceSrc : Source) (declRanges : Array IleanDeclEntry) :
+    IO (Array DeclSpan) := do
   let mut startsBuf : Array (String × Nat × Nat) := #[]
   for ileanEntry in declRanges do
-    let off ← sourceSrc.offsetForLineColumn ileanEntry.startLine ileanEntry.startColumn
-    let endOff ← sourceSrc.offsetForLineColumn ileanEntry.endLine ileanEntry.endColumn
+    -- `.ilean` columns are UTF-16, not codepoints; see `IleanDeclEntry`.
+    let off ← sourceSrc.offsetForLineUtf16Column ileanEntry.startLine ileanEntry.startColumn
+    let endOff ← sourceSrc.offsetForLineUtf16Column ileanEntry.endLine ileanEntry.endColumn
     startsBuf := startsBuf.push (ileanEntry.name, off, endOff)
   let starts := startsBuf.qsort (fun a b => a.2.1 < b.2.1)
   let mut spans : Array DeclSpan := #[]
@@ -1378,6 +1431,13 @@ def loadDeclSpans (root : System.FilePath) (entry : EvalProblemMetadata)
       else findTopLevelEndOffset sourceSrc start
     spans := spans.push { name, start, stop, declEnd }
   return spans
+
+/-- Load every top-level declaration range from the module's `.ilean`, mapped
+into character-offset spans against `sourceSrc`. Used everywhere the generator
+needs to slice the source by declaration. -/
+def loadDeclSpans (root : System.FilePath) (entry : EvalProblemMetadata)
+    (sourceSrc : Source) : IO (Array DeclSpan) := do
+  declSpansOfIleanEntries sourceSrc (← loadIleanDeclRanges root entry.moduleName)
 
 /-- Apply a list of `(start, stop, replacement)` edits to `sourceText`. Edits
 are sorted right-to-left and applied in that order so earlier offsets remain
