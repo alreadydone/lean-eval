@@ -2760,6 +2760,35 @@ def writeOrCheckIndex (root : System.FilePath) (entries : Array OJson) (check : 
   IO.FS.writeFile indexPath content
   return #[]
 
+/-- The `generated/index.json` row determined by one manifest entry. Keep this
+in one place so full generation and the cheap global consistency check cannot
+disagree about the index format. -/
+def generatedIndexEntry (entry : EvalProblemMetadata) : OJson :=
+  ojObj #[
+    ("id", ojStr entry.id),
+    ("title", ojStr entry.title),
+    ("test", ojBool entry.test),
+    ("submitter", ojStr entry.submitter),
+    ("module", ojStr entry.moduleName),
+    ("holes", ojStrArr entry.holes),
+    ("generated_path", ojStr s!"generated/{entry.id}")
+  ]
+
+/-- Check the global generated-tree invariants that per-problem generation
+cannot establish: the index must exactly match the manifest, and every
+generated workspace directory must belong to a manifest problem. This does no
+extraction, module compilation, or workspace generation. -/
+def validateGeneratedCatalog (root : System.FilePath) : IO Unit := do
+  let problems ← loadManifest root
+  let selectedIds : Std.HashSet String :=
+    problems.foldl (fun acc p => acc.insert p.id) {}
+  let mut mismatches ← syncUnknownProblemDirs root selectedIds (check := true)
+  mismatches := mismatches ++
+    (← writeOrCheckIndex root (problems.map generatedIndexEntry) (check := true))
+  if !mismatches.isEmpty then
+    throw <| IO.userError <| "\n".intercalate mismatches.toList
+  IO.println "Generated index is up to date; no unexpected workspace directories exist."
+
 /-! ## Generate orchestrator -/
 
 /-- Main `generate` entry point. Mirrors `scripts/generate_projects.py:generate`. -/
@@ -2786,7 +2815,6 @@ def generate (root : System.FilePath) (selectedProblemId : Option String) (check
   let mathlibDep ← loadRootMathlibDependency root
   buildExtractor root selectedProblems
   let workspaceTest ← loadWorkspaceTestTemplate root
-  let mut indexEntries : Array OJson := #[]
   let mut mismatches : Array String := #[]
   for entry in selectedProblems do
     let mut extracteds : Array ExtractedTheorem := #[]
@@ -2800,17 +2828,9 @@ def generate (root : System.FilePath) (selectedProblemId : Option String) (check
       mismatches := mismatches ++ (← checkWorkspace problemDir relDisplay files)
     else
       writeWorkspace problemDir files
-    indexEntries := indexEntries.push <| ojObj #[
-      ("id", ojStr entry.id),
-      ("title", ojStr entry.title),
-      ("test", ojBool entry.test),
-      ("submitter", ojStr entry.submitter),
-      ("module", ojStr entry.moduleName),
-      ("holes", ojStrArr entry.holes),
-      ("generated_path", ojStr s!"generated/{entry.id}")
-    ]
   if selectedProblemId.isNone then
-    mismatches := mismatches ++ (← writeOrCheckIndex root indexEntries check)
+    mismatches := mismatches ++
+      (← writeOrCheckIndex root (problems.map generatedIndexEntry) check)
   if !mismatches.isEmpty then
     throw <| IO.userError <| "\n".intercalate mismatches.toList
   if check then
