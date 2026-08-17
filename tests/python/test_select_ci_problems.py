@@ -63,6 +63,13 @@ class SelectCIProblemsTest(unittest.TestCase):
         self.assertEqual(selection.problems, ("c",))
         self.assertTrue(selection.generated_changed)
 
+    def test_generated_index_change_runs_checks_without_a_catalog_shard(self):
+        selection = self.select((Change("M", ("generated/index.json",)),))
+        self.assertEqual(selection.problems, ())
+        self.assertFalse(selection.run_catalog)
+        self.assertTrue(selection.generated_changed)
+        self.assertTrue(selection.run_checks)
+
     def test_generator_change_is_a_full_catalog_sentinel(self):
         selection = self.select((Change("M", ("EvalTools/Generate.lean",)),))
         self.assertEqual(selection.mode, "full")

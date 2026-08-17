@@ -9,6 +9,10 @@ private def assertEq {α : Type} [BEq α] [Repr α] (label : String)
   if actual == expected then none
   else some s!"{label}: expected {repr expected}, got {repr actual}"
 
+private def assertContains (label haystack needle : String) : Option String :=
+  if (haystack.find? needle).isSome then none
+  else some s!"{label}: expected to contain {repr needle}, got {repr haystack}"
+
 private def check (label : String) (passes fails : IO.Ref Nat)
     (f : IO (Option String)) : IO Unit := do
   match ← f.toBaseIO with
@@ -20,9 +24,68 @@ private def check (label : String) (passes fails : IO.Ref Nat)
       IO.eprintln s!"FAIL: {label} — unexpected exception: {err}"
       fails.modify (· + 1)
 
+private def manifestEntry (id moduleName hole : String) : String :=
+  s!"id = \"{id}\"\n" ++
+  s!"title = \"{id}\"\n" ++
+  "test = false\n" ++
+  s!"module = \"{moduleName}\"\n" ++
+  s!"holes = [\"{hole}\"]\n" ++
+  "submitter = \"tester\"\n"
+
+/-- A minimal generated catalog whose index and directory set agree with its
+two-entry manifest. -/
+private def withGeneratedCatalog
+    (f : System.FilePath → IO (Option String)) : IO (Option String) := do
+  let root ← IO.FS.createTempDir
+  try
+    let manifestDir := root / "manifests" / "problems"
+    let generatedDir := root / "generated"
+    IO.FS.createDirAll manifestDir
+    IO.FS.createDirAll (generatedDir / "alpha")
+    IO.FS.createDirAll (generatedDir / "beta")
+    IO.FS.writeFile (manifestDir / "alpha.toml")
+      (manifestEntry "alpha" "LeanEval.Alpha" "alphaHole")
+    IO.FS.writeFile (manifestDir / "beta.toml")
+      (manifestEntry "beta" "LeanEval.Beta" "betaHole")
+    let problems ← loadManifest root
+    let mismatches ←
+      writeOrCheckIndex root (problems.map generatedIndexEntry) (check := false)
+    if !mismatches.isEmpty then
+      return some s!"fixture index write unexpectedly reported {repr mismatches}"
+    f root
+  finally
+    try IO.FS.removeDirAll root catch _ => pure ()
+
+private def expectErrorContaining (action : IO Unit) (needle : String) :
+    IO (Option String) := do
+  match ← action.toBaseIO with
+  | .ok _ => pure <| some s!"expected failure containing {repr needle}"
+  | .error err => pure <| assertContains "error" (toString err) needle
+
 def main : IO UInt32 := do
   let passes ← IO.mkRef 0
   let fails ← IO.mkRef 0
+
+  check "validateGeneratedCatalog accepts a coherent generated tree" passes fails do
+    withGeneratedCatalog fun root => do
+      validateGeneratedCatalog root
+      pure none
+
+  check "validateGeneratedCatalog rejects a missing index" passes fails do
+    withGeneratedCatalog fun root => do
+      IO.FS.removeFile (root / "generated" / "index.json")
+      expectErrorContaining (validateGeneratedCatalog root) "missing generated/index.json"
+
+  check "validateGeneratedCatalog rejects a stale index" passes fails do
+    withGeneratedCatalog fun root => do
+      IO.FS.writeFile (root / "generated" / "index.json") "[]\n"
+      expectErrorContaining (validateGeneratedCatalog root) "stale generated/index.json"
+
+  check "validateGeneratedCatalog rejects an unexpected workspace directory" passes fails do
+    withGeneratedCatalog fun root => do
+      IO.FS.createDirAll (root / "generated" / "not_in_manifest")
+      expectErrorContaining (validateGeneratedCatalog root)
+        "unexpected generated directory generated/not_in_manifest"
 
   check "parseExtractedTheorem defaults missing hole-dependent dependencies" passes fails do
     let payload :=

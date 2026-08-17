@@ -68,6 +68,15 @@ def runGenerateCmd (p : Parsed) : IO UInt32 := do
     IO.eprintln (toString e)
     return 1
 
+def runValidateGeneratedCatalogCmd (_ : Parsed) : IO UInt32 := do
+  let root ← requireRepoRoot
+  try
+    EvalTools.validateGeneratedCatalog root
+    return 0
+  catch e =>
+    IO.eprintln (toString e)
+    return 1
+
 def runCheckGeneratedBuildsCmd (p : Parsed) : IO UInt32 := do
   let problems :=
     match p.flag? "problem" with
@@ -176,6 +185,11 @@ def generateCmd : Cmd := `[Cli|
     check;             "Check whether generated output is up to date without rewriting files."
 ]
 
+def validateGeneratedCatalogCmd : Cmd := `[Cli|
+  "validate-generated-catalog" VIA runValidateGeneratedCatalogCmd;
+  "Validate generated/index.json and reject unexpected generated workspace directories."
+]
+
 def checkGeneratedBuildsCmd : Cmd := `[Cli|
   "check-generated-builds" VIA runCheckGeneratedBuildsCmd;
   "Build generated workspaces to catch breakage in emitted projects."
@@ -234,6 +248,7 @@ def leanEvalCmd : Cmd := `[Cli|
     checkProblemBuildCmd;
     problemInventoryCmd;
     generateCmd;
+    validateGeneratedCatalogCmd;
     checkGeneratedBuildsCmd;
     startProblemCmd;
     checkComparatorInstallationCmd;

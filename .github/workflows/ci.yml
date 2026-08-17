@@ -113,6 +113,14 @@ jobs:
       - name: Validate manifest structure and module coverage
         run: lake exe lean-eval validate-manifest --structure-only
 
+      # Source-only changes intentionally leave generated/index.json for the
+      # trusted main regenerator. If a PR touches generated/ itself, however,
+      # its committed global index must be current and it may not add an
+      # unexpected workspace directory.
+      - name: Validate generated index and unexpected directories
+        if: needs.classify.outputs.source_changed != 'true' || needs.classify.outputs.generated_changed == 'true'
+        run: lake exe lean-eval validate-generated-catalog
+
       - name: Submission policy smoke check
         run: lake exe lean-eval validate-submission --file generated/two_plus_two/Solution.lean
 
