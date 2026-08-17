@@ -24,6 +24,10 @@ jobs:
       generated_changed: ${{ steps.changes.outputs.generated_changed }}
       run_checks: ${{ steps.changes.outputs.run_checks }}
       run_catalog: ${{ steps.changes.outputs.run_catalog }}
+      selection_mode: ${{ steps.changes.outputs.selection_mode }}
+      selected_problem_count: ${{ steps.changes.outputs.selected_problem_count }}
+      selected_modules: ${{ steps.changes.outputs.selected_modules }}
+      matrix: ${{ steps.changes.outputs.matrix }}
     steps:
       # actions/checkout pinned to 3d3c42e5 (= refs/tags/v7.0.1 as of 2026-07-30).
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
@@ -37,55 +41,41 @@ jobs:
       - name: Python syntax checks
         run: python -m py_compile scripts/*.py scripts/security_probes/*.py
 
-      - name: Classify changed paths
+      # Install the pinned Lean toolchain without building the project. The
+      # dependency selector consumes a graph produced by Lean's header parser;
+      # Python never attempts to parse Lean import syntax.
+      - uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
+        with:
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+          use-github-cache: false
+
+      - name: Export Lean import graph
+        run: |
+          set -euo pipefail
+          mkdir -p .ci/lean/EvalTools
+          lean -R . -o .ci/lean/EvalTools/Markers.olean EvalTools/Markers.lean
+          LEAN_PATH="$PWD/.ci/lean" lean -R . \
+            -o .ci/lean/EvalTools/ModuleCoverage.olean EvalTools/ModuleCoverage.lean
+          LEAN_PATH="$PWD/.ci/lean" lean --run EvalTools/CIImportGraph.lean \
+            > .ci/import-graph.json
+
+      - name: Select affected catalog problems
         id: changes
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
           set -euo pipefail
-          source_changed=false
-          generated_changed=false
-          infrastructure_changed=false
-
-          if [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ]; then
-            source_changed=true
-            generated_changed=true
-            infrastructure_changed=true
-          else
-            mapfile -t changed_files < <(git diff --name-only "$BASE_SHA"..HEAD)
-            for path in "${changed_files[@]}"; do
-              case "$path" in
-                LeanEval/*|EvalTools/*|templates/*|manifests/problems/*|lakefile.toml|lake-manifest.json|lean-toolchain)
-                  source_changed=true
-                  ;;
-                generated/*)
-                  generated_changed=true
-                  ;;
-                .github/workflows/*|.github/actions/*|scripts/*|tests/*)
-                  infrastructure_changed=true
-                  ;;
-              esac
-            done
-          fi
-
-          run_checks=false
-          if [ "$source_changed" = true ] || [ "$generated_changed" = true ] \
-              || [ "$infrastructure_changed" = true ]; then
-            run_checks=true
-          fi
-
-          run_catalog=false
-          if [ "$source_changed" = true ] || [ "$generated_changed" = true ] \
-              || git diff --name-only "$BASE_SHA"..HEAD | grep -qx '.github/workflows/ci.yml'; then
-            run_catalog=true
-          fi
-
-          {
-            echo "source_changed=$source_changed"
-            echo "generated_changed=$generated_changed"
-            echo "run_checks=$run_checks"
-            echo "run_catalog=$run_catalog"
-          } >> "$GITHUB_OUTPUT"
+          python scripts/select_ci_problems.py \
+            --event "$GITHUB_EVENT_NAME" \
+            --base "$BASE_SHA" \
+            --head "$HEAD_SHA" \
+            --shards 8 \
+            --import-graph .ci/import-graph.json \
+            --github-output "$GITHUB_OUTPUT"
 
   checks:
     name: Repository checks
@@ -118,14 +108,10 @@ jobs:
         with:
           use-mathlib-cache: true
 
-      # Run the warning-sensitive build first. Previously validate-manifest
-      # compiled the modules first, so the later warning scan saw an empty
-      # incremental build and could not actually detect warnings.
-      - name: Build problem modules without warnings
-        run: lake exe lean-eval check-problem-build
-
-      - name: Validate manifest
-        run: lake exe lean-eval validate-manifest --assume-modules-built
+      # Module compilation and tagged-declaration inventory now run in the
+      # catalog shards. Keep the cheap whole-repository invariants here.
+      - name: Validate manifest structure and module coverage
+        run: lake exe lean-eval validate-manifest --structure-only
 
       - name: Submission policy smoke check
         run: lake exe lean-eval validate-submission --file generated/two_plus_two/Solution.lean
@@ -156,6 +142,9 @@ jobs:
           lake exe test_generate
           lake exe test_module_coverage
           lake exe test_check_comparator_installation
+
+      - name: Run Python unit tests
+        run: python tests/python/test_select_ci_problems.py
 
   security:
     name: Security and scoring smoke tests
@@ -252,15 +241,14 @@ jobs:
         run: lake exe lean-eval check-eval-workflow
 
   catalog:
-    name: Generated workspaces (shard ${{ matrix.shard }}/${{ strategy.job-total }})
+    name: Catalog validation (shard ${{ matrix.shard }}/${{ matrix.shard_count }})
     needs: classify
     if: needs.classify.outputs.run_catalog == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     strategy:
       fail-fast: false
-      matrix:
-        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+      matrix: ${{ fromJSON(needs.classify.outputs.matrix) }}
     steps:
       - name: Free up disk space
         # jlumbroso/free-disk-space pinned to 54081f13 (= refs/tags/v1.3.1, also main HEAD as of 2026-05-04).
@@ -285,32 +273,48 @@ jobs:
       - uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
         with:
           use-mathlib-cache: true
+          build: false
+          test: false
+          lint: false
+
+      - name: Clear cached problem-module artifacts
+        run: |
+          set -euo pipefail
+          artifact_dir=.lake/build/lib/lean/LeanEval
+          if [ -d "$artifact_dir" ]; then
+            find "$artifact_dir" \( -type f -o -type l \) -delete
+          fi
+
+      - name: Build problem modules without warnings
+        env:
+          MODULES: ${{ matrix.modules }}
+          SHARD_INDEX: ${{ matrix.shard }}
+        run: |
+          set -euo pipefail
+          IFS=',' read -r -a modules <<< "$MODULES"
+          module_args=()
+          for module in "${modules[@]}"; do
+            module_args+=(--module "$module")
+          done
+          lake exe lean-eval check-problem-build "${module_args[@]}"
+          mkdir -p .ci/problem-inventory
+          lake exe lean-eval problem-inventory \
+            ".ci/problem-inventory/$SHARD_INDEX.json" "${module_args[@]}"
 
       - name: Generate or verify this shard
-        id: shard
         env:
-          SHARD_INDEX: ${{ matrix.shard }}
-          SHARD_COUNT: ${{ strategy.job-total }}
+          PROBLEMS: ${{ matrix.problems }}
           SOURCE_CHANGED: ${{ needs.classify.outputs.source_changed }}
           GENERATED_CHANGED: ${{ needs.classify.outputs.generated_changed }}
           EVENT_NAME: ${{ github.event_name }}
         run: |
           set -euo pipefail
-          mapfile -t all_problems < <(
-            find manifests/problems -maxdepth 1 -type f -name '*.toml' -printf '%f\n' \
-              | sed 's/\.toml$//' | sort
-          )
-          selected=()
-          for i in "${!all_problems[@]}"; do
-            if (( i % SHARD_COUNT == SHARD_INDEX )); then
-              selected+=("${all_problems[$i]}")
-            fi
-          done
+          IFS=',' read -r -a selected <<< "$PROBLEMS"
           if [ "${#selected[@]}" -eq 0 ]; then
             echo "Shard is empty."
             exit 0
           fi
-          printf 'Shard %s: %s\n' "$SHARD_INDEX" "${selected[*]}"
+          printf 'Selected problems: %s\n' "${selected[*]}"
 
           generate_mode="none"
           if [ "$SOURCE_CHANGED" = true ]; then
@@ -349,12 +353,62 @@ jobs:
           done
           lake exe lean-eval check-generated-builds "${build_args[@]}"
 
+      - name: Upload problem inventory
+        # actions/upload-artifact pinned to 043fb46d (= refs/tags/v7.0.1 as of 2026-08-17).
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: problem-inventory-${{ matrix.shard }}
+          path: .ci/problem-inventory/${{ matrix.shard }}.json
+          if-no-files-found: error
+          retention-days: 1
+
+  catalog_inventory:
+    name: Manifest inventory aggregate
+    needs: [classify, catalog]
+    if: needs.classify.outputs.run_catalog == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      # actions/checkout pinned to 3d3c42e5 (= refs/tags/v7.0.1 as of 2026-07-30).
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+
+      # leanprover/lean-action pinned to 38fbc41a (= refs/tags/v1.5.0, also v1 HEAD as of 2026-05-04).
+      - uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
+        with:
+          use-mathlib-cache: true
+          build: false
+          test: false
+          lint: false
+
+      - name: Download problem inventories
+        # actions/download-artifact pinned to 3e5f45b2 (= refs/tags/v8.0.1 as of 2026-08-17).
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          pattern: problem-inventory-*
+          path: .ci/problem-inventory
+          merge-multiple: true
+
+      - name: Validate aggregated manifest inventory
+        env:
+          MODULES: ${{ needs.classify.outputs.selected_modules }}
+        run: |
+          set -euo pipefail
+          IFS=',' read -r -a modules <<< "$MODULES"
+          module_args=()
+          for module in "${modules[@]}"; do
+            module_args+=(--module "$module")
+          done
+          lake exe lean-eval validate-manifest \
+            --inventory-dir .ci/problem-inventory "${module_args[@]}"
+
   # Preserve the existing required-check name while making it an aggregate of
   # every parallel branch. A green `verify` now means the entire fan-out passed.
   verify:
     name: verify
     if: always()
-    needs: [classify, checks, security, catalog]
+    needs: [classify, checks, security, catalog, catalog_inventory]
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
@@ -364,10 +418,12 @@ jobs:
           CHECKS_RESULT: ${{ needs.checks.result }}
           SECURITY_RESULT: ${{ needs.security.result }}
           CATALOG_RESULT: ${{ needs.catalog.result }}
+          CATALOG_INVENTORY_RESULT: ${{ needs.catalog_inventory.result }}
         run: |
           set -euo pipefail
           for result in "$CLASSIFY_RESULT" "$CHECKS_RESULT" \
-              "$SECURITY_RESULT" "$CATALOG_RESULT"; do
+              "$SECURITY_RESULT" "$CATALOG_RESULT" \
+              "$CATALOG_INVENTORY_RESULT"; do
             if [ "$result" != success ] && [ "$result" != skipped ]; then
               echo "A required CI branch ended with: $result" >&2
               exit 1

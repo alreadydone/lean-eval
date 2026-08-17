@@ -81,6 +81,17 @@ private partial def collectSourceModules (dir : System.FilePath) (relDir : Strin
               imports := header.imports.map (·.module) }
   return out
 
+/-- Load every source module under `LeanEval/`, using Lean's own module-header
+parser to identify imports. This is shared by module-coverage validation and
+the CI dependency selector so they cannot disagree about Lean import syntax. -/
+def loadProblemSourceModules (root : System.FilePath) : IO (Array ProblemSourceModule) := do
+  let sourceRoot := root / problemSourceRelativePath
+  unless ← sourceRoot.isDir do
+    throw <| IO.userError
+      s!"Problem source directory `{sourceRoot}` does not exist or is not a directory."
+  let prefixName := problemSourceRelativePath.toString
+  collectSourceModules sourceRoot prefixName (.str .anonymous prefixName)
+
 /-- Fail unless every `.lean` file under `LeanEval/` is reachable from the
 manifest: either named by some entry's `module` field, or imported (directly or
 transitively) by a module that is.
@@ -93,12 +104,7 @@ This is a header-level check: it parses imports rather than building anything,
 so it costs no build time and runs before the inventory cross-check. -/
 def checkProblemModuleCoverage
     (root : System.FilePath) (entries : Array EvalProblemMetadata) : IO Unit := do
-  let sourceRoot := root / problemSourceRelativePath
-  unless ← sourceRoot.isDir do
-    throw <| IO.userError
-      s!"Problem source directory `{sourceRoot}` does not exist or is not a directory."
-  let prefixName := problemSourceRelativePath.toString
-  let sources ← collectSourceModules sourceRoot prefixName (.str .anonymous prefixName)
+  let sources ← loadProblemSourceModules root
   let known := sources.foldl (fun s source => s.insert source.name) (∅ : Std.HashSet Name)
   let missing := entries.filterMap fun entry =>
     if known.contains (parseModuleName entry.moduleName) then none
