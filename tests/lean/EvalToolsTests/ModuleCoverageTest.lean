@@ -52,6 +52,10 @@ private def problem (id moduleName : String) : EvalProblemMetadata :=
   { id := id, title := id, test := false, moduleName := moduleName,
     holes := #["hole"], submitter := "tester" }
 
+private def inventory (moduleName declarationName : String) : ManifestInventoryEntry :=
+  { module := moduleName, declarationName := declarationName,
+    basename := "hole", kind := "theorem" }
+
 def main : IO UInt32 := do
   let passes ← IO.mkRef 0
   let fails ← IO.mkRef 0
@@ -151,6 +155,30 @@ def main : IO UInt32 := do
       match ← (loadManifest root).toBaseIO with
       | .ok entries => pure <| assertEq "entries" entries.size 0
       | .error err => pure (some s!"expected success, got {err}")
+
+  check "aggregated inventory accepts every manifest module exactly once" passes fails do
+    let entries := #[problem "a" "LeanEval.A", problem "b" "LeanEval.B"]
+    let rows := #[inventory "LeanEval.A" "LeanEval.A.hole",
+      inventory "LeanEval.B" "LeanEval.B.hole"]
+    match ← (validateManifestAgainstInventoryEntries entries rows).toBaseIO with
+    | .ok _ => pure none
+    | .error err => pure (some s!"expected success, got {err}")
+
+  check "aggregated inventory rejects a missing shard module" passes fails do
+    let entries := #[problem "a" "LeanEval.A", problem "b" "LeanEval.B"]
+    let rows := #[inventory "LeanEval.A" "LeanEval.A.hole"]
+    match ← (validateManifestAgainstInventoryEntries entries rows).toBaseIO with
+    | .ok _ => pure (some "expected rejection")
+    | .error err => pure <| assertContains "err" (toString err) "LeanEval.B"
+
+  check "aggregated inventory rejects untracked tagged declarations" passes fails do
+    let entries := #[problem "a" "LeanEval.A"]
+    let rows := #[inventory "LeanEval.A" "LeanEval.A.hole",
+      { module := "LeanEval.A", declarationName := "LeanEval.A.extra",
+        basename := "extra", kind := "theorem" }]
+    match ← (validateManifestAgainstInventoryEntries entries rows).toBaseIO with
+    | .ok _ => pure (some "expected rejection")
+    | .error err => pure <| assertContains "err" (toString err) "LeanEval.A.extra"
 
   -- The `@[eval_problem]` elaborator reads every `*.toml` in the directory,
   -- hidden or not. If `loadManifest` skipped hidden ones, a `.helper.toml`

@@ -21,13 +21,32 @@ def runRootCmd (p : Parsed) : IO UInt32 := do
   p.printHelp
   pure 0
 
+def requestedModules (p : Parsed) : Array String :=
+  match p.flag? "module" with
+  | some flag => flag.as! (Array String)
+  | none => #[]
+
 def runValidateManifestCmd (p : Parsed) : IO UInt32 := do
   let root ← requireRepoRoot
-  EvalTools.runValidateManifest root (modulesBuilt := p.hasFlag "assume-modules-built")
+  let inventoryDir? : Option System.FilePath :=
+    p.flag? "inventory-dir" |>.map fun flag => flag.as! String
+  EvalTools.runValidateManifest root
+    (modulesBuilt := p.hasFlag "assume-modules-built")
+    (structureOnly := p.hasFlag "structure-only") inventoryDir? (requestedModules p)
 
-def runCheckProblemBuildCmd (_ : Parsed) : IO UInt32 := do
+def runCheckProblemBuildCmd (p : Parsed) : IO UInt32 := do
   let root ← requireRepoRoot
-  EvalTools.runCheckProblemBuild root
+  EvalTools.runCheckProblemBuild root (requestedModules p)
+
+def runProblemInventoryCmd (p : Parsed) : IO UInt32 := do
+  let output : String := p.positionalArg! "output" |>.as! String
+  let root ← requireRepoRoot
+  try
+    writeProblemInventory root output (requestedModules p)
+    return 0
+  catch err =>
+    IO.eprintln err
+    return 1
 
 def runGenerateCmd (p : Parsed) : IO UInt32 := do
   let root ← requireRepoRoot
@@ -123,11 +142,28 @@ def validateManifestCmd : Cmd := `[Cli|
 
   FLAGS:
     "assume-modules-built"; "Skip rebuilding problem modules that a preceding check already built."
+    "structure-only"; "Validate manifest syntax, uniqueness, and source-module coverage without collecting inventory."
+    "inventory-dir" : String; "Validate against precomputed per-shard inventory JSON files in this directory."
+    module : Array String; "Restrict precomputed inventory validation to these manifest modules."
 ]
 
 def checkProblemBuildCmd : Cmd := `[Cli|
   "check-problem-build" VIA runCheckProblemBuildCmd;
   "Build the trusted problem modules and fail on Lean warnings or errors."
+
+  FLAGS:
+    module : Array String; "Restrict the warning-sensitive build to these manifest modules."
+]
+
+def problemInventoryCmd : Cmd := `[Cli|
+  "problem-inventory" VIA runProblemInventoryCmd;
+  "Write tagged-declaration inventory JSON for already-built problem modules."
+
+  FLAGS:
+    module : Array String; "Restrict inventory collection to these manifest modules."
+
+  ARGS:
+    "output" : String; "Destination JSON path."
 ]
 
 def generateCmd : Cmd := `[Cli|
@@ -196,6 +232,7 @@ def leanEvalCmd : Cmd := `[Cli|
   SUBCOMMANDS:
     validateManifestCmd;
     checkProblemBuildCmd;
+    problemInventoryCmd;
     generateCmd;
     checkGeneratedBuildsCmd;
     startProblemCmd;
@@ -233,6 +270,7 @@ def coalesceRepeatedFlag (args : List String) (name : String) : List String := I
 def runMain (args : List String) : IO UInt32 := do
   let args := coalesceRepeatedFlag args "--problem"
   let args := coalesceRepeatedFlag args "--file"
+  let args := coalesceRepeatedFlag args "--module"
   leanEvalCmd.validate args
 
 end EvalTools

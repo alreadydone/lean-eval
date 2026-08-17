@@ -14,18 +14,39 @@ The coverage check comes first because it is the only one that does not need a
 build, and because the inventory cross-check is blind to modules the manifest
 never names.
 
-`modulesBuilt` is an internal CI optimization for the case where
-`check-problem-build` has just successfully built the same source tree.
+`structureOnly` runs the cheap global checks without importing compiled
+modules. `inventoryDir?` validates JSON collected by parallel CI shards;
+`requestedModules` narrows that validation for dependency-selected PRs.
+`modulesBuilt` remains an optimization for callers using the original
+single-process inventory path after `check-problem-build`.
 
 The Python original also called `gp.validate_hole_shape`, a textual pre-check
 for typos in hole names. That check is purely redundant with the inventory
 cross-check (which goes through the elaborator), so it is dropped here. -/
-def runValidateManifest (root : System.FilePath) (modulesBuilt : Bool := false) : IO UInt32 := do
+def runValidateManifest (root : System.FilePath) (modulesBuilt : Bool := false)
+    (structureOnly : Bool := false) (inventoryDir? : Option System.FilePath := none)
+    (requestedModules : Array String := #[]) : IO UInt32 := do
   try
     let entries ← loadManifest root
     checkProblemModuleCoverage root entries
-    validateManifestAgainstInventory root entries (buildModules := !modulesBuilt)
-    IO.println "Manifest and @[eval_problem] declarations are consistent."
+    if structureOnly then
+      if inventoryDir?.isSome then
+        throw <| IO.userError "--structure-only and --inventory-dir cannot be used together."
+      IO.println "Manifest structure and problem-module coverage are consistent."
+    else
+      match inventoryDir? with
+      | some inventoryDir =>
+          let inventory ← loadInventoryDirectory inventoryDir
+          let modules ← selectManifestModules entries requestedModules
+          let selected := modules.foldl
+            (fun set moduleName => set.insert moduleName) ({} : Std.HashSet String)
+          let selectedEntries := entries.filter fun entry => selected.contains entry.moduleName
+          validateManifestAgainstInventoryEntries selectedEntries inventory
+      | none =>
+          unless requestedModules.isEmpty do
+            throw <| IO.userError "--module requires --inventory-dir."
+          validateManifestAgainstInventory root entries (buildModules := !modulesBuilt)
+      IO.println "Manifest and @[eval_problem] declarations are consistent."
     return 0
   catch err =>
     IO.eprintln err
