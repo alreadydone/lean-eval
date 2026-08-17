@@ -1,4 +1,7 @@
 import Mathlib
+import Lake.Toml
+import Lake.Util.Message
+import Lean
 
 /-!
 # Derived solidification of free CW complexes
