@@ -276,9 +276,14 @@ jobs:
           build: false
           test: false
           lint: false
-          # Restoring root-package artifacts could make the warning-sensitive
-          # builds incremental no-ops. Mathlib's cache remains enabled above.
-          use-github-cache: false
+
+      - name: Clear cached problem-module artifacts
+        run: |
+          set -euo pipefail
+          artifact_dir=.lake/build/lib/lean/LeanEval
+          if [ -d "$artifact_dir" ]; then
+            find "$artifact_dir" \( -type f -o -type l \) -delete
+          fi
 
       - name: Build problem modules without warnings
         env:
