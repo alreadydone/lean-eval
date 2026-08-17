@@ -55,6 +55,601 @@
     "generated_path": "generated/alternating_sign_matrix_count"
   },
   {
+    "id": "annals_absolute_profinite_rigidity",
+    "title": "Absolute profinite rigidity and hyperbolic geometry",
+    "test": false,
+    "submitter": "Thomas Browning",
+    "module": "LeanEval.GroupTheory.AbsoluteProfiniteRigidity",
+    "holes": [
+      "theorem_7_1"
+    ],
+    "generated_path": "generated/annals_absolute_profinite_rigidity"
+  },
+  {
+    "id": "annals_algebraic_integers",
+    "title": "Algebraic integers with conjugates in a prescribed distribution",
+    "test": false,
+    "submitter": "Justus Springer",
+    "module": "LeanEval.NumberTheory.AlgebraicIntegers",
+    "holes": [
+      "theorem_1_1"
+    ],
+    "generated_path": "generated/annals_algebraic_integers"
+  },
+  {
+    "id": "annals_bose_gases",
+    "title": "The energy of dilute Bose gases",
+    "test": false,
+    "submitter": "David Ledvinka",
+    "module": "LeanEval.Physics.BoseGases",
+    "holes": [
+      "\u03b7",
+      "\ud835\udcd2",
+      "theorem_1_2"
+    ],
+    "generated_path": "generated/annals_bose_gases"
+  },
+  {
+    "id": "annals_bounded_multiplicative_functions",
+    "title": "Higher uniformity of bounded multiplicative functions in short intervals on average",
+    "test": false,
+    "submitter": "David Ledvinka",
+    "module": "LeanEval.NumberTheory.BoundedMultiplicativeFunctions",
+    "holes": [
+      "theorem_1_3",
+      "corollary_1_1"
+    ],
+    "generated_path": "generated/annals_bounded_multiplicative_functions"
+  },
+  {
+    "id": "annals_chowla_and_twin_prime_over_fq_t",
+    "title": "On the Chowla and twin primes conjectures over \ud835\udd3d_q[T]",
+    "test": false,
+    "submitter": "Thomas Browning",
+    "module": "LeanEval.NumberTheory.ChowlaAndTwinPrimeOverFqT",
+    "holes": [
+      "theorem_1_1",
+      "theorem_1_3"
+    ],
+    "generated_path": "generated/annals_chowla_and_twin_prime_over_fq_t"
+  },
+  {
+    "id": "annals_conjecture_of_marton",
+    "title": "On a conjecture of Marton",
+    "test": false,
+    "submitter": "Thomas Browning",
+    "module": "LeanEval.Combinatorics.ConjectureOfMarton",
+    "holes": [
+      "theorem_1_2"
+    ],
+    "generated_path": "generated/annals_conjecture_of_marton"
+  },
+  {
+    "id": "annals_dirichlet_weyl_bound",
+    "title": "The Weyl bound for Dirichlet L-functions of cube-free conductor",
+    "test": false,
+    "submitter": "Thomas Browning",
+    "module": "LeanEval.NumberTheory.DirichletWeylBound",
+    "holes": [
+      "corollary_1_3"
+    ],
+    "generated_path": "generated/annals_dirichlet_weyl_bound"
+  },
+  {
+    "id": "annals_duffin_schaeffer_conjecture",
+    "title": "On the Duffin-Schaeffer conjecture",
+    "test": false,
+    "submitter": "Katerina Hristova, Kevin Buzzard",
+    "module": "LeanEval.NumberTheory.DuffinSchaefferConjecture",
+    "holes": [
+      "theorem_1",
+      "theorem_2_a",
+      "theorem_2_b",
+      "corollary_3"
+    ],
+    "generated_path": "generated/annals_duffin_schaeffer_conjecture"
+  },
+  {
+    "id": "annals_enumerating_number_fields",
+    "title": "Enumerating number fields",
+    "test": false,
+    "submitter": "Thomas Browning",
+    "module": "LeanEval.NumberTheory.EnumeratingNumberFields",
+    "holes": [
+      "theorem_1",
+      "theorem_2"
+    ],
+    "generated_path": "generated/annals_enumerating_number_fields"
+  },
+  {
+    "id": "annals_equiangular_lines_fixed_angle",
+    "title": "Equiangular lines with a fixed angle",
+    "test": false,
+    "submitter": "Justus Springer",
+    "module": "LeanEval.Combinatorics.EquiangularLinesFixedAngle",
+    "holes": [
+      "theorem_1_2"
+    ],
+    "generated_path": "generated/annals_equiangular_lines_fixed_angle"
+  },
+  {
+    "id": "annals_erdos_faber_lovasz_conjecture",
+    "title": "A proof of the Erd\u0151s\u2013Faber\u2013Lov\u00e1sz conjecture",
+    "test": false,
+    "submitter": "David Ledvinka",
+    "module": "LeanEval.Combinatorics.ErdosFaberLovaszConjecture",
+    "holes": [
+      "theorem_1_1"
+    ],
+    "generated_path": "generated/annals_erdos_faber_lovasz_conjecture"
+  },
+  {
+    "id": "annals_erdos_supersingular_primes",
+    "title": "A conjecture of Erd\u0151s, supersingular primes and short character sums",
+    "test": false,
+    "submitter": "Justus Springer",
+    "module": "LeanEval.NumberTheory.ErdosSupersingularPrimes",
+    "holes": [
+      "k\u2080",
+      "theorem_2"
+    ],
+    "generated_path": "generated/annals_erdos_supersingular_primes"
+  },
+  {
+    "id": "annals_finite_time_singularity",
+    "title": "Finite-time singularity formation for C^{1,\u03b1} solutions to the incompressible Euler equations on \u211d\u00b3",
+    "test": false,
+    "submitter": "David Ledvinka",
+    "module": "LeanEval.Analysis.FiniteTimeSingularity",
+    "holes": [
+      "theorem_1"
+    ],
+    "generated_path": "generated/annals_finite_time_singularity"
+  },
+  {
+    "id": "annals_flat_littlewood_poly",
+    "title": "Flat Littlewood polynomials exist",
+    "test": false,
+    "submitter": "Katerina Hristova, Kevin Buzzard, Bhavik Mehta",
+    "module": "LeanEval.Analysis.FlatLittlewoodPoly",
+    "holes": [
+      "theorem_1_1"
+    ],
+    "generated_path": "generated/annals_flat_littlewood_poly"
+  },
+  {
+    "id": "annals_fractal_uncertainty",
+    "title": "Fractal uncertainty in higher dimensions",
+    "test": false,
+    "submitter": "Justus Springer, Katerina Hristova",
+    "module": "LeanEval.Analysis.FractalUncertainty",
+    "holes": [
+      "theorem_1_1"
+    ],
+    "generated_path": "generated/annals_fractal_uncertainty"
+  },
+  {
+    "id": "annals_fractional_expectation_thresholds",
+    "title": "Thresholds versus fractional expectation-thresholds",
+    "test": false,
+    "submitter": "David Ledvinka",
+    "module": "LeanEval.Combinatorics.FractionalExpectationThresholds",
+    "holes": [
+      "K",
+      "theorem_1_1"
+    ],
+    "generated_path": "generated/annals_fractional_expectation_thresholds"
+  },
+  {
+    "id": "annals_good_lt_codes",
+    "title": "Good Locally Testable Codes",
+    "test": false,
+    "submitter": "Thomas Browning, Katerina Hristova",
+    "module": "LeanEval.Combinatorics.GoodLTCodes",
+    "holes": [
+      "theorem_1_2"
+    ],
+    "generated_path": "generated/annals_good_lt_codes"
+  },
+  {
+    "id": "annals_hasse_principle_random_fano",
+    "title": "The Hasse principle for random Fano hypersurfaces",
+    "test": false,
+    "submitter": "Justus Springer",
+    "module": "LeanEval.NumberTheory.HassePrincipleRandomFano",
+    "holes": [
+      "theorem_1_1"
+    ],
+    "generated_path": "generated/annals_hasse_principle_random_fano"
+  },
+  {
+    "id": "annals_hessian_estimates",
+    "title": "Hessian estimates for the sigma-2 equation in dimension four",
+    "test": false,
+    "submitter": "David Ledvinka",
+    "module": "LeanEval.Analysis.HessianEstimates",
+    "holes": [
+      "theorem_1_1"
+    ],
+    "generated_path": "generated/annals_hessian_estimates"
+  },
+  {
+    "id": "annals_improved_bounds_sunflower_lemma",
+    "title": "Improved bounds for the sunflower lemma",
+    "test": false,
+    "submitter": "Justus Springer",
+    "module": "LeanEval.Combinatorics.ImprovedBoundsSunflowerLemma",
+    "holes": [
+      "C",
+      "theorem_1_4"
+    ],
+    "generated_path": "generated/annals_improved_bounds_sunflower_lemma"
+  },
+  {
+    "id": "annals_inscribed_rectangles",
+    "title": "Inscribed rectangles in a smooth Jordan curve attain at least one third of all aspect ratios",
+    "test": false,
+    "submitter": "Katerina Hristova",
+    "module": "LeanEval.Geometry.InscribedRectangles",
+    "holes": [
+      "theorem_1"
+    ],
+    "generated_path": "generated/annals_inscribed_rectangles"
+  },
+  {
+    "id": "annals_integer_multiplication",
+    "title": "Integer multiplication in time O(n log n)",
+    "test": false,
+    "submitter": "Justus Springer",
+    "module": "LeanEval.ModelTheory.IntegerMultiplication",
+    "holes": [
+      "theorem_1_1"
+    ],
+    "generated_path": "generated/annals_integer_multiplication"
+  },
+  {
+    "id": "annals_large_value_estimates",
+    "title": "New large value estimates for Dirichlet polynomials",
+    "test": false,
+    "submitter": "Thomas Browning",
+    "module": "LeanEval.NumberTheory.LargeValueEstimates",
+    "holes": [
+      "theorem_1_1"
+    ],
+    "generated_path": "generated/annals_large_value_estimates"
+  },
+  {
+    "id": "annals_linear_subspaces",
+    "title": "Rational approximations to linear subspaces",
+    "test": false,
+    "submitter": "Justus Springer",
+    "module": "LeanEval.NumberTheory.LinearSubspaces",
+    "holes": [
+      "theorem_1"
+    ],
+    "generated_path": "generated/annals_linear_subspaces"
+  },
+  {
+    "id": "annals_local_global_apollonian_circle_packings",
+    "title": "The local-global conjecture for Apollonian circle packings is false",
+    "test": false,
+    "submitter": "Thomas Browning",
+    "module": "LeanEval.NumberTheory.LocalGlobalApollonianCirclePackings",
+    "holes": [
+      "theorem_1_6",
+      "theorem_1_3"
+    ],
+    "generated_path": "generated/annals_local_global_apollonian_circle_packings"
+  },
+  {
+    "id": "annals_lorentzian_polynomials",
+    "title": "Lorentzian polynomials",
+    "test": false,
+    "submitter": "Justus Springer",
+    "module": "LeanEval.Combinatorics.LorentzianPolynomials",
+    "holes": [
+      "theorem_2_25"
+    ],
+    "generated_path": "generated/annals_lorentzian_polynomials"
+  },
+  {
+    "id": "annals_mckay_conjecture",
+    "title": "The McKay Conjecture on character degrees",
+    "test": false,
+    "submitter": "Thomas Browning",
+    "module": "LeanEval.RepresentationTheory.McKayConjecture",
+    "holes": [
+      "theorem_1_1"
+    ],
+    "generated_path": "generated/annals_mckay_conjecture"
+  },
+  {
+    "id": "annals_motivic_invariants",
+    "title": "Motivic invariants of birational maps",
+    "test": false,
+    "submitter": "Justus Springer",
+    "module": "LeanEval.AlgebraicGeometry.MotivicInvariants",
+    "holes": [
+      "theorem_1_2_1_a",
+      "theorem_1_2_1_b",
+      "theorem_1_2_1_c",
+      "theorem_1_2_1_d",
+      "theorem_1_2_2",
+      "theorem_1_2_3"
+    ],
+    "generated_path": "generated/annals_motivic_invariants"
+  },
+  {
+    "id": "annals_on_approximation_of_reals",
+    "title": "On approximation to a real number by algebraic numbers of bounded degree",
+    "test": false,
+    "submitter": "Katerina Hristova, Kevin Buzzard",
+    "module": "LeanEval.NumberTheory.OnApproximationOfReals",
+    "holes": [
+      "theorem_1_1"
+    ],
+    "generated_path": "generated/annals_on_approximation_of_reals"
+  },
+  {
+    "id": "annals_on_coherence_of_one_relator_groups",
+    "title": "On the coherence of one-relator groups and their group algebras",
+    "test": false,
+    "submitter": "Katerina Hristova",
+    "module": "LeanEval.GroupTheory.OnCoherenceOfOneRelatorGroups",
+    "holes": [
+      "theorem_1_1"
+    ],
+    "generated_path": "generated/annals_on_coherence_of_one_relator_groups"
+  },
+  {
+    "id": "annals_on_property_t",
+    "title": "On property (T) for Aut(F_n) and SL_n(Z)",
+    "test": false,
+    "submitter": "Thomas Browning",
+    "module": "LeanEval.GroupTheory.OnPropertyT",
+    "holes": [
+      "theorem_1"
+    ],
+    "generated_path": "generated/annals_on_property_t"
+  },
+  {
+    "id": "annals_optimal_moebius",
+    "title": "The optimal paper Moebius band",
+    "test": false,
+    "submitter": "Thomas Browning, Katerina Hristova",
+    "module": "LeanEval.Geometry.OptimalMoebius",
+    "holes": [
+      "theorem_1_1"
+    ],
+    "generated_path": "generated/annals_optimal_moebius"
+  },
+  {
+    "id": "annals_periodic_tiling_conjecture",
+    "title": "A counterexample to the periodic tiling conjecture",
+    "test": false,
+    "submitter": "David Ledvinka",
+    "module": "LeanEval.Combinatorics.PeriodicTilingConjecture",
+    "holes": [
+      "theorem_1_4",
+      "corollary_1_6",
+      "corollary_1_7"
+    ],
+    "generated_path": "generated/annals_periodic_tiling_conjecture"
+  },
+  {
+    "id": "annals_pointwise_ergodic_theorems",
+    "title": "Pointwise ergodic theorems for non-conventional bilinear polynomial averages",
+    "test": false,
+    "submitter": "David Ledvinka",
+    "module": "LeanEval.Dynamics.PointwiseErgodicTheorems",
+    "holes": [
+      "theorem_1_17_i",
+      "theorem_1_17_ii",
+      "C\u1d62\u1d62\u1d62",
+      "theorem_1_17_iii",
+      "C\u1d62\u1d65",
+      "theorem_1_17_iv"
+    ],
+    "generated_path": "generated/annals_pointwise_ergodic_theorems"
+  },
+  {
+    "id": "annals_pseudorandom_grassmann",
+    "title": "Pseudorandom sets in Grassmann graph have near-perfect expansion",
+    "test": false,
+    "submitter": "Justus Springer",
+    "module": "LeanEval.Combinatorics.PseudorandomGrassmann",
+    "holes": [
+      "theorem_1_12"
+    ],
+    "generated_path": "generated/annals_pseudorandom_grassmann"
+  },
+  {
+    "id": "annals_rademacher_enflo_type",
+    "title": "Rademacher type and Enflo type coincide",
+    "test": false,
+    "submitter": "David Ledvinka",
+    "module": "LeanEval.Analysis.RademacherEnfloType",
+    "holes": [
+      "theorem_1_1"
+    ],
+    "generated_path": "generated/annals_rademacher_enflo_type"
+  },
+  {
+    "id": "annals_random_bernoulli_matrices",
+    "title": "Singularity of random Bernoulli matrices",
+    "test": false,
+    "submitter": "David Ledvinka",
+    "module": "LeanEval.LinearAlgebra.RandomBernoulliMatrices",
+    "holes": [
+      "theorem_A",
+      "corollary_1",
+      "corollary_2"
+    ],
+    "generated_path": "generated/annals_random_bernoulli_matrices"
+  },
+  {
+    "id": "annals_rectangular_peg_problem",
+    "title": "The rectangular peg problem",
+    "test": false,
+    "submitter": "Katerina Hristova",
+    "module": "LeanEval.Geometry.RectangularPegProblem",
+    "holes": [
+      "theorem_1"
+    ],
+    "generated_path": "generated/annals_rectangular_peg_problem"
+  },
+  {
+    "id": "annals_reverse_minkowski",
+    "title": "A reverse Minkowski theorem",
+    "test": false,
+    "submitter": "Katerina Hristova",
+    "module": "LeanEval.NumberTheory.ReverseMinkowski",
+    "holes": [
+      "theorem_1_2"
+    ],
+    "generated_path": "generated/annals_reverse_minkowski"
+  },
+  {
+    "id": "annals_simplicity_conjecture",
+    "title": "Proof of the simplicity conjecture",
+    "test": false,
+    "submitter": "Thomas Browning",
+    "module": "LeanEval.Dynamics.SimplicityConjecture",
+    "holes": [
+      "theorem_1_2"
+    ],
+    "generated_path": "generated/annals_simplicity_conjecture"
+  },
+  {
+    "id": "annals_spread_of_a_finite_group",
+    "title": "The spread of a finite group",
+    "test": false,
+    "submitter": "Katerina Hristova",
+    "module": "LeanEval.GroupTheory.SpreadOfAFiniteGroup",
+    "holes": [
+      "theorem_1"
+    ],
+    "generated_path": "generated/annals_spread_of_a_finite_group"
+  },
+  {
+    "id": "annals_supremum_of_selector_processes",
+    "title": "On a conjecture of Talagrand on selector processes and a consequence on positive empirical processes",
+    "test": false,
+    "submitter": "David Ledvinka",
+    "module": "LeanEval.Analysis.SupremumOfSelectorProcesses",
+    "holes": [
+      "L\u2082",
+      "L\u2082_pos",
+      "theorem_1_2",
+      "L\u2083",
+      "L\u2083_pos",
+      "theorem_1_3"
+    ],
+    "generated_path": "generated/annals_supremum_of_selector_processes"
+  },
+  {
+    "id": "annals_symplectic_monodromy",
+    "title": "Symplectic monodromy at radius zero and equimultiplicity of \u03bc-constant families",
+    "test": false,
+    "submitter": "Justus Springer",
+    "module": "LeanEval.Geometry.SymplecticMonodromy",
+    "holes": [
+      "theorem_1_1"
+    ],
+    "generated_path": "generated/annals_symplectic_monodromy"
+  },
+  {
+    "id": "annals_ulam",
+    "title": "A negative answer to Ulam's Problem 19 from the Scottish Book",
+    "test": false,
+    "submitter": "Justus Springer",
+    "module": "LeanEval.ConvexGeometry.Ulam",
+    "holes": [
+      "theorem_1"
+    ],
+    "generated_path": "generated/annals_ulam"
+  },
+  {
+    "id": "annals_uniform_mordell_lang",
+    "title": "Uniformity in Mordell\u2013Lang for curves",
+    "test": false,
+    "submitter": "Thomas Browning, Christian Merten",
+    "module": "LeanEval.AlgebraicGeometry.UniformMordellLang",
+    "holes": [
+      "genus",
+      "Jacobian",
+      "instGrpObj",
+      "smoothOfRelativeDimension_genus",
+      "instIsProper",
+      "instGeometricallyIrreducible",
+      "ofCurve",
+      "comp_ofCurve",
+      "exists_unique_ofCurve_comp",
+      "instGeometricallyIntegral",
+      "instFG",
+      "c",
+      "theorem_1_1"
+    ],
+    "generated_path": "generated/annals_uniform_mordell_lang"
+  },
+  {
+    "id": "annals_unit_conjecture",
+    "title": "A counterexample to the unit conjecture for group rings",
+    "test": false,
+    "submitter": "Thomas Browning",
+    "module": "LeanEval.GroupTheory.UnitConjecture",
+    "holes": [
+      "theorem_A"
+    ],
+    "generated_path": "generated/annals_unit_conjecture"
+  },
+  {
+    "id": "annals_van_der_waerden_conjecture",
+    "title": "Galois groups of random integer polynomials and van der Waerden's Conjecture",
+    "test": false,
+    "submitter": "David Ledvinka",
+    "module": "LeanEval.NumberTheory.VanDerWaerdenConjecture",
+    "holes": [
+      "theorem_1"
+    ],
+    "generated_path": "generated/annals_van_der_waerden_conjecture"
+  },
+  {
+    "id": "annals_viscosity_solutions",
+    "title": "Viscosity solutions and hyperbolic motions: a new PDE method for the N-body problem",
+    "test": false,
+    "submitter": "David Ledvinka",
+    "module": "LeanEval.Analysis.ViscositySolutions",
+    "holes": [
+      "theorem_1_1"
+    ],
+    "generated_path": "generated/annals_viscosity_solutions"
+  },
+  {
+    "id": "annals_wilkies_conjecture",
+    "title": "Wilkie's conjecture for Pfaffian structures",
+    "test": false,
+    "submitter": "Justus Springer, Mathias Stout",
+    "module": "LeanEval.ModelTheory.WilkiesConjecture",
+    "holes": [
+      "corollary_1"
+    ],
+    "generated_path": "generated/annals_wilkies_conjecture"
+  },
+  {
+    "id": "annals_zagier_hoffman_positive_char",
+    "title": "On Zagier-Hoffman's conjectures in positive characteristic",
+    "test": false,
+    "submitter": "Katerina Hristova",
+    "module": "LeanEval.NumberTheory.ZagierHoffmanPositiveChar",
+    "holes": [
+      "theorem_A",
+      "theorem_B",
+      "theorem_D"
+    ],
+    "generated_path": "generated/annals_zagier_hoffman_positive_char"
+  },
+  {
     "id": "annulus_theorem_dim_four",
     "title": "The Annulus Theorem in dimension 4 (Quinn)",
     "test": false,
