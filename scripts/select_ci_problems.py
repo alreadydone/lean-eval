@@ -2,11 +2,10 @@
 """Select and shard the catalog work needed for a CI change.
 
 Pull requests validate changed problem modules and every manifest root that
-imports them, transitively.  Changes to shared generator/infrastructure inputs
-are conservative full-catalog sentinels.  Pushes validate the full catalog.
-
-The script deliberately has no third-party dependencies so the classify job
-can run before installing Lean or restoring the Mathlib cache.
+imports them, transitively. Lean itself parses module headers and provides the
+dependency graph consumed here. Changes to shared generator/infrastructure
+inputs are conservative full-catalog sentinels. Pushes validate the full
+catalog.
 """
 
 from __future__ import annotations
@@ -14,6 +13,7 @@ from __future__ import annotations
 import argparse
 import dataclasses
 import json
+import os
 import pathlib
 import re
 import subprocess
@@ -23,7 +23,6 @@ from collections import defaultdict, deque
 from collections.abc import Iterable, Sequence
 
 
-IMPORT_RE = re.compile(r"^\s*import\s+([^\s]+)\s*(?:--.*)?$")
 PROBLEM_ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]*$")
 ZERO_SHA = "0" * 40
 
@@ -73,54 +72,81 @@ def load_problems(root: pathlib.Path) -> tuple[Problem, ...]:
     return tuple(problems)
 
 
-def module_name_for_path(path: pathlib.Path, source_root: pathlib.Path) -> str:
-    relative = path.relative_to(source_root)
-    parts = list(relative.parts)
-    parts[-1] = pathlib.Path(parts[-1]).stem
-    if any("." in part or not part for part in parts):
-        raise ValueError(f"cannot safely derive a Lean module name from {relative}")
-    return ".".join((source_root.name, *parts))
+def load_import_graph(path: pathlib.Path) -> tuple[dict[str, str], dict[str, set[str]]]:
+    """Load the graph emitted by the Lean `ci_import_graph` executable."""
+    try:
+        entries = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as error:
+        raise ValueError(f"cannot load Lean import graph from {path}: {error}") from error
+    if not isinstance(entries, list):
+        raise ValueError("Lean import graph must be a JSON array")
 
-
-def load_import_graph(root: pathlib.Path) -> tuple[dict[str, str], dict[str, set[str]]]:
-    source_root = root / "LeanEval"
     paths: dict[str, str] = {}
     imports: dict[str, set[str]] = {}
-    for path in sorted(source_root.rglob("*.lean")):
-        module = module_name_for_path(path, source_root)
-        relative = path.relative_to(root).as_posix()
+    for index, entry in enumerate(entries):
+        if not isinstance(entry, dict):
+            raise ValueError(f"Lean import graph entry {index} must be an object")
+        relative = entry.get("path")
+        module = entry.get("module")
+        imported_modules = entry.get("imports")
+        if (
+            not isinstance(relative, str)
+            or not relative.startswith("LeanEval/")
+            or not relative.endswith(".lean")
+            or any(char in relative for char in "\0\r\n")
+        ):
+            raise ValueError(f"Lean import graph entry {index} has an unsafe path: {relative!r}")
+        if (
+            not isinstance(module, str)
+            or not module.startswith("LeanEval.")
+            or any(char in module for char in "\0\r\n")
+        ):
+            raise ValueError(f"Lean import graph entry {index} has an unsafe module: {module!r}")
+        if not isinstance(imported_modules, list) or not all(
+            isinstance(imported, str) for imported in imported_modules
+        ):
+            raise ValueError(f"Lean import graph entry {index} has invalid imports")
+        if relative in paths:
+            raise ValueError(f"duplicate path in Lean import graph: {relative}")
+        if module in imports:
+            raise ValueError(f"duplicate module in Lean import graph: {module}")
         paths[relative] = module
-        local_imports: set[str] = set()
-        for line in path.read_text(encoding="utf-8").splitlines():
-            if not line.lstrip().startswith("import "):
-                continue
-            match = IMPORT_RE.match(line)
-            if match is None:
-                raise ValueError(f"cannot safely parse import line in {relative}: {line!r}")
-            imported = match.group(1)
-            if imported.startswith("LeanEval."):
-                local_imports.add(imported)
-        imports[module] = local_imports
+        imports[module] = {
+            imported for imported in imported_modules if imported.startswith("LeanEval.")
+        }
     return paths, imports
+
+
+def parse_git_changes(output: bytes) -> tuple[Change, ...]:
+    """Parse `git diff --name-status -z` without Git path quoting."""
+    fields = output.split(b"\0")
+    if not fields or fields[-1] != b"":
+        raise ValueError("git diff output is not NUL terminated")
+    fields.pop()
+    changes: list[Change] = []
+    index = 0
+    while index < len(fields):
+        status = os.fsdecode(fields[index])
+        index += 1
+        path_count = 2 if status.startswith(("C", "R")) else 1
+        if not status or index + path_count > len(fields):
+            raise ValueError(f"unexpected git diff record near status {status!r}")
+        paths = tuple(os.fsdecode(field) for field in fields[index:index + path_count])
+        index += path_count
+        changes.append(Change(status, paths))
+    return tuple(changes)
 
 
 def git_changes(root: pathlib.Path, base: str, head: str) -> tuple[Change, ...]:
     if base == ZERO_SHA:
         return (Change("A", ("<initial-push>",)),)
     result = subprocess.run(
-        ["git", "diff", "--name-status", "--find-renames", f"{base}..{head}"],
+        ["git", "diff", "--name-status", "-z", "--find-renames", f"{base}..{head}"],
         cwd=root,
         check=True,
-        text=True,
         stdout=subprocess.PIPE,
     )
-    changes: list[Change] = []
-    for line in result.stdout.splitlines():
-        fields = line.split("\t")
-        if len(fields) < 2:
-            raise ValueError(f"unexpected git diff record: {line!r}")
-        changes.append(Change(fields[0], tuple(fields[1:])))
-    return tuple(changes)
+    return parse_git_changes(result.stdout)
 
 
 def reverse_dependants(imports: dict[str, set[str]], changed: Iterable[str]) -> set[str]:
@@ -224,13 +250,12 @@ def select(
             changed_source_paths.add(path)
 
     if changed_source_paths:
-        try:
-            path_modules, imports = graph if graph is not None else load_import_graph(root)
-        except ValueError as error:
+        if graph is None:
             return Selection(
-                "full", (f"import graph fallback: {error}",), all_ids, all_modules,
+                "full", ("Lean import graph unavailable",), all_ids, all_modules,
                 source_changed, generated_changed, run_checks,
             )
+        path_modules, imports = graph
         missing = sorted(changed_source_paths - path_modules.keys())
         if missing:
             return Selection(
@@ -318,6 +343,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--base", required=True)
     parser.add_argument("--head", default="HEAD")
     parser.add_argument("--shards", type=int, default=8)
+    parser.add_argument("--import-graph", type=pathlib.Path, required=True)
     parser.add_argument("--github-output", type=pathlib.Path)
     args = parser.parse_args(argv)
     if args.shards <= 0:
@@ -325,7 +351,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     root = args.root.resolve()
     problems = load_problems(root)
     changes = git_changes(root, args.base, args.head)
-    selection = select(root, args.event, changes, problems)
+    graph = load_import_graph(args.import_graph)
+    selection = select(root, args.event, changes, problems, graph)
     matrix = make_matrix(selection, problems, args.shards)
     print(
         f"Catalog selection: {selection.mode}; {len(selection.problems)} problem(s), "

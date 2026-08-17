@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import pathlib
 import sys
+import tempfile
 import unittest
 
 
@@ -99,6 +101,53 @@ class SelectCIProblemsTest(unittest.TestCase):
                 locations[problem] = shard["shard"]
         self.assertEqual(locations["b"], locations["b_second"])
         self.assertEqual(set(locations), {"a", "b", "b_second", "c"})
+
+    def test_empty_matrix_has_a_placeholder_for_github_validation(self):
+        selection = self.select((Change("M", ("README.md",)),))
+        self.assertEqual(
+            SELECTOR.make_matrix(selection, self.problems, 8),
+            {"include": [
+                {"shard": 0, "shard_count": 1, "problems": "", "modules": ""}
+            ]},
+        )
+
+    def test_nul_git_changes_preserve_unicode_and_rename_paths(self):
+        changes = SELECTOR.parse_git_changes(
+            "M\0LeanEval/Über.lean\0R100\0LeanEval/Old.lean\0"
+            "LeanEval/New.lean\0".encode()
+        )
+        self.assertEqual(
+            changes,
+            (
+                Change("M", ("LeanEval/Über.lean",)),
+                Change("R100", ("LeanEval/Old.lean", "LeanEval/New.lean")),
+            ),
+        )
+
+    def test_nul_git_changes_reject_truncated_records(self):
+        with self.assertRaisesRegex(ValueError, "unexpected git diff record"):
+            SELECTOR.parse_git_changes(b"R100\0LeanEval/Old.lean\0")
+
+    def test_loads_graph_emitted_by_lean(self):
+        payload = [
+            {
+                "path": "LeanEval/A.lean",
+                "module": "LeanEval.A",
+                "imports": ["Mathlib", "LeanEval.Helper"],
+            },
+            {
+                "path": "LeanEval/Helper.lean",
+                "module": "LeanEval.Helper",
+                "imports": [],
+            },
+        ]
+        with tempfile.TemporaryDirectory() as directory:
+            path = pathlib.Path(directory) / "import-graph.json"
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            paths, imports = SELECTOR.load_import_graph(path)
+        self.assertEqual(paths["LeanEval/A.lean"], "LeanEval.A")
+        self.assertEqual(imports["LeanEval.A"], {"LeanEval.Helper"})
+        self.assertEqual(imports["LeanEval.Helper"], set())
 
 
 if __name__ == "__main__":
