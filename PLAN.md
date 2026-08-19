@@ -1,6 +1,8 @@
 # LeanEval overhaul plan
 
-Status: **request for comment**. Written 2026-08-19.
+Status: **request for comment**, on
+[lean-eval#536](https://github.com/leanprover/lean-eval/pull/536).
+Written 2026-08-19.
 
 This document plans a coordinated overhaul across the LeanEval repositories:
 
