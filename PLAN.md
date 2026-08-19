@@ -88,8 +88,8 @@ dependencies.
 
 ## 1. Problem groups and lifecycle
 
-Four properties classify every problem: group, current status, frozen-set
-membership, and visibility.
+Five properties classify every problem: group, current status, frozen-set
+membership, visibility, and tags.
 
 **Group** is the subject-matter dimension, and there are three: formalization
 evaluation (the current benchmark), software verification, and open
@@ -125,8 +125,18 @@ A problem's group is fixed for its lifetime. Visibility is a further boolean
 property: the existing `test = true` manifests and Sandbox examples become
 hidden problems rather than acquiring another lifecycle status.
 
+**Tags** are the free dimension: zero or more labels per problem, displayed
+and filterable, with no effect on policy, standings, or validation. Tags live
+in the problem manifest (`tags = ["annals"]`) and are validated by CI against
+a small registry file (tag name, display label, one-line description), so
+spelling variants can't drift; adding a tag to the registry is a one-line PR.
+Tag edits are metadata, freeze-compatible like docstring changes. Topic-area
+tags (number theory, topology, and so on) are derived automatically from the
+module path rather than hand-maintained. The first hand-applied tag is
+`annals` on the 50 AnnalsChallenge problems, a mechanical backfill.
+
 The leaderboard's site-data schema records group, current status, status
-history, visibility, and frozen-set memberships. Result records remain
+history, visibility, tags, and frozen-set memberships. Result records remain
 immutable. Standings for a named set are computed from its problem membership,
 so neither a status change nor the publication of a later set rewrites a
 result.
@@ -548,6 +558,13 @@ The client-side tables support sorting and filtering.
   Standings and problem tables apply to the selected scope. When v2 exists it
   becomes the default and v1 remains available. A selector with a single
   option is not rendered.
+- **Tag chips and filters.** Problem rows show their tag chips; a tag filter
+  narrows the tab's problem list and recomputes the standings table for the
+  filtered subset client-side. The filter persists in the URL, so "just the
+  Annals problems" is a shareable link, and the tab already supplies the
+  context, so a filtered view doesn't restate the group. Internally the
+  frontend treats a tab as a pinned filter, letting tab and tag views share
+  rendering code; the data model keeps group as its own required field.
 - **Unique-solve emphasis.** Model standings are computed per (group,
   selected scope). The default leaderboard lists models ordered by number of
   unique solves (problems where that canonical credit identity is the only one
@@ -765,8 +782,9 @@ trusted problem statements in 11.
 4. **v1 audit**: LLM-assisted catalog review producing the candidate cut list
    with evidence (solve counts, known leaks, misformalisation risk).
 5. **Problem metadata**: group, status, visibility, statement revisions,
-   frozen-set membership and history, validation, and migration of the current
-   catalog.
+   frozen-set membership and history, tags and the tag registry (including
+   auto-derived topic-area tags and the `annals` backfill), validation, and
+   migration of the current catalog.
 6. **Submission server**: Worker, state repo and materializer, operator CLI,
    OAuth and agent paths, GitHub App snapshots, amendment/repair records,
    release countdown, archive publication, and the audit-archive key changes
