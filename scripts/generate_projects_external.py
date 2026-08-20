@@ -64,7 +64,11 @@ def request_for(problem_id: str) -> dict[str, object]:
     problem = {
         "id": manifest["id"],
         "title": manifest["title"],
-        "test": manifest["test"],
+        "group": manifest["group"],
+        "status": manifest["status"],
+        "visible": manifest["visible"],
+        "statementRevision": manifest["statement_revision"],
+        "tags": manifest["tags"],
         "moduleName": module,
         "holes": manifest["holes"],
         "submitter": manifest["submitter"],
