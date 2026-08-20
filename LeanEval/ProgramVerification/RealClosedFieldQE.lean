@@ -1,4 +1,4 @@
-import Mathlib.Data.Real.Basic
+import Mathlib.Analysis.Real.Sqrt
 import EvalTools.Markers
 
 /-!
@@ -13,9 +13,9 @@ each variable, and `Formula.IsQF` says that a formula contains no quantifier.
 
 Implement `qe`, which converts an arbitrary formula into an equivalent quantifier-free one, and
 prove that it does. `isQF_qe` says the output contains no quantifier. `holds_qe` says the input
-and the output are satisfied by exactly the same environments; because it quantifies over every
-environment, it also forces `qe` to respect free variables, so no separate condition on those is
-needed.
+and the output have the same truth value in every environment. No separate free-variable
+condition is needed for semantic equivalence, although the output may syntactically mention
+additional variables in vacuous expressions such as `x = x`.
 
 For example, `∃ x. x * x = a` has the de Bruijn form
 
@@ -28,12 +28,15 @@ with `a` free, and `qe` must return something equivalent to `¬ (a < 0)`, such a
 This is the point at which real closedness does the work: the equivalence fails over `ℚ`.
 
 Tarski proved that such a `qe` exists, which is what makes the theory decidable: to decide a
-sentence, run `qe` and evaluate the resulting closed quantifier-free formula. Cohen-Hörmander is
-the route with the smallest formalization footprint, and cylindrical algebraic decomposition is
-what is used in practice but has never been formalized in any system.
+sentence, run `qe` and evaluate the resulting closed quantifier-free formula. The
+Cohen-Hörmander route has a comparatively small formalization footprint. Cylindrical algebraic
+decomposition is an important practical route and has also been formalized in Coq; see
+Mahboubi's certified CAD work and the current MathComp CAD development. Cohen and Mahboubi's
+quantifier-elimination development instead follows an algebraic pseudo-remainder route.
 
 The problem is posed over `ℝ` for concreteness. Tarski's theorem holds over an arbitrary real
-closed field, and generalising `holds_qe` in that direction would be a strictly harder problem.
+closed field. Generalising `holds_qe` in that direction would require a more abstract algebraic
+development than the concrete Mathlib API over `ℝ` used here.
 
 ## Design notes
 
@@ -46,9 +49,11 @@ bookkeeping to do.
 * with only `isQF_qe`, take `qe := fun _ => .fals`;
 * with only `holds_qe`, take `qe := id`.
 
-There is no enumeration route, because the quantifiers range over `ℝ`, and no `Classical.choice`
-route, because the existence proof one would have to exhibit in order to choose from it is
-Tarski's theorem itself.
+Terms and quantifier-free formulas are enumerable, but enumerating candidates does not provide
+a shortcut: recognizing which candidate is equivalent to the input already requires the
+substantive quantifier-elimination argument. There is likewise no `Classical.choice` shortcut,
+because the existence proof one would have to exhibit before choosing a quantifier-free
+equivalent is Tarski's theorem itself.
 
 A decision procedure `valid? : Formula → Bool` with `valid? φ = true ↔ ∀ env, φ.Holds env` was
 considered as a further hole and rejected: `noncomputable def valid? φ := decide (∀ env,
@@ -104,6 +109,11 @@ def and (φ ψ : Formula) : Formula := (φ.imp ψ.not).not
 /-- Existential quantification; binds de Bruijn index `0` in the body. -/
 def ex (φ : Formula) : Formula := φ.not.all.not
 
+/-!
+Under the classical logic available in this problem, these derived connectives have their
+usual semantics under `Formula.Holds`.
+-/
+
 end Formula
 
 /-! ## Semantics -/
@@ -140,8 +150,8 @@ def Formula.IsQF : Formula → Prop
 /-! ## The problem -/
 
 /--
-Quantifier elimination: `qe φ` is a quantifier-free formula equivalent to `φ` over `ℝ`,
-in the same free variables.
+Quantifier elimination: `qe φ` is a quantifier-free formula equivalent to `φ` over `ℝ` in
+every environment. Its syntax may mention additional variables vacuously.
 -/
 @[eval_problem]
 def qe (φ : Formula) : Formula := sorry
@@ -154,6 +164,15 @@ theorem isQF_qe (φ : Formula) : (qe φ).IsQF := sorry
 @[eval_problem]
 theorem holds_qe (φ : Formula) (env : Nat → ℝ) :
     (qe φ).Holds env ↔ φ.Holds env := sorry
+
+/--
+Anti-vacuity guard for the semantics and de Bruijn convention: a real number is a square
+exactly when it is nonnegative.
+-/
+@[eval_problem]
+theorem holds_ex_sq (env : Nat → ℝ) :
+    (Formula.ex (.eq (.mul (.var 0) (.var 0)) (.var 1))).Holds env ↔
+      (Formula.not (.lt (.var 0) (.const 0))).Holds env := sorry
 
 end RealClosedFieldQE
 end ProgramVerification
