@@ -1,8 +1,15 @@
 # LeanEval overhaul plan
 
-Status: **request for comment**, on
-[lean-eval#536](https://github.com/leanprover/lean-eval/pull/536).
-Written 2026-08-19.
+Status: **accepted for staged implementation**. The original RFC was reviewed
+and merged in [lean-eval#536](https://github.com/leanprover/lean-eval/pull/536).
+Written 2026-08-19; status updated 2026-08-20.
+
+This file preserves the original design discussion. Resolved decisions and
+implementation sequencing live in the
+[public implementation program](https://gist.github.com/kim-em/cd6ac1c049f459ef9aa37d6cf551d9e4)
+and the [implementation tracker](https://github.com/leanprover/lean-eval/issues/541);
+where they differ from an unresolved proposal below, the recorded decision is
+authoritative.
 
 This document plans a coordinated overhaul across the LeanEval repositories:
 
@@ -18,9 +25,9 @@ This document plans a coordinated overhaul across the LeanEval repositories:
 It also proposes two new repositories (a submission state repo and an extracted
 generator), and one new service (a submission server).
 
-This document requests comments and volunteers. The
-[Workstreams](#workstreams) section lists separable pieces of work. Nothing is
-assigned yet.
+The [Workstreams](#workstreams) section records the original decomposition;
+current ownership and completion state are maintained in the implementation
+tracker.
 
 Relevant discussion:
 [#Model comparisons for Lean > LeanEval](https://leanprover.zulipchat.com/#narrow/channel/583341-Model-comparisons-for-Lean/topic/LeanEval),
