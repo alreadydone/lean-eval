@@ -3,7 +3,11 @@
 Finite-time singularity formation for C^{1,α} solutions to the incompressible Euler equations on ℝ³
 
 - Problem ID: `annals_finite_time_singularity`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: David Ledvinka
 - Source: T. M. Elgindi, `Finite-time singularity formation for C^{1,α} solutions to the incompressible Euler equations on ℝ³`, Annals of Math, 194 (3) 2021. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2021-194-3-FiniteTimeSingularity.lean
 

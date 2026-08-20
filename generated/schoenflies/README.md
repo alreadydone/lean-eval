@@ -3,7 +3,11 @@
 Schoenflies theorem
 
 - Problem ID: `schoenflies`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: §48 of Knill's 'Some Fundamental Theorems in Mathematics'. Strong form: every Jordan curve in the plane is the image of the unit circle under some self-homeomorphism of ℝ². This is the faithful encoding of Knill's prose statement 'each complementary region is homeomorphic to the open disk' — which as literally written is false for the unbounded region (homeomorphic to ℝ² ∖ closedBall 0 1, fundamental group ℤ, not simply connected). The strong form implies the bounded region is homeomorphic to the open disk. Mathlib has Metric.sphere, EuclideanSpace, and Homeomorph, but no Schoenflies theorem (`grep -ri 'schoenflies' Mathlib/`: no hits), no Jordan curve theorem, no invariance-of-domain machinery in a form that would discharge it. Stateable with zero new definitions.
 - Source: A. M. Schoenflies, *Beiträge zur Theorie der Punktmengen III*, Math. Annalen 62 (1906) (first proof, with gaps); rigorous proofs by L. Antoine (1921), L. E. J. Brouwer (1909–10). Listed as §48 in O. Knill, *Some Fundamental Theorems in Mathematics* (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf). No formalization found in any major prover.

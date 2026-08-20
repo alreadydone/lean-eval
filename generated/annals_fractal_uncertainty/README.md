@@ -3,7 +3,11 @@
 Fractal uncertainty in higher dimensions
 
 - Problem ID: `annals_fractal_uncertainty`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Justus Springer, Katerina Hristova
 - Source: A. Cohen, `Fractal uncertainty in higher dimensions`, Annals of Math, 202 (1) 2025. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2025-202-1-FractalUncertainty.lean
 

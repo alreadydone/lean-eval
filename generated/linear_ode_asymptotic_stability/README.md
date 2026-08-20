@@ -3,7 +3,11 @@
 Linear ODE with negative-real-part eigenvalues is asymptotically stable
 
 - Problem ID: `linear_ode_asymptotic_stability`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: If every eigenvalue of A has negative real part, every solution of x' = Ax decays to zero in norm.
 - Source: Classical linear stability theory; Hirsch-Smale-Devaney.

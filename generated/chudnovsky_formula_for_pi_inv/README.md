@@ -3,7 +3,11 @@
 Chudnovsky formula for pi inverse
 
 - Problem ID: `chudnovsky_formula_for_pi_inv`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Uses the existing Mathlib definition of the Chudnovsky series and asks for the missing identity with pi inverse. The Chudnovsky formula states 1/π = (12 / 640320^(3/2)) · ∑_{n=0}^∞ (-1)^n · (6n)! · (545140134·n + 13591409) / ((3n)! · (n!)^3 · 640320^(3n)).
 - Source: https://arxiv.org/abs/1809.00533

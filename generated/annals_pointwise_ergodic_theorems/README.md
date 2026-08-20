@@ -3,7 +3,11 @@
 Pointwise ergodic theorems for non-conventional bilinear polynomial averages
 
 - Problem ID: `annals_pointwise_ergodic_theorems`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: David Ledvinka
 - Holes (6): `PointwiseErgodicTheorems.theorem_1_17_i` (theorem), `PointwiseErgodicTheorems.theorem_1_17_ii` (theorem), `PointwiseErgodicTheorems.Cᵢᵢᵢ` (def), `PointwiseErgodicTheorems.theorem_1_17_iii` (theorem), `PointwiseErgodicTheorems.Cᵢᵥ` (def), `PointwiseErgodicTheorems.theorem_1_17_iv` (theorem)
 - Source: B. Krause, M. Mirek, and T. Tao, `Pointwise ergodic theorems for non-conventional bilinear polynomial averages`, Annals of Math, 195 (3) 2022. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2022-195-3-PointwiseErgodicTheorems.lean

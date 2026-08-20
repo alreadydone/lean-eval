@@ -3,7 +3,11 @@
 Sard's theorem (critical-set image has measure zero)
 
 - Problem ID: `sard_theorem`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: For a smooth map f : ℝᵐ → ℝⁿ, the image of the rank-deficient locus {x | rank df(x) < m ∧ rank df(x) < n} has Lebesgue measure zero. This is Knill's specific phrasing — the standard textbook Sard theorem uses the larger critical set {x | rank df(x) < n} (failure of surjectivity), which is a weaker hypothesis, so textbook Sard *implies* the form proved here. The two agree when m ≥ n; for m < n a smooth immersion has every point critical under the textbook definition but no critical points under Knill's. The manifold form follows chart-by-chart from this Euclidean version. Mathlib has the equal-dimension case (`addHaar_image_eq_zero_of_det_fderivWithin_eq_zero`) when det df = 0, plus topological corollaries via Hausdorff dimension (`ContDiff.dense_compl_range_of_finrank_lt_finrank`), but no general critical-value / Sard statement. §125 of Knill's *Some Fundamental Theorems in Mathematics*.
 - Source: A.P. Morse, 'The behavior of a function on its critical set', Ann. of Math. (2) 40 (1939) 62–70; A. Sard, 'The measure of the critical values of differentiable maps', Bull. Amer. Math. Soc. 48 (1942) 883–890. §125 in O. Knill, *Some Fundamental Theorems in Mathematics* (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf).

@@ -3,7 +3,11 @@
 The optimal paper Moebius band
 
 - Problem ID: `annals_optimal_moebius`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Thomas Browning, Katerina Hristova
 - Source: R. E. Schwartz, `The optimal paper Moebius band`, Annals of Math, 201 (1) 2025. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2025-201-1-OptimalMoebius.lean
 

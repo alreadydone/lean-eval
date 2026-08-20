@@ -3,7 +3,11 @@
 Singularity of random Bernoulli matrices
 
 - Problem ID: `annals_random_bernoulli_matrices`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: David Ledvinka
 - Holes (3): `RandomBernoulliMatrices.theorem_A` (theorem), `RandomBernoulliMatrices.corollary_1` (theorem), `RandomBernoulliMatrices.corollary_2` (theorem)
 - Notes: The proof binders `mΩ`, `B_indep`, and `B_bernoulli` in `theorem_A` are prefixed with `_` here. This is alpha-equivalent and suppresses unused-variable warnings in the generated `Solution.lean` delegation.

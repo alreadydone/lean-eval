@@ -3,7 +3,11 @@
 Flat Littlewood polynomials exist
 
 - Problem ID: `annals_flat_littlewood_poly`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Katerina Hristova, Kevin Buzzard, Bhavik Mehta
 - Source: P. Balister, B. Bollobás, R. Morris, J. Sahasrabudhe, and M. Tiba, `Flat Littlewood polynomials exist`, Annals of Math, 192 (3) 2020. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2020-192-3-FlatLittlewoodPoly.lean
 

@@ -3,7 +3,11 @@
 Dehn–Sommerville equations for simplicial spheres
 
 - Problem ID: `dehn_sommerville`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: The h-vector of a finite simplicial (d-1)-sphere is symmetric: h_j = h_{d-j}. Trusted helpers (FiniteSimplicialSphere, faceCount, extendedFaceCount, hVector) are non-holes. Mathlib has simplicial complexes but no f/h-vector or Dehn–Sommerville theory. The companion upper-bound theorem for simplicial spheres is already in lean-eval. Candidate from §142 of the Knill survey.
 - Source: M. Dehn (1905); D. M. Y. Sommerville (1927); see Stanley, *Combinatorics and Commutative Algebra*. Knill, *Some fundamental theorems in mathematics*, §142.

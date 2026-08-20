@@ -3,7 +3,11 @@
 Hausdorff moment problem: absolute-continuity criterion
 
 - Problem ID: `hausdorff_absolute_continuity`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: A positive probability measure μ supported on the unit cube (μ ((cube d)ᶜ) = 0) is uniformly absolutely continuous w.r.t. Lebesgue measure iff its iterated moment differences are dominated by those of Lebesgue measure (∃ C, (Δᵏμ)ₙ ≤ C·(Δᵏν)ₙ for k ≤ n). Trusted helpers (cube, monomial, momentOf, multiChoose, diff, UniformlyAbsolutelyContinuous) are non-holes. Companion of the §115 realizability and positivity criteria (already submitted). Mathlib has SignedMeasure and set integrals but no moment-problem machinery. Candidate from §115 (additional 2).
 - Source: F. Hausdorff (1921–1923); see Shohat–Tamarkin, *The Problem of Moments*. Knill, *Some fundamental theorems in mathematics*, §115.

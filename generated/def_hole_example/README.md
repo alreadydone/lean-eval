@@ -3,7 +3,11 @@
 def-hole minimal example
 
 - Problem ID: `def_hole_example`
-- Test Problem: yes
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: no
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Holes (2): `foo` (def), `foo_def` (theorem)
 - Notes: Minimal example exercising def + theorem holes through the comparator def-hole pipeline.

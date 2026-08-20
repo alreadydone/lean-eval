@@ -3,7 +3,11 @@
 Inscribed rectangles in a smooth Jordan curve attain at least one third of all aspect ratios
 
 - Problem ID: `annals_inscribed_rectangles`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Katerina Hristova
 - Source: C. Hugelmeyer, `Inscribed rectangles in a smooth Jordan curve attain at least one third of all aspect ratios`, Annals of Math, 194 (2) 2021. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2021-194-2-InscribedRectangles.lean
 

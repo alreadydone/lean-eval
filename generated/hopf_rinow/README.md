@@ -3,7 +3,11 @@
 Hopf–Rinow theorem
 
 - Problem ID: `hopf_rinow`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: For a connected, finite-dimensional, smooth Riemannian manifold M that is also locally compact, metric completeness and geodesic completeness are equivalent. §93 of Knill's 'Some Fundamental Theorems in Mathematics'. The file ships IsGeodesic (a path with locally linear edist — a metric formulation of affinely parametrised local minimising geodesics, avoiding any Levi-Civita / connection infrastructure) and IsGeodesicallyComplete (every geodesic on a bounded open interval extends to all of ℝ).
 - Source: H. Hopf and W. Rinow, *Ueber den Begriff der vollständigen differentialgeometrischen Fläche*, Comment. Math. Helv. 3 (1931), 209-225. Listed as §93 in O. Knill, *Some Fundamental Theorems in Mathematics* (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf).

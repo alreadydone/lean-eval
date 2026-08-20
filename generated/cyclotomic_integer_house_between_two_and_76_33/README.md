@@ -3,7 +3,11 @@
 Real cyclotomic integer with house in (2, 76/33)
 
 - Problem ID: `cyclotomic_integer_house_between_two_and_76_33`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: The 2 < house < 76/33 branch of Theorem 1.0.5 from Calegari--Morrison--Snyder, stated using Mathlib's NumberField.house.
 - Source: https://arxiv.org/pdf/1004.0665

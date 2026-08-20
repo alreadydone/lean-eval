@@ -3,7 +3,11 @@
 CI regenerate-main check
 
 - Problem ID: `ci_regenerate_main_check`
-- Test Problem: yes
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: no
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Internal trivial problem used to exercise the regenerate-main workflow end-to-end.
 - Source: Internal CI check.

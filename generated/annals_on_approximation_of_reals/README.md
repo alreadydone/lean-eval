@@ -3,7 +3,11 @@
 On approximation to a real number by algebraic numbers of bounded degree
 
 - Problem ID: `annals_on_approximation_of_reals`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Katerina Hristova, Kevin Buzzard
 - Source: A. Poëls, `On approximation to a real number by algebraic numbers of bounded degree`, Annals of Math, 201 (1) 2025. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2025-201-1-OnApproximationOfReals.lean
 

@@ -3,7 +3,11 @@
 Dirichlet eigenvalues of -y'' = lambda y on [0,pi] are n^2
 
 - Problem ID: `dirichlet_eigenvalues_eq_nat_sq`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Characterises the spectrum of the Dirichlet Laplacian on [0,pi]: lambda is an eigenvalue iff lambda = n^2 for some positive natural n.
 - Source: Classical Sturm-Liouville theory.

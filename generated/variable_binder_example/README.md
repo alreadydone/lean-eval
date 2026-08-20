@@ -3,7 +3,11 @@
 variable-binder minimal example
 
 - Problem ID: `variable_binder_example`
-- Test Problem: yes
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: no
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Regression for https://github.com/leanprover/lean-eval/issues/276. The theorem inherits implicit binders from a preceding `variable` declaration, which the extractor must re-emit in the generated workspace.
 

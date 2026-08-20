@@ -3,7 +3,11 @@
 Absolute profinite rigidity and hyperbolic geometry
 
 - Problem ID: `annals_absolute_profinite_rigidity`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Thomas Browning
 - Source: M. R. Bridson, D. B. McReynolds, A. W. Reid, and R. Spitler, `Absolute profinite rigidity and hyperbolic geometry`, Annals of Math, 192 (3) 2020. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2020-192-3-AbsoluteProfiniteRigidity.lean
 

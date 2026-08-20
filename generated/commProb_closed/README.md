@@ -3,7 +3,11 @@
 Commuting probabilities are closed
 
 - Problem ID: `commProb_closed`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Thomas Browning
 - Notes: The set of commuting probabilities of finite groups is closed.
 - Source: https://arxiv.org/abs/2201.09402

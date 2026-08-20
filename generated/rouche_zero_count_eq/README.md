@@ -3,7 +3,11 @@
 Rouche theorem via zero counting
 
 - Problem ID: `rouche_zero_count_eq`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Phrases Rouché's theorem as equality of multiplicity-counted zero counts for f and f + g on the closed disk of radius R.
 - Source: Classical theorem in complex analysis.

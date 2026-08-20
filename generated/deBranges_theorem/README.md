@@ -3,7 +3,11 @@
 De Branges's theorem (Bieberbach conjecture)
 
 - Problem ID: `deBranges_theorem`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Junyan Xu
 - Source: John B. Conway, *Functions of One Complex Variable II*, Chapter 17.
 

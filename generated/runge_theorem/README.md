@@ -3,7 +3,11 @@
 Runge's theorem
 
 - Problem ID: `runge_theorem`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Basic Runge approximation theorem for compact subsets of ℂ. The statement uses polynomials p q : ℂ[X] and requires q to be nonvanishing on K, expressing rational functions with no poles on K. This does not include the standard pole-control refinement (one pole per connected component of ℂ \ K).
 - Source: C. Runge, *Zur Theorie der eindeutigen analytischen Funktionen*, Acta Math. 6 (1885), 229-244. Listed as §64 (additional statement 3) in O. Knill, *Some Fundamental Theorems in Mathematics* (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf).

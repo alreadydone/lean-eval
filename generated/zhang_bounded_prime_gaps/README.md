@@ -3,7 +3,11 @@
 Bounded gaps between primes
 
 - Problem ID: `zhang_bounded_prime_gaps`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Zhang's bounded-gaps theorem, sharpened by Maynard and the Polymath8 project: for every `n` there exist primes `p < q` with `n ≤ p` and `q - p ≤ 246`, the post-Polymath bound recorded by Knill. Equivalently, infinitely many prime pairs differ by at most 246. mathlib has `Nat.Prime` and prime-counting estimates, but no Selberg/GPY sieve.
 - Source: Y. Zhang, Bounded gaps between primes, Ann. of Math. 179 (2014), 1121-1174; J. Maynard, Small gaps between primes, Ann. of Math. 181 (2015), 383-413; D. H. J. Polymath, Variants of the Selberg sieve, and bounded intervals containing many primes, Res. Math. Sci. 1 (2014), Art. 12. Listed as §224 in O. Knill, Some Fundamental Theorems in Mathematics (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf). Knill, §224.

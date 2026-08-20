@@ -3,7 +3,11 @@
 Shannon capacity of the pentagon
 
 - Problem ID: `shannon_capacity_pentagon`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Lovász's computation: the Shannon capacity of the five-cycle C₅ is √5. The helpers IsIndependent, independenceNumber, strongPower, and HasShannonCapacity encode the capacity as the limit of (α(Gᵏ))^{1/k}, modelling length-k words as Fin k → V. Mathlib has finite simple graphs and cycle graphs but no Shannon capacity, strong graph powers, Lovász theta number, or the semidefinite-programming bound. Category-(b) candidate.
 - Source: Knill, *Some fundamental theorems in mathematics*, §238.

@@ -3,7 +3,11 @@
 Jordan curve theorem
 
 - Problem ID: `jordan_curve`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: §48 of Knill's 'Some Fundamental Theorems in Mathematics'. Every continuous injection r : S¹ → ℝ² has a complement with exactly two connected components. Mathlib has Metric.sphere, EuclideanSpace, ConnectedComponents, and Nat.card, but no Jordan curve theorem (`grep -ri 'jordan curve' Mathlib/`: no hits), no winding numbers / invariance of domain in a form that would discharge it. Stateable with zero new definitions.
 - Source: C. Jordan, *Cours d'analyse* (1887, 2nd ed.; first statement and a famously gap-laden proof). The first rigorous proof is by O. Veblen, *Theory on plane curves in non-metrical analysis situs*, Trans. AMS 6 (1905). Listed as §48 in O. Knill, *Some Fundamental Theorems in Mathematics* (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf). Formalized in Mizar (Korniłowicz et al., 2005) and HOL Light (Hales, 2007); not in Lean or Coq mathlib-equivalents.

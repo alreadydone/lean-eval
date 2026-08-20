@@ -3,7 +3,11 @@
 No continuous faithful ℤ_p action on a connected 3-manifold (Pardon 2013)
 
 - Problem ID: `hilbert_smith_padic_dimension_three`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Jack McCarthy
 - Notes: Pardon's Theorem 1.5: for every prime p, the additive group of p-adic integers admits no continuous faithful action on a connected topological 3-manifold. The statement uses a Hausdorff, second-countable ChartedSpace modelled on ℝ³ and assumes no smooth structure. This is the p-adic step only: the full Hilbert–Smith conjecture in dimension three (every locally compact group acting faithfully on a connected three-manifold is a Lie group) additionally needs the classical reduction to ℤ_p actions, which is not part of the hole.
 - Source: John Pardon, 'The Hilbert-Smith conjecture for three-manifolds', Journal of the American Mathematical Society 26 (2013), no. 3, 879-899, Theorem 1.5. https://doi.org/10.1090/S0894-0347-2013-00766-3

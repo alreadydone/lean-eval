@@ -3,7 +3,11 @@
 Perron-Frobenius for irreducible nonnegative matrices
 
 - Problem ID: `irreducible_nonnegative_matrix_has_positive_eigenvector_at_spectralRadius`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: A Perron-Frobenius style eigenvector existence statement at the spectral radius.
 - Source: Classical theorem in linear algebra.

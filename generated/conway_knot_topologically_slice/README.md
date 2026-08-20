@@ -3,7 +3,11 @@
 The Conway knot is topologically slice
 
 - Problem ID: `conway_knot_topologically_slice`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Freedman's theorem applied to the Conway knot 11n34, whose Alexander polynomial is trivial. The proof requires Freedman's full topological surgery machinery in dimension four; this is genuinely hard. Pairs with `conway_knot_not_smoothly_slice` (Piccirillo) to give the celebrated smooth/topological dichotomy for a specific named knot.
 - Source: Freedman, *The topology of four-dimensional manifolds*, J. Diff. Geom. 17 (1982). See also Freedman-Quinn, *Topology of 4-Manifolds*, Princeton 1990.

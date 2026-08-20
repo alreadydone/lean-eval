@@ -3,7 +3,11 @@
 Baer–Suzuki theorem
 
 - Problem ID: `baer_suzuki`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: An element x of a finite group G lies in the p-core O_p(G) iff every pair (x, x^g) of conjugates generates a p-group. R. Baer, 'Engelsche Elemente Noetherscher Gruppen', Math. Ann. 133 (1957), 256-270 (the case p = 2); M. Suzuki, 'Finite groups in which the centralizer of any element of order 2 is 2-closed', Ann. of Math. 82 (1965), 191-212 (general p). A standard tool in CFSG-era local analysis, used together with the Bender method and signalizer functor theory. Introduces a small Defs/PCore.lean defining the p-core O_p(G) as the supremum of normal p-subgroups (Mathlib has no `pCore` operation).
 - Source: R. Baer, Engelsche Elemente Noetherscher Gruppen, Math. Ann. 133 (1957), 256-270; M. Suzuki, Finite groups in which the centralizer of any element of order 2 is 2-closed, Ann. of Math. (2) 82 (1965), 191-212.

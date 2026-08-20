@@ -3,7 +3,11 @@
 Morley's categoricity theorem
 
 - Problem ID: `morley_categoricity_theorem`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: A. M. Berns
 - Notes: A complete theory in a countable language with only infinite models that is categorical in some uncountable cardinal is categorical in every uncountable cardinal.
 - Source: M. Ramsey, *Morley's Categoricity Theorem* (UChicago VIGRE REU 2010), Corollary 7.3. https://www.math.uchicago.edu/~may/VIGRE/VIGRE2010/REUPapers/RamseyN.pdf

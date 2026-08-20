@@ -3,7 +3,11 @@
 Conway–Schneeberger fifteen theorem
 
 - Problem ID: `conway_schneeberger_fifteen`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: A positive-definite integer-matrix quadratic form Q : ℤⁿ → ℤ is universal (represents every positive integer) iff it represents every integer in {1, 2, …, 15}. The matrix-explicit formulation records the classically integral hypothesis: the form is given by an integral symmetric matrix, so off-diagonal polynomial coefficients are even — distinguishing this 15 theorem from Bhargava–Hanke's 290 theorem (integer-valued forms, off-diagonal half-integers allowed). §95 of Knill's *Some Fundamental Theorems in Mathematics*.
 - Source: Conway–Schneeberger 1993 (unpublished, communicated by Conway in lectures); full proof M. Bhargava, 'On the Conway–Schneeberger fifteen theorem', in *Quadratic Forms and their Applications* (Contemp. Math. 272, AMS 2000). Listed as §95 in O. Knill, *Some Fundamental Theorems in Mathematics* (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf).

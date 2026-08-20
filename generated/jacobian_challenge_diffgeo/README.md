@@ -3,7 +3,11 @@
 Jacobian of a compact Riemann surface (Buzzard challenge)
 
 - Problem ID: `jacobian_challenge_diffgeo`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kevin Buzzard
 - Holes (24): `JacobianChallenge.genus` (def), `JacobianChallenge.genus_eq_zero_iff_homeo` (theorem), `JacobianChallenge.Jacobian` (def), `JacobianChallenge.Jacobian.instAddCommGroup` (def), `JacobianChallenge.Jacobian.instTopologicalSpace` (def), `JacobianChallenge.Jacobian.instT2Space` (theorem), `JacobianChallenge.Jacobian.instCompactSpace` (theorem), `JacobianChallenge.Jacobian.instChartedSpace` (def), `JacobianChallenge.Jacobian.instIsManifold` (theorem), `JacobianChallenge.Jacobian.instLieAddGroup` (theorem), `JacobianChallenge.Jacobian.ofCurve` (def), `JacobianChallenge.Jacobian.ofCurve_contMDiff` (theorem), `JacobianChallenge.Jacobian.ofCurve_self` (theorem), `JacobianChallenge.Jacobian.ofCurve_inj` (theorem), `JacobianChallenge.Jacobian.pushforward` (def), `JacobianChallenge.Jacobian.pushforward_contMDiff` (theorem), `JacobianChallenge.Jacobian.pushforward_id_apply` (theorem), `JacobianChallenge.Jacobian.pushforward_comp_apply` (theorem), `JacobianChallenge.Jacobian.pullback` (def), `JacobianChallenge.Jacobian.pullback_contMDiff` (theorem), `JacobianChallenge.Jacobian.pullback_id_apply` (theorem), `JacobianChallenge.Jacobian.pullback_comp_apply` (theorem), `JacobianChallenge.Jacobian.degree` (def), `JacobianChallenge.Jacobian.pushforward_pullback` (theorem)
 - Source: https://leanprover.zulipchat.com/#narrow/stream/583336-Autoformalization/topic/Jacobian%20challenge

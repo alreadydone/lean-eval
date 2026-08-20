@@ -3,7 +3,11 @@
 Sturm separation theorem
 
 - Problem ID: `sturm_separation`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Between consecutive zeros of one solution of a second-order linear homogeneous ODE, any linearly independent solution has exactly one zero.
 - Source: C. Sturm, Mémoire sur les équations différentielles linéaires du second ordre, 1836.

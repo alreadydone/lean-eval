@@ -3,7 +3,11 @@
 Hessian estimates for the sigma-2 equation in dimension four
 
 - Problem ID: `annals_hessian_estimates`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: David Ledvinka
 - Notes: The proof binders `smooth`, `bounded`, `positive_branch`, and `solution` are prefixed with `_` here. This is alpha-equivalent and suppresses unused-variable warnings in the generated `Solution.lean` delegation.
 - Source: R. Shankar and Y. Yuan, `Hessian estimates for the sigma-2 equation in dimension four`, Annals of Math, 201 (2) 2025. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2025-201-2-HessianEstimates.lean

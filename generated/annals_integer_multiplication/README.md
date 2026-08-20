@@ -3,7 +3,11 @@
 Integer multiplication in time O(n log n)
 
 - Problem ID: `annals_integer_multiplication`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Justus Springer
 - Notes: The paper works in the "multitape Turing model, in which the time complexity of an algorithm refers to the number of steps performed by a deterministic Turing machine with a fixed, finite number of linear tapes". In this formalisation, we use mathlib's multi-stack machines (TM2), which are equivalent to multitape machines by an O(1) reduction (use two stacks to simulate one tape).
 - Source: D. Harvey and J. van der Hoeven, `Integer multiplication in time O(n log n)`, Annals of Math, 193 (2) 2021. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2021-193-2-IntegerMultiplication.lean

@@ -3,7 +3,11 @@
 instance-hole minimal example
 
 - Problem ID: `instance_hole_example`
-- Test Problem: yes
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: no
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Holes (2): `WidgetCarrier` (def), `instInhabitedWidget` (def)
 - Notes: Minimal example exercising instance + theorem holes; instances must be named so the comparator can address them.

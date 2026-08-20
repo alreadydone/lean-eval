@@ -3,7 +3,11 @@
 Euler–Lagrange equation
 
 - Problem ID: `euler_lagrange_equation`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: §44 of Oliver Knill's 'Some Fundamental Theorems in Mathematics'. The Euler–Lagrange equation: a sufficiently regular stationary path x of the action I(y) = ∫_a^b L(t, y(t), y'(t)) dt satisfies ∂L/∂x = (d/dt)(∂L/∂x') pointwise on the open interval (a, b). Stationarity is expressed as the first variation of the action vanishing against every smooth compactly supported perturbation inside (a, b). It is the central necessary condition of the calculus of variations. mathlib has related ingredients such as the fundamental lemma of the calculus of variations, but no bundled action-functional extremum notion and no Euler–Lagrange theorem.
 - Source: L. Euler (1744) and J.-L. Lagrange (1755). Listed as §44 in O. Knill, Some Fundamental Theorems in Mathematics (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf).

@@ -3,7 +3,11 @@
 Bézout's theorem (projective, with multiplicity)
 
 - Problem ID: `bezout_projective_multiplicity`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: For n homogeneous polynomials f_k of total degrees d_k ≥ 1 in n + 1 variables over an algebraically closed field with finite common projective zero set, the sum of intersection multiplicities equals ∏ d_k (equation in ℕ∞). The intersection multiplicity is constructed via the affine cone (Eisenbud Ch. 12): pick an index i with p.rep i ≠ 0, normalise the i-th coordinate to 1, localise K[X_0, …, X_n] at the maximal ideal of the resulting affine point, and take Module.length K of the quotient by (f_1, …, f_n, X_i − 1). §50 of Knill's 'Some Fundamental Theorems in Mathematics'.
 - Source: É. Bézout, *Théorie générale des équations algébriques*, Paris, 1779. Modern projective formulation: see Eisenbud, *Commutative Algebra*, Chapter 12, or Hartshorne, *Algebraic Geometry*, Ch. I §7. Listed as §50 in O. Knill, *Some Fundamental Theorems in Mathematics* (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf).

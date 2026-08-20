@@ -3,7 +3,11 @@
 Wang-Zahl: the three-dimensional Kakeya conjecture
 
 - Problem ID: `wang_zahl_kakeya_dimH`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Every compact subset K of Euclidean three-space that contains a unit line segment in every unit direction has Hausdorff dimension 3. The trusted IsKakeya definition includes compactness, explicitly quantifies over norm-one direction vectors v, and requires a translate of {t • v | 0 ≤ t ≤ 1} to lie in K. Full Hausdorff dimension also forces full lower and upper Minkowski dimension, so this captures both conclusions of Theorem 1.1. Mathlib supplies EuclideanSpace, the normed-space operations, and MeasureTheory.dimH, but not the Kakeya theorem or its tube-estimate machinery.
 - Source: H. Wang and J. Zahl, 'Volume estimates for unions of convex sets, and the Kakeya set conjecture in three dimensions', Theorem 1.1, arXiv:2502.17655 (2025), https://arxiv.org/abs/2502.17655. The proof builds on their 'Sticky Kakeya sets and the sticky Kakeya conjecture', arXiv:2210.09581, and 'The Assouad dimension of Kakeya sets in R^3', arXiv:2401.12337.

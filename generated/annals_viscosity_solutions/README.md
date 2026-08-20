@@ -3,7 +3,11 @@
 Viscosity solutions and hyperbolic motions: a new PDE method for the N-body problem
 
 - Problem ID: `annals_viscosity_solutions`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: David Ledvinka
 - Source: E. Maderna and A. Venturelli, `Viscosity solutions and hyperbolic motions: a new PDE method for the N-body problem`, Annals of Math, 192 (2) 2020. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2020-192-2-ViscositySolutions.lean
 

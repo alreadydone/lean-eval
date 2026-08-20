@@ -3,7 +3,11 @@
 Lagarias criterion is equivalent to RH
 
 - Problem ID: `riemann_hypothesis_iff_lagarias_elementary_criterion`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Lagarias' elementary divisor-sum criterion stated using Mathlib's RiemannHypothesis, harmonic numbers, and sigma notation.
 - Source: https://arxiv.org/abs/math/0008177

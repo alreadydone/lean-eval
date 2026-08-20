@@ -3,7 +3,11 @@
 Bauer's uniqueness at extreme points
 
 - Problem ID: `bauer_extreme_point_uniqueness`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: If x is an extreme point of a compact convex set K in a Banach space and μ is a probability measure on K (μ Kᶜ = 0) with barycenter x = ∫ y ∂μ, then μ is the Dirac mass at x. The support hypothesis is the weaker μ Kᶜ = 0, making this a strengthening of the textbook statement (uniqueness among all ambient Borel probability measures on K, not only those supported on ext K). Not in Mathlib (no Choquet simplices / Bauer's theorem); no new definitions. Companion candidate from §88 of the Knill survey.
 - Source: H. Bauer, *Minimalstellen von Funktionen und Extremalpunkte*, Arch. Math. 9 (1958), 389–393; see also Phelps, *Lectures on Choquet's Theorem*. Knill, *Some fundamental theorems in mathematics*, §88.

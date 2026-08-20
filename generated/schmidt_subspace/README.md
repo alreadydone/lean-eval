@@ -3,7 +3,11 @@
 Schmidt's subspace theorem
 
 - Problem ID: `schmidt_subspace`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Junyan Xu
 - Source: W.M. Schmidt, Diophantine approximation, Lecture Notes in Mathematics 785, Springer Verlag 1980, Chap. V,VI,VII.
 

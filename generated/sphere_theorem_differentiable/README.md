@@ -3,7 +3,11 @@
 Differentiable sphere theorem (Brendle–Schoen)
 
 - Problem ID: `sphere_theorem_differentiable`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Under the same hypotheses as the topological sphere theorem (closed, simply-connected, strictly quarter-pinched, d ≥ 2), the manifold is diffeomorphic to the standard d-sphere (Brendle–Schoen 2007, via Ricci flow). Shares the §121 trusted helpers (IsMetricCompatible, curv, QuarterPinched). Mathlib has no Ricci flow or curvature. Candidate from §121 of the Knill survey (additional 1).
 - Source: S. Brendle & R. Schoen, *Manifolds with 1/4-pinched curvature are space forms*, J. AMS 22 (2009). Knill, *Some fundamental theorems in mathematics*, §121.

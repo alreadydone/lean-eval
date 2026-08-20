@@ -3,7 +3,11 @@
 General recursive equals Turing computable
 
 - Problem ID: `turing_recursive_equiv`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: The Turing–Kleene equivalence (total form): a total function f : ℕ → ℕ is recursive (Computable) iff it is computed by some Turing machine (mathlib's FinTM2 model, TM2Computable) under the standard binary encoding encodeNat. Both sides are mathlib predicates but no theorem links them; the forward direction is essentially tr_eval plus plumbing, while the backward direction (TM-computable ⇒ recursive) is absent from mathlib. The total reading is used since general recursive is classically the total recursive functions and TM2Computable is total-only. Candidate from §23 of the Knill survey.
 - Source: A. M. Turing, *On Computable Numbers* (1936); S. C. Kleene, *General recursive functions of natural numbers* (1936). Knill, *Some fundamental theorems in mathematics*, §23.

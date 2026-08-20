@@ -3,7 +3,11 @@
 The 290 theorem
 
 - Problem ID: `two_ninety_theorem`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Bolton Bailey/Project Numina
 - Notes: The 290 theorem (Bhargava–Hanke): a positive-definite integral quadratic form represents every positive integer if it represents a particular collection of 29 critical numbers below 290.
 - Source: M. Bhargava, J. Hanke, Universal quadratic forms and the 290-theorem, preprint (2011). See also https://en.wikipedia.org/wiki/15_and_290_theorems

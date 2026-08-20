@@ -3,7 +3,11 @@
 Furstenberg measure-preserving multiple recurrence
 
 - Problem ID: `furstenberg_measure`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Furstenberg's 1977 measure-preserving multiple recurrence theorem. For every measure-preserving T on a probability space (Ω, μ), every measurable A with μ A > 0, and every d ≥ 1, some n ≥ 1 satisfies μ(A ∩ T^{-n}A ∩ T^{-2n}A ∩ ⋯ ∩ T^{-d·n}A) > 0. §56 (additional statement) of Knill's 'Some Fundamental Theorems in Mathematics'. Knill states the automorphism/image version; this file uses the standard preimage formulation for a general measure-preserving transformation. For invertible T the two are equivalent (apply the statement to T⁻¹, or shift the intersection by an iterate). The d = 1 case is the classical Poincaré recurrence theorem.
 - Source: H. Furstenberg, *Ergodic behavior of diagonal measures and a theorem of Szemerédi on arithmetic progressions*, Journal d'Analyse Mathématique 31 (1977), 204-256. Listed as §56 (additional statement 1) in O. Knill, *Some Fundamental Theorems in Mathematics* (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf).

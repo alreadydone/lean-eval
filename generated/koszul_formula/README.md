@@ -3,7 +3,11 @@
 Koszul formula
 
 - Problem ID: `koszul_formula`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: §38 of Knill's 'Some Fundamental Theorems in Mathematics' (additional statement of the Riemannian-geometry section; the boxed main theorem is Levi-Civita). The Koszul formula: 2⟨∇_X Y, Z⟩ equals the cyclic sum of directional derivatives X·⟨Y,Z⟩ + Y·⟨X,Z⟩ − Z·⟨X,Y⟩ minus the Lie-bracket cyclic sum ⟨X,[Y,Z]⟩ + ⟨Y,[X,Z]⟩ − ⟨Z,[X,Y]⟩. The identity that forces uniqueness of the Levi-Civita connection. Mathlib has the covariant-derivative / Riemannian-bundle / Lie-bracket machinery but no metric-compatibility predicate and no Koszul formula. The Challenge ships one helper (IsMetricCompatible).
 - Source: J.-L. Koszul (course notes, 1950s); cf. do Carmo, Riemannian Geometry. Listed as §38 additional statement in O. Knill, Some Fundamental Theorems in Mathematics (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf).

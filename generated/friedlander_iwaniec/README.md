@@ -3,7 +3,11 @@
 Friedlander–Iwaniec theorem
 
 - Problem ID: `friedlander_iwaniec`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Bolton Bailey/Project Numina
 - Notes: The Friedlander–Iwaniec theorem: there are infinitely many primes of the form `a² + b⁴`.
 - Source: Friedlander, John, and Henryk Iwaniec. “The Polynomial X² + Y⁴ Captures Its Primes.” Annals of Mathematics, vol. 148, no. 3, 1998, pp. 945–1040. JSTOR, https://doi.org/10.2307/121034.

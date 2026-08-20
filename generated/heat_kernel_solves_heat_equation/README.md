@@ -3,7 +3,11 @@
 Gaussian heat kernel solves the 1D heat equation
 
 - Problem ID: `heat_kernel_solves_heat_equation`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: The Gaussian convolution u(t,x) = (4 pi t)^{-1/2} integral exp(-(x-y)^2/(4t)) f(y) dy satisfies the heat equation on (0, infty) x R, with initial datum f recovered as t -> 0+.
 - Source: Classical heat-equation theory.

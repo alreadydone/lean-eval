@@ -3,7 +3,11 @@
 Fermat's Last Theorem
 
 - Problem ID: `fermat_last_theorem`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Xuanji Li
 - Notes: Fermat's Last Theorem: a^n + b^n = c^n has no nontrivial natural solution when n >= 3.
 - Source: https://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem

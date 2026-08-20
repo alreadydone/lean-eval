@@ -3,7 +3,11 @@
 Peano existence theorem for ODEs
 
 - Problem ID: `peano_existence`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: If f is continuous, the autonomous initial value problem x'(t) = f(x(t)), x(0) = x₀ admits a local solution on some interval (-a, a); uniqueness may fail (e.g. x' = √x, x(0) = 0). Stated for a finite-dimensional space, since Peano's theorem requires local compactness and is false in general (infinite-dimensional) Banach spaces (Dieudonné). Mathlib has Arzelà–Ascoli (the key ingredient) but not Peano's theorem itself. Candidate from §19 of the Knill survey.
 - Source: G. Peano, *Démonstration de l'intégrabilité des équations différentielles ordinaires*, Math. Ann. 37 (1890). Knill, *Some fundamental theorems in mathematics*, §19.

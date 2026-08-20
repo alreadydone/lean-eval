@@ -3,7 +3,11 @@
 Enumerating number fields
 
 - Problem ID: `annals_enumerating_number_fields`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Thomas Browning
 - Holes (2): `EnumeratingNumberFields.theorem_1` (theorem), `EnumeratingNumberFields.theorem_2` (theorem)
 - Source: J.-M. Couveignes, `Enumerating number fields`, Annals of Math, 192 (2) 2020. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2020-192-2-EnumeratingNumberFields.lean

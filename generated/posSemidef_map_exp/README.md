@@ -3,7 +3,11 @@
 Entrywise exponential of a PSD matrix is PSD
 
 - Problem ID: `posSemidef_map_exp`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Part of the Schur-Polya-Loewner theory of entrywise functions preserving PSD. The proof uses the Schur product theorem iteratively: exp_⊙(A) = ∑ A^{⊙k}/k!, each Hadamard power is PSD, and the convergent series of PSD matrices is PSD.
 - Source: I.J. Schoenberg, Positive definite functions on spheres, 1942.

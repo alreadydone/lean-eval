@@ -3,7 +3,11 @@
 Morse inequalities
 
 - Problem ID: `morse_inequality`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: §40 of Knill's 'Some Fundamental Theorems in Mathematics' (Marston Morse, 1934). For a Morse function f on a closed smooth finite-dimensional Hausdorff manifold M, ∑_{j≤k}(−1)^{k−j} c_j(f) ≥ ∑_{j≤k}(−1)^{k−j} b_j(M) for every k. The Hausdorff (T2Space) hypothesis is essential: without it the split-circle counterexample (a compact boundaryless non-Hausdorff 1-manifold with b_1 = 2 but one index-0 and one index-1 critical point) violates the inequality at k = 1. Mathlib has the smooth-manifold framework, mfderiv, higher Fréchet derivatives, and singularHomologyFunctor but no Morse functions, Morse index, critical-point counts, Betti numbers as a named definition, or the Morse inequalities. The Challenge ships seven helper definitions (IsCriticalPoint, localHessian, IsNondegenerateCritical, IsMorseFunction, morseIndex, morseCount, bettiNumber, alternatingPartialSum).
 - Source: M. Morse, The Calculus of Variations in the Large, AMS Colloq. Publ. 18 (1934). Listed as §40 in O. Knill, Some Fundamental Theorems in Mathematics (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf).

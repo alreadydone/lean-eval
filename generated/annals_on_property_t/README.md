@@ -3,7 +3,11 @@
 On property (T) for Aut(F_n) and SL_n(Z)
 
 - Problem ID: `annals_on_property_t`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Thomas Browning
 - Source: M. Kaluba, D. Kielak, and P. W. Nowak, `On property (T) for Aut(F_n) and SL_n(Z)`, Annals of Math, 193 (2) 2021. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2021-193-2-OnPropertyT.lean
 

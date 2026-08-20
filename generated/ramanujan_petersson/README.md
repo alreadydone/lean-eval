@@ -3,7 +3,11 @@
 Ramanujan–Petersson conjecture for the τ-function (Deligne's theorem)
 
 - Problem ID: `ramanujan_petersson`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Seewoo Lee
 - Notes: τ(n) is the n-th q-expansion coefficient of mathlib's modular discriminant ModularForm.discriminant = η²⁴, the normalised cusp form of weight 12 and level 1; the module proves τ(1) = 1 as a sanity check. Ramanujan (1916) conjectured |τ(p)| ≤ 2 p^(11/2) for every prime p; Petersson generalised it to all cusp forms, and Deligne proved it in 1974 from the Weil conjectures. The coefficients are a priori complex (integrality is classical but not needed to state the bound), so the statement bounds the complex norm ‖τ(p)‖.
 - Source: S. Ramanujan, 'On certain arithmetical functions', Trans. Cambridge Philos. Soc. 22 (1916) 159–184. H. Petersson, 'Theorie der automorphen Formen beliebiger reeller Dimension und ihre Darstellung durch eine neue Art Poincaréscher Reihen', Math. Ann. 103 (1930) 369–436. P. Deligne, 'Formes modulaires et représentations ℓ-adiques', Séminaire Bourbaki 1968/69: Exposés 347–363, Lecture Notes in Math. 179, Springer (1971). P. Deligne, 'La conjecture de Weil. I', Publ. Math. IHÉS 43 (1974) 273–307. Background: https://en.wikipedia.org/wiki/Ramanujan%E2%80%93Petersson_conjecture

@@ -3,7 +3,11 @@
 Mountain Pass Theorem (Ambrosetti–Rabinowitz 1973)
 
 - Problem ID: `mountain_pass`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: A C¹ functional f on a real Banach space E satisfying the Palais–Smale condition and having mountain-range geometry separating two points a, b — `f(a) = 0`, `f ≥ ε > 0` on the sphere S_r(a), `r < ‖b − a‖`, and `f(b) ≤ 0` — admits a critical point at the mini-max level `c = inf_γ sup_t f(γ t)` (over all continuous paths γ from a to b), with `c ≥ ε`. The faithful encoding fixes Knill's slip `|b| > ε` (the sphere has radius r, not ε) to the standard `r < ‖b − a‖`. The mini-max level is encoded as `⨅ γ : Path a b, ⨆ t : I, f (γ t)`. The theorem is listed as §119 in Knill's *Some Fundamental Theorems in Mathematics*.
 - Source: A. Ambrosetti and P.H. Rabinowitz, 'Dual variational methods in critical point theory and applications', J. Funct. Anal. 14 (1973) 349–381. Listed as §119 in O. Knill, *Some Fundamental Theorems in Mathematics* (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf).

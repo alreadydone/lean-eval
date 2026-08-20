@@ -3,7 +3,11 @@
 Gorenstein–Walter theorem (dihedral Sylow 2-subgroup)
 
 - Problem ID: `gorenstein_walter`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: A finite nonabelian simple group with dihedral Sylow 2-subgroups is isomorphic to PSL₂(q) for some odd prime power q ≥ 5, or to A₇. D. Gorenstein and J. H. Walter, 'The characterization of finite groups with dihedral Sylow 2-subgroups', J. Algebra 2 (1965), 85-151, 218-270, 354-393 (in three parts, ~250 pages). The first major application of the Bender method in CFSG and a template for the later Sylow-2-structure papers. No new definitions: uses Mathlib's PSL notation, DihedralGroup, alternatingGroup, GaloisField, and Sylow.
 - Source: D. Gorenstein and J. H. Walter, The characterization of finite groups with dihedral Sylow 2-subgroups, J. Algebra 2 (1965), 85-151, 218-270, 354-393. https://doi.org/10.1016/0021-8693(65)90027-X

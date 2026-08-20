@@ -3,7 +3,11 @@
 Higher uniformity of bounded multiplicative functions in short intervals on average
 
 - Problem ID: `annals_bounded_multiplicative_functions`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: David Ledvinka
 - Holes (2): `BoundedMultiplicativeFunctions.theorem_1_3` (theorem), `BoundedMultiplicativeFunctions.corollary_1_1` (theorem)
 - Notes: The proof binders `hQ`, `hC`, `hf`, `hf'`, `hX`, `hXH`, and `hHX` in `theorem_1_3` are prefixed with `_` here. This is alpha-equivalent and suppresses unused-variable warnings in the generated `Solution.lean`, whose delegation supplies the enclosing proof at once.

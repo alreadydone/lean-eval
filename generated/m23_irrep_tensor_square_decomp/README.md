@@ -3,7 +3,11 @@
 Existence of a simple group of order 10200960 with a 22-dim irrep whose tensor square has 4 isotypic components
 
 - Problem ID: `m23_irrep_tensor_square_decomp`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Existential: a finite SIMPLE group G of order 10200960 (= |M₂₃|) with a 22-dimensional irreducible complex representation V whose tensor square (with the diagonal G-action) has exactly 4 isotypic components. The diagonal action on V ⊗[ℂ] V is supplied explicitly via Module.compHom from ρ.tprod ρ. The intended witness is M₂₃ acting on its 22-dim irreducible: V ⊗ V = 1 ⊕ V ⊕ W₂₃₀ ⊕ Λ²V. Corrected 2026-06-27: the IsSimpleGroup G hypothesis was added after Lorenzo Luccioli (using Harmonic's Aristotle) solved an earlier order-only version with a solvable direct product G = SL(2,𝔽₃) × (C₂₃ ⋊ C₁₁) × C₁₆₈₀, exploiting multiplicativity of dimension and isotypic count under external tensor product. Simplicity excludes all decomposable witnesses; by CFSG the unique simple group of this order is M₂₃.
 - Source: É. Mathieu, Sur les fonctions cinq fois transitives de 24 quantités, J. Math. Pures Appl. (1873); ATLAS of Finite Groups, M₂₃ character table.

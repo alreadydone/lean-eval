@@ -3,7 +3,11 @@
 Morley's trisector theorem
 
 - Problem ID: `morley_theorem`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: The triangle formed by the adjacent angle-trisectors of any nondegenerate Euclidean triangle is equilateral. Trusted helpers (IsEquilateralTriple, LiesInTriangle, IsMorleyConfiguration) are non-holes. Mathlib has Euclidean angles but not Morley's theorem. Candidate from §162 of the Knill survey.
 - Source: F. Morley (c. 1899). Knill, §162.

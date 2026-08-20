@@ -3,7 +3,11 @@
 Smale conjecture (Hatcher) in relative parameterized form
 
 - Problem ID: `smale_conjecture`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Hatcher's 1983 theorem that Diff(S3) is homotopy equivalent to O(4), stated in the relative-parameterized-family form (families on a compact manifold-with-boundary X whose boundary already factors through O(4) deform rel boundary to a family fully factoring through O(4)). Mathlib does not yet carry the C-infinity topology on Diffeomorph, which would be needed for the direct homotopy-equivalence formulation.
 - Source: A. Hatcher, A proof of the Smale conjecture, Diff(S3) = O(4), Ann. of Math. 117 (1983).

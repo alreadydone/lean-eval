@@ -3,7 +3,11 @@
 A proof of the Erdős–Faber–Lovász conjecture
 
 - Problem ID: `annals_erdos_faber_lovasz_conjecture`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: David Ledvinka
 - Source: D. Y. Kang, T. Kelly, D. Kühn, A. Methuku, and D. Osthus, `A proof of the Erdős–Faber–Lovász conjecture`, Annals of Math, 198 (2) 2023. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2023-198-2-ErdosFaberLovaszConjecture.lean
 

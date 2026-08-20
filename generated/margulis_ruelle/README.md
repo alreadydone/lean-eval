@@ -3,7 +3,11 @@
 Margulis–Ruelle inequality
 
 - Problem ID: `margulis_ruelle`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Margulis (1968) / Ruelle (1978): for a C²-diffeomorphism T of a compact surface and a T-invariant ergodic probability measure μ, the Kolmogorov–Sinai entropy is bounded by the sum of the positive parts of the Lyapunov exponents, h_μ(T) ≤ λ₁⁺ + λ₂⁺. Shares the §103 trusted helpers (kolmogorovSinaiEntropy, lyapunov* via totalized sSup/limsup; genuine in the compact-C² regime). Not in Mathlib (no KS entropy, no Lyapunov exponents). Candidate from §103 of the Knill survey.
 - Source: D. Ruelle, *An inequality for the entropy of differentiable maps*, Bol. Soc. Brasil. Mat. 9 (1978); G. A. Margulis (1968, unpublished). Knill, *Some fundamental theorems in mathematics*, §103.

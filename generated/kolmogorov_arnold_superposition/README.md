@@ -3,7 +3,11 @@
 Kolmogorov–Arnold superposition theorem (non-universal Lorentz form)
 
 - Problem ID: `kolmogorov_arnold_superposition`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Non-universal Lorentz-form existence statement of the Kolmogorov–Arnold superposition theorem on the closed cube Set.Icc (0 : Fin n → ℝ) 1. Both the outer function g : ℝ → ℝ and the inner functions φ_{k,l} : ℝ → ℝ may depend on f; this is weaker than formulations with universal inner functions. Resolves the continuous form of Hilbert's 13th problem since the two-variable combining function is addition.
 - Source: A. N. Kolmogorov, *On the representation of continuous functions of several variables by superposition of continuous functions of one variable and addition*, Doklady Akad. Nauk SSSR 114 (1957), 953-956. V. I. Arnold, *On functions of three variables*, Doklady Akad. Nauk SSSR 114 (1957), 679-681. G. G. Lorentz, *Metric entropy, widths, and superpositions of functions*, Amer. Math. Monthly 69 (1962), 469-485 (single-outer-function refinement). Listed as §80 in O. Knill, *Some Fundamental Theorems in Mathematics* (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf).

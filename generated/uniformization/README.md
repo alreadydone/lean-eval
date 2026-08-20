@@ -3,7 +3,11 @@
 Uniformization theorem for Riemann surfaces
 
 - Problem ID: `uniformization`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Junyan Xu
 - Source: John Hamal Hubbard, *Teichmüller theory and applications to geometry, topology, and dynamics. Vol. 1*, Chapter 1.
 

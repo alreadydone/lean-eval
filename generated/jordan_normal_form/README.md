@@ -3,7 +3,11 @@
 Jordan normal form
 
 - Problem ID: `jordan_normal_form`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Over an algebraically closed field, every endomorphism of Kⁿ has a Jordan-chain basis (every n×n matrix is similar to a block-diagonal Jordan matrix). Trusted helpers (StdSpace, JordanChainBasis) are non-holes. Mathlib has the Jordan–Chevalley–Dunford decomposition but not the Jordan-chain-basis/Jordan normal form. Candidate from §165 of the Knill survey.
 - Source: C. Jordan (1870). Knill, §165.

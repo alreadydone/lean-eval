@@ -3,7 +3,11 @@
 Existence of a non-isotopic pair of oriented knots
 
 - Problem ID: `exists_nonisotopic_knots`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Asks for two oriented smooth knots in R^3 that are not ambient-isotopic. The benchmark uses an orientation-sensitive notion of isotopy induced by the parametrizations. Mathlib has no knot-invariant infrastructure, so the model must construct an isotopy invariant from scratch. Suggested: the Alexander polynomial / knot determinant, or the Fox 3-coloring count, both of which distinguish the unknot from the trefoil.
 - Source: Classical; see https://en.wikipedia.org/wiki/Knot_invariant.

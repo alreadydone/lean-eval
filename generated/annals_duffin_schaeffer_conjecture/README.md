@@ -3,7 +3,11 @@
 On the Duffin-Schaeffer conjecture
 
 - Problem ID: `annals_duffin_schaeffer_conjecture`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Katerina Hristova, Kevin Buzzard
 - Holes (4): `DuffinSchaefferConjecture.theorem_1` (theorem), `DuffinSchaefferConjecture.theorem_2_a` (theorem), `DuffinSchaefferConjecture.theorem_2_b` (theorem), `DuffinSchaefferConjecture.corollary_3` (theorem)
 - Notes: In the paper, `ℕ` denotes the positive integers, which are denoted `ℕ+` in Lean. Hence, no changes to the domains of the functions `ψ` and `ψ⋆` have been made in the formalisation. LeanEval changes `lemma corollary_3` to `theorem corollary_3` because the workspace generator addresses theorem holes by that keyword; this does not change the declaration's type.

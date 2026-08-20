@@ -3,7 +3,11 @@
 Cayley graph connected iff generators generate the group
 
 - Problem ID: `mulCayley_connected_iff_closure_eq_top`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: A foundational result in geometric group theory using the newly defined Cayley graph. Connectivity of the Cayley graph is equivalent to the generating set S generating G as a group.
 - Source: A. Cayley, On the theory of groups, as depending on the symbolic equation θ^n = 1, 1878.

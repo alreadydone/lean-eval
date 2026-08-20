@@ -3,7 +3,11 @@
 On the coherence of one-relator groups and their group algebras
 
 - Problem ID: `annals_on_coherence_of_one_relator_groups`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Katerina Hristova
 - Source: A. Jaikin-Zapirain and M. Linton, `On the coherence of one-relator groups and their group algebras`, Annals of Math, 201 (3) 2025. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2025-201-3-OnCoherenceOfOneRelatorGroups.lean
 

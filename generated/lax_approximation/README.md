@@ -3,7 +3,11 @@
 Lax's approximation theorem for toral homeomorphisms
 
 - Problem ID: `lax_approximation`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Peter Lax (1971): every volume-preserving homeomorphism of the d-torus (d ≥ 1) is approximated arbitrarily well, in the L∞-metric δ(T,S) = ess sup d(Tx,Sx), by cyclic cube exchange transformations (a single full nᵈ-cycle rigidly permuting the 1/n-grid cubes). Trusted helpers (Torus, VolumePreservingEquiv, deltaDist, ToralDynamicalSystem, cube, cubeShift, IsCyclicCubeExchange) are non-holes. 'Cyclic' = σ.IsCycle ∧ σ.support = univ; 0 < d required. Mathlib has the torus, measure-preserving maps, and Hall's marriage theorem but not Lax's theorem or cube exchanges. Candidate from §110 of the Knill survey.
 - Source: P. D. Lax, *Approximation of measure preserving transformations*, Comm. Pure Appl. Math. 24 (1971). Knill, *Some fundamental theorems in mathematics*, §110.

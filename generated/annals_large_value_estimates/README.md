@@ -3,7 +3,11 @@
 New large value estimates for Dirichlet polynomials
 
 - Problem ID: `annals_large_value_estimates`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Thomas Browning
 - Notes: The proof binder `hb` is named `_hb` here. This is alpha-equivalent and suppresses an unused-variable warning in the generated `Solution.lean` delegation.
 - Source: L. Guth and J. Maynard, `New large value estimates for Dirichlet polynomials`, Annals of Math, 203 (2) 2026. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2026-203-2-LargeValueEstimates.lean

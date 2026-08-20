@@ -3,7 +3,11 @@
 A conjecture of Erdős, supersingular primes and short character sums
 
 - Problem ID: `annals_erdos_supersingular_primes`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Justus Springer
 - Holes (2): `ErdosSupersingularPrimes.k₀` (def), `ErdosSupersingularPrimes.theorem_2` (theorem)
 - Source: M. Bennett and S. Siksek, `A conjecture of Erdős, supersingular primes and short character sums`, Annals of Math, 191 (2) 2020. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2020-191-2-ErdosSupersingularPrimes.lean

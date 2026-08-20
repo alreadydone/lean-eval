@@ -3,7 +3,11 @@
 Polynomial decay rate of y' = -y^3
 
 - Problem ID: `cubic_decay_asymptotic`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Asymptotic rate y t * sqrt t -> 1/sqrt 2 for the unique solution of y' = -y^3 on (0, infty) with y continuous at 0 and y 0 = 1.
 - Source: Standard ODE textbook exercise.

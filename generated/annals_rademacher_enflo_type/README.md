@@ -3,7 +3,11 @@
 Rademacher type and Enflo type coincide
 
 - Problem ID: `annals_rademacher_enflo_type`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: David Ledvinka
 - Source: P. Ivanisvili, R. van Handel, and A. Volberg, `Rademacher type and Enflo type coincide`, Annals of Math, 192 (2) 2020. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2020-192-2-RademacherEnfloType.lean
 

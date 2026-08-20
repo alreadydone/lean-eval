@@ -3,7 +3,11 @@
 Finite Ramsey theorem for graphs
 
 - Problem ID: `finite_graph_ramsey_theorem`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: States finite Ramsey existence for red/blue edge colourings of complete graphs, encoded by a graph and its complement.
 - Source: Classical theorem in Ramsey theory.

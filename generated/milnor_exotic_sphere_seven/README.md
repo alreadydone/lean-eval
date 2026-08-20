@@ -3,7 +3,11 @@
 Milnor's exotic 7-sphere
 
 - Problem ID: `milnor_exotic_sphere_seven`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Existence of a smooth 7-manifold homeomorphic but not diffeomorphic to 𝕊⁷. Recorded as `proof_wanted exists_homeomorph_isEmpty_diffeomorph_sphere_seven` in `Mathlib/Geometry/Manifold/PoincareConjecture.lean`. Milnor's 1956 discovery and the birth of differential topology as a distinct subject. The construction uses S³-bundles over S⁴; the non-diffeomorphism is detected by Milnor's λ-invariant built from the signature of an 8-manifold bounding the candidate (Hirzebruch's signature theorem + an integrality / mod-7 argument).
 - Source: J. Milnor, On manifolds homeomorphic to the 7-sphere, Ann. of Math. 64 (1956), 399-405. Recorded as a `proof_wanted` in Mathlib/Geometry/Manifold/PoincareConjecture.lean at rev 5450b53e5ddc.

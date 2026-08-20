@@ -3,7 +3,11 @@
 Chen's theorem
 
 - Problem ID: `chen_theorem`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Chen's theorem: there are infinitely many primes `p` such that `p + 2` is a prime or a product of two primes (a 'prime or semiprime'). The predicate `HasAtMostTwoPrimeFactors n` is the disjunction 'n is prime' or 'n = a·b with a, b prime'. mathlib has `Nat.Prime` and prime factorization, but no Brun-style weighted sieve.
 - Source: J. R. Chen, On the representation of a larger even integer as the sum of a prime and the product of at most two primes, Sci. Sinica 16 (1973), 157-176. Listed as §224 in O. Knill, Some Fundamental Theorems in Mathematics (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf). Knill, §224.

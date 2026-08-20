@@ -3,7 +3,11 @@
 Boone–Higman theorem (easy direction)
 
 - Problem ID: `boone_higman_embedding`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: If a finitely presented group G embeds in a simple group H that embeds in a finitely presented group K, then G has a solvable word problem — the 'if' half of the Boone–Higman characterisation. Trusted helper WordProblemSolvable (non-hole) via ComputablePred. Mathlib has finitely-presented/free/simple groups and computability but no word-problem notion or Boone–Higman theorem. The main Kuznetsov/Boone–Higman, Novikov, and Higman-infinite-simple statements of §122 are already in lean-eval. Candidate from §122 (additional 1).
 - Source: W. W. Boone & G. Higman, *An algebraic characterization of groups with soluble word problem*, J. Austral. Math. Soc. 18 (1974). Knill, *Some fundamental theorems in mathematics*, §122.

@@ -3,7 +3,11 @@
 Nash equilibrium existence theorem
 
 - Problem ID: `nash_equilibrium_exists`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: §33 of Oliver Knill's 'Some Fundamental Theorems in Mathematics' (the section's boxed main theorem). Every finite n-player game in mixed strategies admits at least one Nash equilibrium. Mathlib has stdSimplex ℝ S (the natural model of a mixed strategy) and finite-sum/product machinery but no game theory at all — no Mathlib/GameTheory/ module, and grep for nash/mixed.strategy/best.response returns nothing relevant. No formalization of Nash equilibrium existence was found in any major proof assistant.
 - Source: J. F. Nash, Equilibrium points in n-person games, Proc. Nat. Acad. Sci. U.S.A. 36 (1950), 48-49; Non-cooperative games, Ann. of Math. 54 (1951), 286-295. Listed as §33 in O. Knill, Some Fundamental Theorems in Mathematics (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf).

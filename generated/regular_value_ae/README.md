@@ -3,7 +3,11 @@
 Sard's regular-value corollary
 
 - Problem ID: `regular_value_ae`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: For a smooth f : ℝᵐ → ℝ, almost every c ∈ ℝ is a regular value (every point of f⁻¹(c) has nonzero derivative). The measure-theoretic heart of the regular-value form of Sard's theorem; the main critical-set-null Sard theorem is a separate lean-eval problem (§125 main). Trusted helper IsRegularValue (non-hole). Mathlib has the equal-dimension Jacobian lemma and Hausdorff-dimension corollaries but not the general critical-values-null statement. Candidate from §125 of the Knill survey (additional 1).
 - Source: A. Sard, *The measure of the critical values of differentiable maps*, Bull. AMS 48 (1942); A. P. Morse (1939). Knill, *Some fundamental theorems in mathematics*, §125.

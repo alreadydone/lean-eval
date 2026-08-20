@@ -3,7 +3,11 @@
 Fang–Xia: tiling of the symmetric group by transpositions implies λ-transitivity
 
 - Problem ID: `fang_xia_tiling_partition_transitive`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: If T_n = {1} ∪ {all transpositions} and (T_n, Y) tiles the symmetric group S_n (every element of S_n has a unique factorisation x · y with x ∈ T_n, y ∈ Y), then for every integer partition λ of n whose Young-diagram content sum is nonnegative, Y is λ-transitive in the Martin–Sagan sense: there is a fixed positive integer r such that, for every pair P, Q of ordered set partitions of shape λ, exactly r elements of Y send P to Q blockwise. Content sum is encoded in the row-length formula `∑ᵢ aᵢ · (aᵢ − 2i − 1)` (zero-indexed rows), matching the paper's one-indexed `λᵢ · (λᵢ − 2i + 1)`. Headline Theorem 1.4 of Fang–Xia, *Tiling the symmetric group by transpositions*, Bull. London Math. Soc. 58(5) (2026).
 - Source: T. Fang and B. Xia, 'Tiling the symmetric group by transpositions', Bull. London Math. Soc. 58(5) (2026); DOI 10.1112/blms.70366; arXiv:2506.00360. The λ-transitivity notion in the statement is due to Martin–Sagan.

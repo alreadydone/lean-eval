@@ -3,7 +3,11 @@
 A reverse Minkowski theorem
 
 - Problem ID: `annals_reverse_minkowski`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Katerina Hristova
 - Notes: The proof binder `hℒℒ'` is named `_hℒℒ'` here. This is alpha-equivalent and suppresses an unused-variable warning in the generated `Solution.lean` delegation.
 - Source: O. Regev, N. Stephens-Davidowitz, `A reverse Minkowski theorem`, Annals of Math, 199 (1) 2024. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2024-199-1-ReverseMinkowski.lean

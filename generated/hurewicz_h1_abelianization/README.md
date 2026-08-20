@@ -3,7 +3,11 @@
 Hurewicz theorem in degree 1 (H₁ = abelianization of π₁)
 
 - Problem ID: `hurewicz_h1_abelianization`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: For a path-connected space X, the first integral singular homology group is the abelianization of the fundamental group. Trusted helper IntegralHomology (non-hole). Path-connectedness is essential. Mathlib has singular homology and the fundamental group but not the degree-1 Hurewicz isomorphism. Candidate from §153 of the Knill survey.
 - Source: W. Hurewicz (1935); see Hatcher, *Algebraic Topology*, Theorem 2A.1. Knill, *Some fundamental theorems in mathematics*, §153.

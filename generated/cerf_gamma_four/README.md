@@ -3,7 +3,11 @@
 Cerf's theorem: every self-diffeomorphism of S3 is smoothly isotopic to a linear isometry
 
 - Problem ID: `cerf_gamma_four`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Cerf's 1968 theorem, the X = point (unparameterized) case of the Smale conjecture. Stated as the existence of a smooth isotopy [0,1] x S3 -> S3 from f to a linear isometry, witnessed by a smooth slice-inverse to encode the diffeomorphism property of each slice without needing a topology on Diffeomorph.
 - Source: J. Cerf, Sur les diffeomorphismes de la sphere de dimension trois, Lecture Notes in Mathematics 53, Springer (1968).

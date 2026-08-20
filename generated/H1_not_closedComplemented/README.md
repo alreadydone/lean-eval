@@ -3,7 +3,11 @@
 No bounded projection from L^1 onto H^1
 
 - Problem ID: `H1_not_closedComplemented`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Yongxi Lin
 - Source: D. J. Newman, 'The nonexistence of projections from L^1 to H^1', Proc. Amer. Math. Soc.; W. Rudin, Fourier Analysis on Groups; Yongxi Lin, Hardy Space and Hartogs Triangle, Theorem 2.8.
 

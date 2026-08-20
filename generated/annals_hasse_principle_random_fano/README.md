@@ -3,7 +3,11 @@
 The Hasse principle for random Fano hypersurfaces
 
 - Problem ID: `annals_hasse_principle_random_fano`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Justus Springer
 - Source: T. Browning, P. L. Boudec, and W. Sawin, `The Hasse principle for random Fano hypersurfaces`, Annals of Math, 197 (3) 2023. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2023-197-3-HassePrincipleRandomFano.lean
 

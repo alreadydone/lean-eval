@@ -3,7 +3,11 @@
 Algebraic integers with conjugates in a prescribed distribution
 
 - Problem ID: `annals_algebraic_integers`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Justus Springer
 - Source: A. Smith, `Algebraic integers with conjugates in a prescribed distribution`, Annals of Math, 200 (1) 2024. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2024-200-1-AlgebraicIntegers.lean
 

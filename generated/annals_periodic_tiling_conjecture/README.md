@@ -3,7 +3,11 @@
 A counterexample to the periodic tiling conjecture
 
 - Problem ID: `annals_periodic_tiling_conjecture`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: David Ledvinka
 - Holes (3): `PeriodicTilingConjecture.theorem_1_4` (theorem), `PeriodicTilingConjecture.corollary_1_6` (theorem), `PeriodicTilingConjecture.corollary_1_7` (theorem)
 - Source: R. Greenfeld and T. Tao, `A counterexample to the periodic tiling conjecture`, Annals of Math, 200 (1) 2024. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2024-200-1-PeriodicTilingConjecture.lean

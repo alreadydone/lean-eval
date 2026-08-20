@@ -3,7 +3,11 @@
 Platonic classification
 
 - Problem ID: `platonic_classification`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: §42 of Knill's 'Some Fundamental Theorems in Mathematics'. The count p_d of regular convex d-polytopes (Platonic polytopes) up to similarity is p_2 = ∞ (regular polygons), p_3 = 5 (Euclid XIII), p_4 = 6 (Schläfli 1850s), and p_d = 3 for d ≥ 5. Mathlib has convexHull, extremePoints, IsExposed, vectorSpan, AffineIsometryEquiv, Set.encard but no convex-polytope datatype, no face lattice, no regular-polytope concept, and none of the classification counts. The Challenge ships ~1.5 pages of helper defs (ConvexPolytope, dim, IsFace, Flag, isSymmetry, IsRegular, Similar, regularPolytopes, regularSimilar, platonicCount).
 - Source: Euclid, Elements, Book XIII (~300 BC, p_3 = 5); L. Schläfli, Theorie der vielfachen Kontinuität (1852, posthumous publication; p_4 = 6, p_d = 3 for d ≥ 5). Listed as §42 in O. Knill, Some Fundamental Theorems in Mathematics (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf).

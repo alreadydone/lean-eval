@@ -3,7 +3,11 @@
 Baker-Wüstholz theorem on linear forms in logarithms
 
 - Problem ID: `bakerWustholz_linearForms_logs`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Ralf Stephan
 - Source: A. Baker, G. Wüstholz, Logarithmic forms and group varieties, J. reine angew. Math. 442 (1993), 19-62.
 

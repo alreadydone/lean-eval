@@ -3,7 +3,11 @@
 pi_1 of the circle is Z
 
 - Problem ID: `pi1_circle_mulEquiv_int`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Computes the fundamental group of the complex unit circle.
 - Source: Classical theorem in algebraic topology.

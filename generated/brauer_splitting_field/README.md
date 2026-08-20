@@ -3,7 +3,11 @@
 Brauer's splitting field theorem
 
 - Problem ID: `brauer_splitting_field`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: For a finite group G of exponent n, the cyclotomic field ℚ(ζₙ) is a splitting field for G: every finite-dimensional complex representation ρ of G descends to ℚ(ζₙ). Concretely, there exists an embedding φ : CyclotomicField n ℚ →+* ℂ, a ℚ(ζₙ)-representation (W, σ) of G, and a ℂ-linear G-equivariant isomorphism ℂ ⊗[ℚ(ζₙ)] W ≃ V (with ℂ viewed as a ℚ(ζₙ)-algebra via φ). The G-equivariance is expressed against the base-changed action `(σ g).baseChange ℂ`. Strictly stronger than the character-value statement `brauer_character_in_cyclotomic`, which follows by taking traces and is in fact elementary.
 - Source: R. Brauer, On the representation of a group of order g in the field of g-th roots of unity, Amer. J. Math. 67 (1945), 461–471.

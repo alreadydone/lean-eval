@@ -3,7 +3,11 @@
 The rectangular peg problem
 
 - Problem ID: `annals_rectangular_peg_problem`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Katerina Hristova
 - Notes: LeanEval renames upstream's declaration `theorem «theorem»` to `theorem_1` because the workspace generator cannot address a declaration whose basename is a reserved word; the statement is unchanged.
 - Source: J. E. Greene and A. Lobb, `The rectangular peg problem`, Annals of Math, 194 (2) 2021. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2021-194-2-RectangularPegProblem.lean

@@ -3,7 +3,11 @@
 KAM persistence of an invariant curve
 
 - Problem ID: `kam_invariant_curve`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Kolmogorov–Arnold–Moser for a twist map: for Diophantine α and real-analytic, 1-periodic, non-constant, mean-zero f, for small |c| the functional equation q(t+α)−2q(t)+q(t−α) = c·f(q(t)) has a smooth strictly increasing solution with q−id periodic — the c=0 invariant curve persists. The linearisation is non-invertible (small divisors), so the IFT fails and the Diophantine condition drives a Newton/Nash–Moser scheme. The trusted helper IsDiophantine is a non-hole. Mathlib has no KAM theory (no twist maps, invariant curves, small divisors, Nash–Moser). Candidate from §83 of the Knill survey.
 - Source: A. N. Kolmogorov (1954); V. I. Arnold (1963); J. Moser, *On invariant curves of area-preserving mappings of an annulus*, Nachr. Akad. Wiss. Göttingen (1962). Knill, *Some fundamental theorems in mathematics*, §83.

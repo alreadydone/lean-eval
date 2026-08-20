@@ -3,7 +3,11 @@
 Pascal's theorem
 
 - Problem ID: `pascal`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Six distinct points on a non-singular conic determine three collinear intersection points Aᵢ Bⱼ ∩ Aⱼ Bᵢ. Trusted helpers (SamePoint, OnConic, meet, Collinear3) are non-holes, built on the cross product ⨯₃. Mathlib has the projective vocabulary but not Pascal's theorem. Candidate from §146 of the Knill survey.
 - Source: B. Pascal, *Essay pour les coniques* (1640). Knill, *Some fundamental theorems in mathematics*, §146.

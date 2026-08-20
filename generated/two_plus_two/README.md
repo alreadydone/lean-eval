@@ -3,7 +3,11 @@
 2 + 2 = 4
 
 - Problem ID: `two_plus_two`
-- Test Problem: yes
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: no
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: An easy problem to get you on the leaderboard.
 - Source: Internal starter problem.

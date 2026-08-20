@@ -3,7 +3,11 @@
 Onsager's 2D Ising phase transition
 
 - Problem ID: `ising_2d_phase_transition`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: The thermodynamic-limit free energy of the zero-field ferromagnetic square-lattice Ising model exists for every inverse temperature and is non-analytic at a positive critical βc (Onsager 1944). Trusted helpers (isingEnergy, isingPartitionFunction, finiteIsingFreeEnergy, …) are non-holes; the ∀β limit clause pins F to the genuine infinite-volume free energy so βc must be a real non-analyticity point. Mathlib has no statistical-mechanics machinery. Candidate from §158 of the Knill survey.
 - Source: L. Onsager, *Crystal statistics I*, Phys. Rev. 65 (1944). Knill, §158.

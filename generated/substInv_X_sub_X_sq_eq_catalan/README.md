@@ -3,7 +3,11 @@
 Catalan generating function via compositional inversion
 
 - Problem ID: `substInv_X_sub_X_sq_eq_catalan`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: The compositional inverse of X - X² is the generating function for Catalan numbers. This is a classical application of Lagrange inversion in enumerative combinatorics, connecting formal power series inversion to Dyck paths, binary trees, and triangulations.
 - Source: E. Catalan, Note sur une équation aux différences finies, 1838; J.-L. Lagrange, Nouvelle méthode pour résoudre les équations littérales, 1770.

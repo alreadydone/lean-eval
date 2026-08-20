@@ -3,7 +3,11 @@
 Symplectic matrices have determinant 1
 
 - Problem ID: `symplectic_matrix_det`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: §39 of Oliver Knill's 'Some Fundamental Theorems in Mathematics'. For any commutative ring R and 2n × 2n symplectic matrix A over R (A * J * Aᵀ = J with J = [[0, -I], [I, 0]]), det A = 1. Taking determinants of AᵀJA = J only forces (det A)² = 1; the sign requires the Pfaffian argument. Mathlib has `Matrix.symplecticGroup` and proves `symplectic_det` (IsUnit (det A)) but the equals-1 claim is an explicit TODO in Mathlib/LinearAlgebra/SymplecticGroup.lean; no formalization of the identity was found in any other proof assistant.
 - Source: Folklore (Pfaffian computation). Listed as §39 in O. Knill, Some Fundamental Theorems in Mathematics (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf). Marked as an open TODO at the head of Mathlib/LinearAlgebra/SymplecticGroup.lean (rev 5450b53e5ddc).

@@ -3,7 +3,11 @@
 Pardon's lower bound for torus-knot distortion
 
 - Problem ID: `pardon_torus_knot_distortion`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: For positive coprime p and q, every smooth representative in the orientation-preserving smooth ambient-isotopy class of the explicitly parametrized standard (p, q)-torus curve has distortion at least min(p, q) / 160. Intrinsic distance is the shorter of the two complementary arclengths, and distortion is the supremum in the extended nonnegative reals of intrinsic distance divided by Euclidean chord length over distinct points. The extended codomain faithfully represents the possibility of infinite distortion without imposing an unrelated boundedness proof. Pardon's published theorem takes the infimum over all rectifiable representatives of the unoriented isotopy class; because LeanEval.KnotTheory.Prelude models smooth knots, this benchmark is its faithful smooth, orientation-sensitive specialization. It is separate from the 3-dimensional Hilbert-Smith problem already proposed in PR #482.
 - Source: John Pardon, 'On the distortion of knots on embedded surfaces', Annals of Mathematics (2) 174 (2011), no. 1, 637-646, Theorem 1.1. https://doi.org/10.4007/annals.2011.174.1.21

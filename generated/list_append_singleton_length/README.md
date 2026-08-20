@@ -3,7 +3,11 @@
 Appending a singleton increases the list length
 
 - Problem ID: `list_append_singleton_length`
-- Test Problem: yes
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: no
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: A simple list problem that exercises notation in generated files.
 - Source: Internal starter problem.

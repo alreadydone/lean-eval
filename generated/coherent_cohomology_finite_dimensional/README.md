@@ -3,7 +3,11 @@
 Coherent cohomology of a proper scheme over ℚ is finite-dimensional
 
 - Problem ID: `coherent_cohomology_finite_dimensional`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Brian Nugent
 - Notes: Grothendieck's coherent finiteness theorem: for a coherent sheaf M on a scheme X proper over ℚ, every cohomology group Hⁿ(X, M) is finite-dimensional over ℚ. Coherence is encoded as IsQuasicoherent together with IsFiniteType, which is coherent because properness makes X locally Noetherian. `M.sheaf.H n` is the degree-n sheaf cohomology (Ext from the constant ℤ-sheaf) of the underlying abelian sheaf of M; for a quasi-coherent sheaf this computes coherent cohomology. Mathlib exposes only the underlying abelian group of this cohomology, so the statement tensors with ℚ over ℤ: for the ℚ-vector space Hⁿ(X, M) the natural map V → ℚ ⊗[ℤ] V is an isomorphism, hence Module.Finite ℚ (ℚ ⊗[ℤ] M.sheaf.H n) faithfully expresses finite-dimensionality of the cohomology.
 - Source: https://leanprover.zulipchat.com/#narrow/channel/583341-Model-comparisons-for-Lean/topic/LeanEval/near/603798763

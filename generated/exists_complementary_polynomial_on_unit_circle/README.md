@@ -3,7 +3,11 @@
 Complementary polynomial on the unit circle
 
 - Problem ID: `exists_complementary_polynomial_on_unit_circle`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: If a complex polynomial has modulus at most 1 on the unit circle, then there is a same-degree complementary polynomial whose squared moduli add to 1 on the circle.
 - Source: https://link.springer.com/article/10.1007/s00220-025-05302-9

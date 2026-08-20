@@ -3,7 +3,11 @@
 On a conjecture of Talagrand on selector processes and a consequence on positive empirical processes
 
 - Problem ID: `annals_supremum_of_selector_processes`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: David Ledvinka
 - Holes (6): `SupremumOfSelectorProcesses.L₂` (def), `SupremumOfSelectorProcesses.L₂_pos` (theorem), `SupremumOfSelectorProcesses.theorem_1_2` (theorem), `SupremumOfSelectorProcesses.L₃` (def), `SupremumOfSelectorProcesses.L₃_pos` (theorem), `SupremumOfSelectorProcesses.theorem_1_3` (theorem)
 - Notes: The five anonymous explicit instance binders in `theorem_1_3` are named because the generated delegation cannot forward inaccessible hygienic binder names. This is alpha-equivalent and does not change the statement.

@@ -3,7 +3,11 @@
 Thresholds versus fractional expectation-thresholds
 
 - Problem ID: `annals_fractional_expectation_thresholds`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: David Ledvinka
 - Holes (2): `FractionalExpectationThresholds.K` (def), `FractionalExpectationThresholds.theorem_1_1` (theorem)
 - Source: K. Frankston, J. Kahn, B. Narayanan, and J. Park, `Thresholds versus fractional expectation-thresholds`, Annals of Math, 194 (2) 2021. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2021-194-2-FractionalExpectationThresholds.lean

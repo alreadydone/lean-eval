@@ -3,7 +3,11 @@
 Local stable/unstable sets at a hyperbolic fixed point (set-level Hadamard–Perron)
 
 - Problem ID: `stable_unstable_manifolds`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: For a C¹ map f : ℝⁿ → ℝⁿ with an invertible hyperbolic fixed point x₀ (no eigenvalue of dfₓ₀ on the unit circle, plus invertibility to exclude the degenerate zero-eigenvalue case), some open neighbourhood U ∋ x₀ carries the genuinely local stable set Wˢ = {x | ∀ k, f^[k] x ∈ U ∧ f^[k] x → x₀} and the local unstable set Wᵘ = {x | ∃ backward orbit y with y 0 = x, y k ∈ U for all k, and y → x₀}, with Wˢ ∩ Wᵘ = {x₀}. The 'orbit stays in U' clause is essential: without it, homoclinic points (forward and backward limit x₀ with excursions outside U) would falsify Wˢ ∩ Wᵘ = {x₀} in systems with homoclinic dynamics. This submission ships the set-level topological shadow of Hadamard–Perron; the full theorem additionally asserts that Wˢ, Wᵘ are immersed C¹ submanifolds tangent to the stable/unstable eigenspaces (same proof difficulty), which this Lean statement does not encode. §104 of Knill's *Some Fundamental Theorems in Mathematics*.
 - Source: J. Hadamard, 'Sur l'itération et les solutions asymptotiques des équations différentielles', Bull. Soc. Math. France 29 (1901); O. Perron, 'Über Stabilität und asymptotisches Verhalten der Integrale von Differentialgleichungssystemen', Math. Z. 29 (1929) 129–160. Listed as §104 in O. Knill, *Some Fundamental Theorems in Mathematics* (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf).

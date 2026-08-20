@@ -3,7 +3,11 @@
 On Zagier-Hoffman's conjectures in positive characteristic
 
 - Problem ID: `annals_zagier_hoffman_positive_char`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Katerina Hristova
 - Holes (3): `ZagierHoffmanPositiveChar.theorem_A` (theorem), `ZagierHoffmanPositiveChar.theorem_B` (theorem), `ZagierHoffmanPositiveChar.theorem_D` (theorem)
 - Notes: Throughout the definitions and statements, we reindex the `i`'s so that they run from `0` to `r - 1` rather than from `1` to `r`.

@@ -3,7 +3,11 @@
 Existence of an aspherical integer homology 4-sphere
 
 - Problem ID: `aspherical_integer_homology_four_sphere`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Resolves [Kir97, Problem 4.17]: is there a closed aspherical 4-manifold that is an integer homology 4-sphere? Tschantz constructed such manifolds; they even admit metrics of non-positive curvature. We bundle a closed topological 4-manifold and ask for it to be aspherical (all higher homotopy groups vanish) and to have the integral singular homology of S⁴ in every degree.
 - Source: J. G. Ratcliffe and S. T. Tschantz, *On the Davis hyperbolic 4-manifold*, Topology Appl. 111 (2001); see also the discussion of [Kir97, Problem 4.17] in the K3 problem list. Earlier, F. Luo constructed an aspherical rational homology 4-sphere (1988).

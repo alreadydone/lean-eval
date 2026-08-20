@@ -3,7 +3,11 @@
 Ornstein–Weiss ℤᵈ Rokhlin lemma
 
 - Problem ID: `ornstein_weiss_rokhlin`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: §109 of Knill's 'Some Fundamental Theorems in Mathematics' (additional statement; the boxed main theorem is the classical Rokhlin lemma). The multidimensional generalization: for every free measure-preserving ℤᵈ-action T on a standard Borel probability space, every box size N ≥ 1, and every ε > 0, there is a measurable base B such that the translates T v '' B for v ∈ [0, N)ᵈ are pairwise disjoint with measure ≥ 1 - ε. Three hypotheses beyond the classical lemma: 1 ≤ d (rules out d = 0 degeneracy); the identity axiom T 0 = id (homomorphism alone only forces T 0 idempotent); [StandardBorelSpace Ω] (rules out the countable-cocountable σ-algebra defect). Mathlib has MeasurePreserving, IsProbabilityMeasure, Set.PairwiseDisjoint, Fintype.piFinset, Finset.Ico, StandardBorelSpace, but no Ornstein–Weiss lemma, no free measure-preserving ℤᵈ-actions, no multidimensional Rokhlin towers. The Challenge ships two small helper defs (IsFreeAction, boxShape).
 - Source: D. S. Ornstein and B. Weiss, *Entropy and isomorphism theorems for actions of amenable groups*, J. Anal. Math. 48 (1987), 1-141 — Theorem 5.2 establishes the multidimensional (and amenable-group) Rokhlin lemma. Listed as §109 in O. Knill, *Some Fundamental Theorems in Mathematics* (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf). No formalization found in any major prover.

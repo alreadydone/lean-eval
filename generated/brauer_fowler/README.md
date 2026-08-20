@@ -3,7 +3,11 @@
 Brauer–Fowler theorem
 
 - Problem ID: `brauer_fowler`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: The order of a finite nonabelian simple group is bounded by a function of the order of any involution centralizer. R. Brauer and K. A. Fowler, 'On groups of even order', Ann. of Math. 62 (1955), 565-583. A foundational result of the CFSG programme: it reduced (in principle) the classification of finite simple groups to the analysis of involution centralizers — the strategy used by Brauer–Suzuki, Brauer–Suzuki–Wall, Janko, and many others to identify sporadic simple groups. Statement uses only Mathlib (IsSimpleGroup, Nat.card, Subgroup.centralizer, orderOf), no new definitions.
 - Source: R. Brauer and K. A. Fowler, On groups of even order, Ann. of Math. (2) 62 (1955), 565-583. https://doi.org/10.2307/1970080

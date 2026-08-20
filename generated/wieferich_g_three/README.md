@@ -3,7 +3,11 @@
 Wieferich's theorem g(3) = 9
 
 - Problem ID: `wieferich_g_three`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Every natural number is a sum of nine cubes, and nine is necessary (23 is not a sum of eight cubes): the k=3 case of the Hilbert–Waring problem, g(3) = 9. The trusted helper IsSumOfCubes (non-hole) fixes 'sum of k cubes'. Mathlib has Lagrange's four-square theorem but no Hilbert–Waring material (no g(k), no sum-of-cubes predicate, no g(3)=9). Candidate from §76 of the Knill survey.
 - Source: A. Wieferich, *Beweis des Satzes, daß sich eine jede ganze Zahl als Summe von höchstens neun positiven Kuben darstellen läßt*, Math. Ann. 66 (1909); A. Kempner, *Über das Waringsche Problem und einige Verallgemeinerungen*, Math. Ann. 72 (1912). Knill, *Some fundamental theorems in mathematics*, §76.

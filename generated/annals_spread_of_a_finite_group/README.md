@@ -3,7 +3,11 @@
 The spread of a finite group
 
 - Problem ID: `annals_spread_of_a_finite_group`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Katerina Hristova
 - Source: T. C. Burness, R. M. Guralnick, and S. Harper, `The spread of a finite group`, Annals of Math, 193 (2) 2021. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2021-193-2-SpreadOfAFiniteGroup.lean
 

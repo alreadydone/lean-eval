@@ -3,7 +3,11 @@
 Furstenberg–Weiss topological multiple recurrence (single-transformation form)
 
 - Problem ID: `furstenberg_topological`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Single-transformation form of the Furstenberg–Weiss topological multiple recurrence theorem (1978), as stated in §56 of Knill's 'Some Fundamental Theorems in Mathematics'. For every homeomorphism T of a nonempty compact metric space X, there is a multiply recurrent point: for every d ≥ 1 there is a strictly increasing n : ℕ → ℕ with T^{j · n_k}(x) → x for every j ∈ {1, …, d}. The file ships the IsMultiplyRecurrent predicate. Compact-Hausdorff alone is insufficient for the sequential formulation (the shift on Ultrafilter ℤ is a counterexample); first-countability would suffice, but the standard Furstenberg–Weiss statement uses compact metric. This is the specialisation to the family T, T², …, T^d of the more general theorem for commuting homeomorphisms.
 - Source: H. Furstenberg and B. Weiss, *Topological dynamics and combinatorial number theory*, Journal d'Analyse Mathématique 34 (1978), 61-85. Listed as §56 (main theorem) in O. Knill, *Some Fundamental Theorems in Mathematics* (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf).

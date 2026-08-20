@@ -3,7 +3,11 @@
 Fundamental theorem of topos theory
 
 - Problem ID: `fundamental_topos_theory`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: The slice category E/X of an elementary topos E is again an elementary topos. The trusted helper IsTopos (non-hole) bundles finite limits + cartesian-closed (CartesianMonoidalCategory + MonoidalClosed) + a subobject classifier. Mathlib has finite limits and cartesian-monoidal structure on Over X and a HasSubobjectClassifier class, but neither MonoidalClosed (Over X) (the locally-cartesian-closed upgrade) nor HasSubobjectClassifier (Over X). Candidate from §54 of the Knill survey.
 - Source: F. W. Lawvere & M. Tierney (elementary topos, 1970); see S. Mac Lane & I. Moerdijk, *Sheaves in Geometry and Logic*, IV.7. Knill, *Some fundamental theorems in mathematics*, §54.

@@ -3,7 +3,11 @@
 Bourbaki's locally convex extension of Banach–Alaoglu
 
 - Problem ID: `banach_alaoglu_bourbaki`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: §137 of Oliver Knill's 'Some Fundamental Theorems in Mathematics'. Bourbaki's locally convex Banach–Alaoglu theorem states that, for any real locally convex topological vector space E, the weak-star polar of a neighbourhood of 0 is compact in the weak dual. This extends the familiar normed-space Banach–Alaoglu theorem from closed dual balls to polars of zero-neighbourhoods in arbitrary locally convex spaces. Mathlib currently has the normed-space results WeakDual.isCompact_closedBall and WeakDual.isCompact_polar, but no corresponding compactness theorem for general locally convex spaces.
 - Source: N. Bourbaki, Espaces vectoriels topologiques; the normed case is L. Alaoglu, Ann. of Math. 41 (1940). Listed as §137 in O. Knill, Some Fundamental Theorems in Mathematics (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf).

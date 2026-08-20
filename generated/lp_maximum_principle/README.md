@@ -3,7 +3,11 @@
 Linear programming: maximum principle and vertex optimality
 
 - Problem ID: `lp_maximum_principle`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Holes (2): `LeanEval.ConvexGeometry.lp_maximum_principle` (theorem), `LeanEval.ConvexGeometry.simplex_algorithm` (theorem)
 - Notes: §101 of Oliver Knill's 'Some Fundamental Theorems in Mathematics' gives two structural facts for linear programs in standard inequality form: maximise c·x subject to A x ≤ b and 0 ≤ x. The maximum principle says any local maximiser of the linear objective on the feasible region is global, and if c ≠ 0 then it lies on the feasible region's frontier. The vertex optimality statement says that a nonempty bounded feasible region has an optimal solution at an extreme point (the existence content of Dantzig's simplex algorithm). Mathlib has the relevant convex-geometry notions, including IsLocalMaxOn, IsMaxOn, frontier, Set.extremePoints, and Krein–Milman-style infrastructure, but not these LP results as named theorems.

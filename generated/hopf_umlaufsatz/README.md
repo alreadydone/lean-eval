@@ -3,7 +3,11 @@
 The Hopf Umlaufsatz (theorem of turning tangents)
 
 - Problem ID: `hopf_umlaufsatz`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: A positively oriented simple closed unit-speed plane curve has total signed curvature 2π. Trusted helpers (signedArea, signedCurvature, totalCurvature, IsPositiveSimpleClosedUnitSpeedCurve, IsTangentAngleLift, …) are non-holes. Mathlib has no turning-tangents theorem. Candidate from §170 of the Knill survey.
 - Source: H. Hopf, *Über die Drehung der Tangenten...*, Compositio Math. 2 (1935). Knill, §170.

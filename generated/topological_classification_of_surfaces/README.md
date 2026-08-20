@@ -3,7 +3,11 @@
 Topological classification of surfaces
 
 - Problem ID: `topological_classification_of_surfaces`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Junyan Xu
 - Notes: A compact connected surface with boundary is homeomorphic to one of the representative surfaces that we formalize.
 - Source: Jean Gallier & Dianna Xu, *A Guide to the Classification Theorem for Compact Surfaces*, https://www.cis.upenn.edu/~jean/surfclassif-root.pdf

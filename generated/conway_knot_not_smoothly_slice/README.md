@@ -3,7 +3,11 @@
 The Conway knot is not smoothly slice
 
 - Problem ID: `conway_knot_not_smoothly_slice`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Holes (2): `LeanEval.KnotTheory.conwayKnot_isSimple` (theorem), `LeanEval.KnotTheory.conway_knot_not_smoothly_slice` (theorem)
 - Notes: Lisa Piccirillo, *The Conway knot is not slice*, Annals of Mathematics 191 (2020). Resolves the last remaining case in the classification of slice knots through 12 crossings. The Conway knot has trivial Alexander polynomial so is topologically slice (Freedman), while Piccirillo's theorem rules out smooth sliceness — pairs with `conway_knot_topologically_slice` for an explicit, low-crossing-number witness to the smooth/topological gap (earlier witnesses such as Akbulut-Matveyev's Whitehead doubles existed). Two holes: `conwayKnot_isSimple` asks the solver to certify that the fixed 78-vertex braid-closure polyline is an embedded simple closed curve (a finite check, e.g. over an exact integer model), and `conway_knot_not_smoothly_slice` is Piccirillo's theorem proper; `conwayKnot` itself is trusted, `sorry`-free data. We'd like to thank Lorenzo Luccioli (using Aristotle) for identifying a mis-formalization of the notion of smoothly slice in an earlier version of this problem.

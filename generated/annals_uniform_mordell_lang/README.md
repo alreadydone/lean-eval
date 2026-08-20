@@ -3,7 +3,11 @@
 Uniformity in Mordell–Lang for curves
 
 - Problem ID: `annals_uniform_mordell_lang`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Thomas Browning, Christian Merten
 - Holes (13): `UniformMordellLang.JacobianChallenge.genus` (def), `UniformMordellLang.JacobianChallenge.Jacobian` (def), `UniformMordellLang.JacobianChallenge.Jacobian.instGrpObj` (def), `UniformMordellLang.JacobianChallenge.Jacobian.smoothOfRelativeDimension_genus` (def), `UniformMordellLang.JacobianChallenge.Jacobian.instIsProper` (def), `UniformMordellLang.JacobianChallenge.Jacobian.instGeometricallyIrreducible` (def), `UniformMordellLang.JacobianChallenge.Jacobian.ofCurve` (def), `UniformMordellLang.JacobianChallenge.Jacobian.comp_ofCurve` (theorem), `UniformMordellLang.JacobianChallenge.Jacobian.exists_unique_ofCurve_comp` (theorem), `UniformMordellLang.JacobianChallenge.Jacobian.instGeometricallyIntegral` (def), `UniformMordellLang.JacobianChallenge.Jacobian.instFG` (def), `UniformMordellLang.c` (def), `UniformMordellLang.theorem_1_1` (theorem)
 - Notes: AnnalsChallenge states this theorem on top of Christian Merten's Jacobian challenge (`AnnalsChallenge/Definitions/AlgebraicJacobian.lean`). LeanEval's existing port of that file, problem `jacobian_challenge_alggeo`, omits the four declarations at its end, including the instances that supply the `CommGroup` and `Group.FG` structures used by `freeRank`. This module therefore carries a namespaced copy of the full upstream Jacobian characterisation and its derived point-group structure. Proof-valued instance holes are expressed as instance-reducible definitions so comparator can traverse the derived instances without comparing placeholder proof bodies; their types and the statement of Theorem 1.1 are unchanged. The upstream `instCommGroup := inferInstance` is spelled as the same explicit, reducible `CategoryTheory.Hom.commGroup` instance so Challenge and Solution elaborate it with identical reducibility hints; it remains derived rather than becoming a solver hole.

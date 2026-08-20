@@ -3,7 +3,11 @@
 Chen theorem for Markoff graphs
 
 - Problem ID: `dvd_card_connectedComponent_markoffGraph`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: For prime p > 3, every connected component of the nonzero Markoff graph over ZMod p has cardinality divisible by p.
 - Source: https://link.springer.com/article/10.1007/s00222-025-01346-9

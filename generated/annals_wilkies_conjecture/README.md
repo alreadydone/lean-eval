@@ -3,7 +3,11 @@
 Wilkie's conjecture for Pfaffian structures
 
 - Problem ID: `annals_wilkies_conjecture`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Justus Springer, Mathias Stout
 - Source: G. Binyamini, D. Novikov, and B. Zak, `Wilkie's conjecture for Pfaffian structures`, Annals of Math, 199 (2) 2024. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2024-199-2-WilkiesConjecture.lean
 

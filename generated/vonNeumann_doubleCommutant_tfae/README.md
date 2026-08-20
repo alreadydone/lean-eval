@@ -3,7 +3,11 @@
 von Neumann double commutant theorem
 
 - Problem ID: `vonNeumann_doubleCommutant_tfae`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: The classical double commutant theorem: for a unital *-subalgebra of bounded operators on a complex Hilbert space, equality with the double commutant is equivalent to closedness in the weak operator topology and to closedness in the strong operator topology. WOT and SOT live on Mathlib's irreducible type copies of H →L[ℂ] H (`ContinuousLinearMapWOT` and `PointwiseConvergenceCLM`), so each closure condition is phrased on the image of the carrier under the canonical inclusion.
 - Source: J. von Neumann, Zur Algebra der Funktionaloperationen und Theorie der normalen Operatoren, Math. Ann. 102 (1930), 370-427.

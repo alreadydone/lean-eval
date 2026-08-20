@@ -3,7 +3,11 @@
 Brauer–Suzuki theorem (quaternion Sylow 2-subgroup)
 
 - Problem ID: `brauer_suzuki`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: If a finite group G has generalized quaternion Sylow 2-subgroups, then the unique involution of G maps to a central element of G/O(G), where O(G) is the largest normal odd-order subgroup. R. Brauer and M. Suzuki, 'On finite groups of even order whose 2-Sylow group is a quaternion group', Proc. Nat. Acad. Sci. U.S.A. 45 (1959), 1757-1759. Historical precursor of Glauberman's Z*-theorem (1966) and the local-analysis programme in CFSG. Introduces Defs/OddCore.lean defining O(G) as the supremum of all normal odd-order subgroups (Mathlib has no `oddCore` operation).
 - Source: R. Brauer and M. Suzuki, On finite groups of even order whose 2-Sylow group is a quaternion group, Proc. Nat. Acad. Sci. U.S.A. 45 (1959), 1757-1759. https://doi.org/10.1073/pnas.45.12.1757

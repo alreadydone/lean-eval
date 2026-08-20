@@ -3,7 +3,11 @@
 Mazur's torsion theorem
 
 - Problem ID: `mazur_torsion`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: The torsion subgroup of E(ℚ) for an elliptic curve over ℚ is one of fifteen groups: ℤ/n (n ∈ {1,…,10,12}) or ℤ/2 × ℤ/2m (m ∈ {1,2,3,4}). Trusted helper IsInMazurClass (non-hole). Mathlib has Weierstrass curves and point groups but not Mazur's theorem (which uses the modular curves X₁(N)). Candidate from §139 of the Knill survey.
 - Source: B. Mazur, *Modular curves and the Eisenstein ideal*, Publ. IHÉS 47 (1977). Knill, *Some fundamental theorems in mathematics*, §139.

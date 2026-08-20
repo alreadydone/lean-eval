@@ -3,7 +3,11 @@
 Thue–Siegel–Roth theorem (irrationality measure ≤ 2 for algebraic irrationals)
 
 - Problem ID: `thue_siegel_roth`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Every irrational algebraic real is Diophantine: for every ε > 0 there exists C > 0 with C / q^(2+ε) < |x − p/q| for every p ∈ ℤ and q ∈ ℤ_{>0}. Equivalently, the irrationality measure of an algebraic irrational is at most 2. The sharp ∀ ε > 0 form is the content of Roth's theorem; the weaker ∃ ε > 0 form captures only the condition that x is not Liouville, which is the 1844 Liouville theorem already in mathlib. §65 of Knill's *Some Fundamental Theorems in Mathematics*.
 - Source: Klaus Roth, 'Rational approximations to algebraic numbers', Mathematika 2 (1955) 1–20, building on Thue 1909, Siegel 1921, Dyson 1947. Listed as §65 in O. Knill, *Some Fundamental Theorems in Mathematics* (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf).

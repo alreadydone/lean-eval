@@ -3,7 +3,11 @@
 Weak Morse inequalities
 
 - Problem ID: `weak_morse_inequality`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: §40 of Knill's 'Some Fundamental Theorems in Mathematics' (additional statement; the boxed main theorem is the strong Morse inequality). For a Morse function f on a closed smooth finite-dimensional Hausdorff manifold M, b_k(M) ≤ c_k(f) for every k. The Hausdorff (T2Space) hypothesis is essential, as the split-circle counterexample shows. Follows from the strong Morse inequality but is often proved directly via the Morse-Smale CW structure. Mathlib has the smooth-manifold framework, mfderiv, higher Fréchet derivatives, and singularHomologyFunctor but no Morse functions, Morse index, critical-point counts, Betti numbers as a named definition, or the weak Morse inequality. The Challenge ships seven helper definitions.
 - Source: M. Morse, The Calculus of Variations in the Large, AMS Colloq. Publ. 18 (1934). Listed as §40 additional statement in O. Knill, Some Fundamental Theorems in Mathematics (https://people.math.harvard.edu/~knill/graphgeometry/papers/fundamental.pdf).

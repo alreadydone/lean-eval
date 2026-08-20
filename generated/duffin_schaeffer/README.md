@@ -3,7 +3,11 @@
 Duffin-Schaeffer conjecture
 
 - Problem ID: `duffin_schaeffer`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: Mathlib's `addWellApproximable UnitAddCircle δ` is the limsup of the sets of points within distance `δ n` of a point of exact additive order `n`; these order-`n` points are exactly the reduced fractions with denominator `n`. Thus the theorem is the standard Duffin-Schaeffer criterion in radius notation: the limsup set has full Lebesgue measure iff `sum_n phi(n) * δ(n)` diverges. Nonnegativity of `δ` makes divergence equivalent to failure of `Summable`. The unit circle has total volume one.
 - Source: D. Koukoulopoulos and J. Maynard, 'On the Duffin-Schaeffer conjecture', Ann. of Math. 192 (2020), 251-307, https://doi.org/10.4007/annals.2020.192.1.5.

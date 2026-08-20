@@ -3,7 +3,11 @@
 Linnik's theorem (L = 5.5)
 
 - Problem ID: `linnik`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Bolton Bailey/Project Numina
 - Notes: Linnik's theorem with the explicit constant `L = 5.5` due to Heath-Brown (1992): for `a` coprime to `d` with `0 < a < d`, the least prime `p(a, d)` in the progression `a mod d` satisfies `p(a, d) ≤ c · d ^ 5.5` for some absolute constant `c`.
 - Source: Heath-Brown, D.R. (1992), Zero-Free Regions for Dirichlet L-Functions, and the Least Prime in an Arithmetic Progression. Proceedings of the London Mathematical Society, s3-64: 265-338. https://doi.org/10.1112/plms/s3-64.2.265

@@ -3,7 +3,11 @@
 The local-global conjecture for Apollonian circle packings is false
 
 - Problem ID: `annals_local_global_apollonian_circle_packings`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: annals
 - Submitter: Thomas Browning
 - Holes (2): `LocalGlobalApollonianCirclePackings.theorem_1_6` (theorem), `LocalGlobalApollonianCirclePackings.theorem_1_3` (theorem)
 - Source: S. Haag, C. Kertzer, J. Rickards, and K. E. Stange, `The local-global conjecture for Apollonian circle packings is false`, Annals of Math, 200 (2) 2024. Statement taken from https://github.com/ImperialCollegeLondon/AnnalsChallenge (v1.0.0, e32eb14), AnnalsChallenge/AnnalsOfMathematics/2024-200-2-LocalGlobalApollonianCirclePackings.lean

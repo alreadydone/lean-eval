@@ -3,7 +3,11 @@
 Generalized topological Poincaré conjecture in dimensions ≥ 5 (Smale)
 
 - Problem ID: `poincare_high_dim_topological`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: For n ≥ 5, every Hausdorff n-manifold homotopy-equivalent to 𝕊ⁿ is homeomorphic to 𝕊ⁿ. Specialization to n ≥ 5 of mathlib's generalized `proof_wanted ContinuousMap.HomotopyEquiv.nonempty_homeomorph_sphere` in `Mathlib/Geometry/Manifold/PoincareConjecture.lean`. Stephen Smale 1961 (Bull. AMS 66, Ann. of Math. 74) originally for smooth M via the h-cobordism theorem; topological version completed by Newman 1966 and Connell 1967. Smale received the Fields Medal in 1966. Mathlib has the homotopy-equiv / homeo / ChartedSpace scaffolding but no h-cobordism theorem, no handle decompositions, and no Poincaré conjecture in any dimension.
 - Source: S. Smale, Generalized Poincaré's conjecture in dimensions greater than four, Ann. of Math. 74 (1961), 391-406. Topological case: M. H. A. Newman, The engulfing theorem for topological manifolds, Ann. of Math. 84 (1966) and E. H. Connell, A topological h-cobordism theorem for n ≥ 5, Illinois J. Math. 11 (1967). Specialization of `proof_wanted ContinuousMap.HomotopyEquiv.nonempty_homeomorph_sphere` in Mathlib/Geometry/Manifold/PoincareConjecture.lean.

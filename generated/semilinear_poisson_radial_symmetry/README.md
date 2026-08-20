@@ -3,7 +3,11 @@
 Radial symmetry for positive semilinear Poisson solutions
 
 - Problem ID: `semilinear_poisson_radial_symmetry`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Yongxi Lin
 - Source: B. Gidas, W. M. Ni, and L. Nirenberg, Symmetry and related properties via the maximum principle, Comm. Math. Phys. 68 (1979), 209-243. Also stated as Theorem 2 (Radial symmetry) in L. C. Evans, Partial Differential Equations, Section 9 on nonvariational techniques.
 - Informal solution: Use the method of moving planes. Compare u with its reflection across a moving hyperplane.

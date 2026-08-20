@@ -3,7 +3,11 @@
 Balanceable k-bounded partitions
 
 - Problem ID: `balanceable_bounded_partitions`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Julia M. Himmel
 - Source: https://projecteuler.net/problem=772
 

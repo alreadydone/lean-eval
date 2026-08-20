@@ -3,7 +3,11 @@
 Jacobian of a smooth proper curve (Merten challenge)
 
 - Problem ID: `jacobian_challenge_alggeo`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Christian Merten
 - Holes (9): `AlgebraicGeometry.JacobianChallenge.genus` (def), `AlgebraicGeometry.JacobianChallenge.Jacobian` (def), `AlgebraicGeometry.JacobianChallenge.Jacobian.instGrpObj` (def), `AlgebraicGeometry.JacobianChallenge.Jacobian.smoothOfRelativeDimension_genus` (theorem), `AlgebraicGeometry.JacobianChallenge.Jacobian.instIsProper` (theorem), `AlgebraicGeometry.JacobianChallenge.Jacobian.instGeometricallyIrreducible` (theorem), `AlgebraicGeometry.JacobianChallenge.Jacobian.ofCurve` (def), `AlgebraicGeometry.JacobianChallenge.Jacobian.comp_ofCurve` (theorem), `AlgebraicGeometry.JacobianChallenge.Jacobian.exists_unique_ofCurve_comp` (theorem)
 - Source: https://leanprover.zulipchat.com/#narrow/stream/583336-Autoformalization/topic/Jacobian%20challenge/near/587802685

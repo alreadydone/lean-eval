@@ -3,7 +3,11 @@
 Comparison principle for the Dirichlet BVP
 
 - Problem ID: `bvp_comparison`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: 1D maximum principle: -u'' <= -v'' on (0,1) and u <= v at the endpoints implies u <= v on [0,1].
 - Source: Standard maximum-principle argument; Protter-Weinberger.

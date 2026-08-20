@@ -3,7 +3,11 @@
 noncomputable-hole minimal example
 
 - Problem ID: `noncomputable_hole_example`
-- Test Problem: yes
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: no
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Holes (4): `RWidget` (def), `instInhabitedRWidget` (def), `rwidgetPoint` (def), `rwidgetPoint_default` (theorem)
 - Notes: Minimal example exercising noncomputable def/instance holes; the generated Solution.lean delegations must be noncomputable so that honest (noncomputable) submissions compile.

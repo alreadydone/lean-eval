@@ -3,7 +3,11 @@
 Trace Cayley-Hamilton / Newton identity
 
 - Problem ID: `trace_cayley_hamilton_newton`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Kim Morrison
 - Notes: The Newton trace recurrence for the coefficients of the characteristic polynomial: k cₖ + ∑_{j=1}^k tr(Aʲ) c_{k-j} = 0, where χ_A(X) = Xᴺ + c₁ Xᴺ⁻¹ + ⋯ + c_N. The helper charpolyDescendingCoeff packages cₖ as the degree N−k coefficient of Matrix.charpoly (zero for k > N), so the recurrence holds uniformly for all positive k. Mathlib has Cayley-Hamilton (Matrix.aeval_self_charpoly) but not the Newton trace identity relating power sums tr(Aʲ) to the elementary-symmetric charpoly coefficients. Category-(b) candidate.
 - Source: Knill, *Some fundamental theorems in mathematics*, §220.
