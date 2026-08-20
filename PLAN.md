@@ -267,6 +267,8 @@ produced" box:
   unknown), self-reported;
 - compute: wall-clock time, token counts, and estimated cost, with
   subscription vs API noted;
+- the prompt(s) used, optional but encouraged: shared prompts are how
+  techniques spread;
 - free-form notes.
 
 All of this is self-reported and displayed as such. We standardize the
@@ -545,8 +547,9 @@ The client-side tables support sorting and filtering.
   unique solves (problems where that canonical credit identity is the only one
   with an accepted, unretracted solve), with a toggle to switch the ordering
   to total solves. Component models of an ensemble do not separately receive
-  the solve. Each model's card shows both
-  numbers, leading with whichever the current sort uses. There is no combined
+  the solve. Each model's card shows unique, first, and total solve counts (a
+  first solve is the earliest accepted solve of a problem, by acceptance-event
+  order), leading with whichever the current sort uses. There is no combined
   cross-group leaderboard: the groups have different submission policies, so
   their standings are not comparable. The front page shows headline numbers
   per tab instead.
