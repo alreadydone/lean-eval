@@ -64,23 +64,21 @@ The system works, but it's showing strain:
 3. Introduce a **publication policy** for the evaluation groups: submissions
    are private, and released automatically after two months unless the
    submitter opts out.
-4. **Reject copycat submissions** that are substantially identical to prior
-   solutions, including still-embargoed ones.
-5. Validate submissions against **additional independent kernels** from the
+4. Validate submissions against **additional independent kernels** from the
    [Lean Kernel Arena](https://arena.lean-lang.org), and promote checkers that
    meet the required-validation criteria.
-6. Build a **replay queue** that backfills soundness verdicts, re-checking
+5. Build a **replay queue** that backfills soundness verdicts, re-checking
    every historical accepted submission under the expanded kernel set as it
    grows, and computes public per-solution statistics (instruction counts,
    build cost, size) for all accepted submissions, past and future.
-7. Rebuild the **leaderboard** with tabs, unique-solve emphasis, a recent
+6. Rebuild the **leaderboard** with tabs, unique-solve emphasis, a recent
    solutions feed, and per-problem comparison pages.
-8. Open a **software verification** problem group, initially all-draft.
-9. Add an **open conjectures** group, with content and ownership from the
+7. Open a **software verification** problem group, initially all-draft.
+8. Add an **open conjectures** group, with content and ownership from the
    Formal Conjectures project, and a single shared generator across the
    projects.
-10. Keep submission intake live throughout, then replace the old leaderboard
-    rather than maintaining long-term compatibility with it.
+9. Keep submission intake live throughout, then replace the old leaderboard
+   rather than maintaining long-term compatibility with it.
 
 Each goal gets a section below. The
 [Staging and migration](#staging-and-migration) section explains ordering and
@@ -147,18 +145,21 @@ The current catalog grew by accretion. v1 is the first named frozen set in
 the formalization evaluation group: a curated subset that stays fixed, so
 that results are comparable over a meaningful window.
 
-**Curation.** An LLM-assisted audit of the full catalog produces a candidate
-cut list, which I'll review and decide on. The principles:
+**Curation.** v1 does not exist yet: curation decides what *enters* it, and
+once declared, its membership never changes. Nothing is ever removed from a
+frozen set; if v1 turns out too easy, the correction is a harder v2. An
+LLM-assisted audit of the full catalog produces a candidate list, which I'll
+review and decide on. The principles:
 
-- If many people have already solved a problem, we cut it from v1. Saturated
+- A problem that many people have already solved does not enter v1. Saturated
   problems tell us nothing.
 - A leaked or published solution is evidence against inclusion, but not
   determinative on its own.
-- Known or suspected misformalisation risk is a cut (or a fix-then-keep).
+- Known or suspected misformalisation risk excludes a problem until fixed.
 
-**What happens to cut problems.** They stay in the repository and keep
-accepting submissions, but they move to archive status and don't count toward
-v1 standings. Existing solve records are never removed.
+**Problems not selected for v1.** They stay in the repository and keep
+accepting submissions, but carry archive status and don't count toward v1
+standings. Existing solve records are never removed.
 
 **Draft.** Problems added after the freeze enter draft status: solvable and
 listed, but outside v1 standings, promoted into v2 or archived at the next
@@ -352,53 +353,27 @@ Release also permits downstream reuse in Mathlib,
 [LeanPool](https://github.com/vasnesterov/LeanPool), and TauCeti. This plan does
 not assign that downstream work.
 
-## 5. Copycat rejection
+## 5. Copycat detection (deferred)
 
-We've already had submissions that were substantially copies of
-already-public solutions. Under the new policy most solutions eventually
-become public, and unique solves carry more leaderboard weight, so the
-incentive to copy grows.
+We've had submissions that were substantially copies of already-public
+solutions, and I've handled them by hand. An automated rejection scheme
+(normalized compression distance against all prior submissions, calibrated on
+the corpus) was drafted for this plan and cut after review feedback: short
+proofs legitimately converge on near-identical text, a determined cheater can
+rewrite around any similarity measure, and the manual workload so far doesn't
+justify the machinery.
 
-**Measure.** Normalized compression distance (NCD) with zstd. The comparison
-payload consists only of `Submission.lean` and files under `Submission/`, in a
-canonical path order with explicit file separators. A lightweight lexer removes
-comments and normalizes whitespace before compression. Identifier changes are
-left to the compression metric rather than treated as exact renames.
-For compressed size `C`, let
-`Cpair(x,y) = min(C(x ++ sep ++ y), C(y ++ sep ++ x))`; the score is
-`(Cpair(x,y) - min(C(x), C(y))) / max(C(x), C(y))`. The exact normalization,
-separator, zstd version and settings, minimum-size rule, and threshold are
-pinned and published.
+What remains instead: the publication policy makes copying harder to begin
+with (submissions are private, releases are delayed), and the leaderboard's
+emphasis on unique solves means a copied solution earns nothing distinctive.
+Egregious cases keep being handled by hand: an accepted copy receives an
+append-only retraction event and stops counting in standings; the base result
+is not deleted. Building on public prior work (reusing lemmas, following a
+published proof strategy) was never in question; it's what released solutions
+are for.
 
-**Scope.** A new submission for problem P is compared against every previously
-accepted submission for the same statement revision, public or private. The
-acceptance-event order is authoritative when submissions overlap. Matches
-against the same submitter's prior work are not treated as copying, although
-the ordinary deduplication rules still prevent them from minting duplicate
-solves. Model corrections use amendments rather than resubmission. When the
-matched submission is public we name it in the rejection; when it is private,
-the rejection says only that the submission is substantially identical to a
-prior one.
-
-Comparison against private submissions necessarily reveals that a similar
-prior submission exists. The response exposes no score, matched fragments, or
-identity. We accept this limited leakage in order to enforce the same rule
-before and after release.
-
-**Calibration before enforcement.** Since I can decrypt the audit archive, the
-first step is an all-pairs similarity backtest over the full corpus: see where
-known copies land versus legitimate independent solves, and pick thresholds
-from data. We'll only flag submissions that are both large (small proofs
-legitimately converge on near-identical text) and very similar.
-
-**Consequence.** A threshold match is rejected, automatically. There is no
-dispute mechanism. Historical matches found during calibration are reported
-to me. An egregious accepted copy receives an append-only retraction event
-and stops counting in standings; the base result is not deleted.
-
-This targets egregious wholesale copying only. Building on public prior work
-(reusing lemmas, following a published proof strategy) is not what this
-catches, and is not banned; it's what released solutions are for.
+If wholesale copying becomes a practical problem again, the drafted scheme is
+in this document's history and can be revived.
 
 ## 6. Independent kernel validation
 
@@ -621,7 +596,10 @@ In scope, in rough order of arrival:
 
 ## 10. The open conjectures group
 
-The third group is **open conjectures**: statements with no known proof. The
+The third group is **open conjectures**: statements with no known proof. This
+group is **not an evaluation set**, and the site displays and describes it
+differently from the evaluation groups, keeping claims about model capability
+and claims about progress on open problems clearly separate. The
 tab is not branded around any one source, but the content is expected to come
 overwhelmingly from the
 [Formal Conjectures](https://github.com/google-deepmind/formal-conjectures)
@@ -703,16 +681,16 @@ Two interfaces support the migration:
 - Immutable base results remain in lean-eval-submissions. The new site-data
   build combines them with the append-only state events; the old site may
   continue to read only the base results until replacement.
-- New validators start in shadow. The replay queue, extra checkers, and copycat
-  detector run on accepted submissions before any of them affects a verdict.
+- New validators start in shadow. The replay queue and extra checkers run on
+  accepted submissions before either affects a verdict.
 
 **Phase 0, immediately (independent of everything else):**
 
 - Create the state repo and event/materialization skeleton. Stand up the replay
   harness; decrypt and replay the audit archive.
-- Kernel backtesting and copycat calibration use the replay output.
-- Output: corpus-wide soundness report, candidate-checker evidence,
-  similarity thresholds, and the first statistics dataset.
+- Kernel backtesting uses the replay output.
+- Output: corpus-wide soundness report, candidate-checker evidence, and the
+  first statistics dataset.
 
 **Phase 1, before the switchover (problem-set side):**
 
@@ -728,9 +706,6 @@ Two interfaces support the migration:
 - The publication policy takes effect for submissions through the server (the
   server is what collects the acknowledgements and runs the release
   countdown). Backfill, rename, and repair open here too.
-- Copycat rejection turns on as an intake check once calibrated. (If
-  calibration finishes early, it can run as a check in the existing issue
-  pipeline first.)
 - After a four-week deprecation window, issue intake closes.
 
 **Phase 3, the leaderboard:**
@@ -767,44 +742,42 @@ on
 work or on the Zulip threads above for everything else.
 
 The default, for anything nobody claims: I'll point Sol at the bulk of this
-list. The exceptions are 9 and 10, which belong with the Formal Conjectures
-and comparator contributors respectively, and 13, which is human-written by
-design. Human hands also stay on the key ceremony in 6 and on final review of
-trusted problem statements in 11.
+list. The exceptions are 8 and 9, which belong with the Formal Conjectures
+and comparator contributors respectively, and 12, which is human-written by
+design. Human hands also stay on the key ceremony in 5 and on final review of
+trusted problem statements in 10.
 
 1. **Replay harness**: audit-archive restore, original-pin builds, export,
    checker fan-out, statistics capture, queue mechanics.
 2. **Kernel backtesting**: run candidates over the corpus, chase
    disagreements, reconcile our nanoda pin with the arena's, report
    `extra-rec` status to the fast-checker authors, assemble promotion cases.
-3. **Copycat calibration**: all-pairs NCD over the corpus, threshold
-   selection, the intake check.
-4. **v1 audit**: LLM-assisted catalog review producing the candidate cut list
+3. **v1 audit**: LLM-assisted catalog review producing the candidate list
    with evidence (solve counts, known leaks, misformalisation risk).
-5. **Problem metadata**: group, status, visibility, statement revisions,
+4. **Problem metadata**: group, status, visibility, statement revisions,
    frozen-set membership and history, tags and the tag registry (including
    auto-derived topic-area tags and the `annals` backfill), validation, and
    migration of the current catalog.
-6. **Submission server**: Worker, state repo and materializer, operator CLI,
+5. **Submission server**: Worker, state repo and materializer, operator CLI,
    OAuth and agent paths, GitHub App snapshots, amendment/repair records,
    release countdown, archive publication, and the audit-archive key changes
    that automatic release requires.
-7. **Leaderboard v2**: extended site-data schema, canonical model identities,
+6. **Leaderboard v2**: extended site-data schema, canonical model identities,
    client-side tables, tabs, unique-solve standings, recent feed, comparison
    pages.
-8. **Generator extraction**: factor the generator core out of `EvalTools`
+7. **Generator extraction**: factor the generator core out of `EvalTools`
    into its own repo, consumed by lean-eval and the FC importer.
-9. **FC importer**: FC-side, evolving
+8. **FC importer**: FC-side, evolving
    [formal-conjectures#4951](https://github.com/google-deepmind/formal-conjectures/pull/4951)
    to emit lean-eval problem PRs through the shared generator.
-10. **Comparator disproof support**: upstream
+9. **Comparator disproof support**: upstream
    [Auguste's branch](https://github.com/augustepoiroux/comparator/tree/upstream/disproofs),
    resolve the universe questions, then generator/manifest support.
-11. **Software verification problems**: author and review problems for the
+10. **Software verification problems**: author and review problems for the
     draft group; design the verified-calculations execution infrastructure.
-12. **Policy text**: the submitter-facing versions of the publication policy,
-    license acknowledgement, copycat policy, and metadata forms.
-13. **Flavour text review**: uniform informal statements and
+11. **Policy text**: the submitter-facing versions of the publication policy,
+    license acknowledgement, and metadata forms.
+12. **Flavour text review**: uniform informal statements and
     citations/literature background across the catalog, plus hints where
     authors have them (human-written only).
 
