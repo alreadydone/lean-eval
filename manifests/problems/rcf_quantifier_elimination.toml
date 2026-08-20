@@ -1,0 +1,13 @@
+id = "rcf_quantifier_elimination"
+title = "Quantifier elimination and a decision procedure for the theory of real closed fields"
+group = "software-verification"
+status = "draft"
+visible = true
+statement_revision = 1
+tags = []
+module = "LeanEval.ProgramVerification.RealClosedFieldQE"
+holes = ["qe", "isQF_qe", "holds_qe"]
+submitter = "Kim Morrison"
+source = "Tarski, 'A Decision Method for Elementary Algebra and Geometry' (RAND, 1951); Collins, 'Quantifier elimination for real closed fields by cylindrical algebraic decomposition' (1975)."
+notes = "The input domain is infinite, so there is no enumeration route: any implementation of `qe` must contain real algebraic geometry. `isQF_qe` and `holds_qe` are jointly load-bearing; either alone is satisfiable by a triviality (`fun _ => .fals` and `id` respectively). Mathlib has no quantifier elimination anywhere: `Mathlib/ModelTheory/` provides Satisfiability, Types, Skolem and Fraisse but no elimination, and `IsRealClosed` gives the algebra without the decision procedure. Note that `qe` is not hackable via `Classical.choice`, since producing a quantifier-free equivalent noncomputably still requires proving Tarski's theorem. A `valid? : Formula -> Bool` decision-procedure hole was considered and rejected as a one-line cheat; see the module docstring."
+informal_solution = "Cohen-Hormander is the route with the smallest formalization footprint (see Assia Mahboubi and Cyril Cohen, 'Formal proofs in real algebraic geometry: from ordered fields to quantifier elimination', LMCS 8(1:02), 2012, for the Coq development). Cylindrical algebraic decomposition is the practical route but has never been formalized in any system."

@@ -1,0 +1,13 @@
+id = "coc_strong_normalization"
+title = "Strong normalization and consistency for the calculus of constructions with a universe hierarchy"
+group = "software-verification"
+status = "draft"
+visible = true
+statement_revision = 1
+tags = []
+module = "LeanEval.ProgramVerification.CoCStrongNormalization"
+holes = ["typing_polyId", "subject_reduction", "strong_normalization", "consistency"]
+submitter = "Kim Morrison"
+source = "Coquand and Huet, 'The calculus of constructions' (1988); Bruno Barras, 'Auto-validation d'un systeme de preuves avec familles inductives' (PhD, 1999)."
+notes = "A single deep theorem, so there is no definition hole to game: strong normalization requires Girard's reducibility candidates, and the impredicative `Prop` rule `(s, prop, prop)` is what makes a naive inductive-on-types argument fail. `typing_polyId` is an anti-vacuity guard: without it, a mis-stated typing relation admitting nothing would make `strong_normalization` and `consistency` vacuously true. Nothing in the ecosystem covers this: `leanprover/tc` is a reference type checker and `lean4checker` replays environments, but neither proves normalization."
+informal_solution = "Reducibility candidates in the style of Girard, extended to dependent types; see Barras' thesis for the CC and CIC cases. Dropping the `Type` hierarchy to plain CC (only `prop` and `type 0`) is a strictly easier warm-up that keeps the impredicativity difficulty."
