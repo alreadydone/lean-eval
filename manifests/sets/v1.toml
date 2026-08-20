@@ -123,4 +123,3 @@ members = [
   { problem_id = "whitney_embedding", statement_revision = 1 },
   { problem_id = "zhang_bounded_prime_gaps", statement_revision = 1 },
 ]
-
