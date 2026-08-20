@@ -14,6 +14,11 @@ name = "Cli"
 git = "https://github.com/leanprover/lean4-cli"
 rev = "6130a47896ce867c6a4a55373441e59e565bad0f"
 
+[[require]]
+name = "lean-eval-generator"
+git = "https://github.com/leanprover/lean-eval-generator.git"
+rev = "a726789593eeac5c32ad82760061cd5bf6cae662"
+
 [[lean_lib]]
 name = "LeanEval"
 
