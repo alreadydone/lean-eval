@@ -26,7 +26,8 @@ namespace LeanEval.Geometry.KlartagPacking
 /-- Klartag's theorem. In the statement, the ellipsoid E is realized as the image of a ball
 under a linear map, which we do not require to be of full rank, since if it is not of full
 rank, then the volume of E is zero and the conclusion is not satisfied. -/
-@[eval_problem] theorem klartag_packing : ∃ c : ℝ, 0 < c ∧ ∀ n : ℕ,
+@[eval_problem]
+theorem klartag_packing : ∃ c : ℝ, 0 < c ∧ ∀ n : ℕ,
     let V := EuclideanSpace ℝ (Fin (n + 1))
     ∃ φ : V →ₗ[ℝ] V, let E := φ '' Metric.ball (0 : V) 1
       (MeasureTheory.volume E : EReal) = c * n ^ 2 ∧
