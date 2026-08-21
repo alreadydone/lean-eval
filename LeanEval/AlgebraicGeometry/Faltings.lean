@@ -60,7 +60,8 @@ instance : ValuationRing v := inferInstanceAs (ValuationRing v.toValuationSubrin
 variable {F}
 
 /-- [Stichtenoth, Corollary 1.3.4] (finitely many poles). -/
-@[eval_problem] theorem finite_setOf_place_notMem [BundledFunctionField K F] (x : F) :
+@[eval_problem]
+theorem finite_setOf_place_notMem [BundledFunctionField K F] (x : F) :
     {v : Place K F | x ∉ v}.Finite := by
   sorry
 
