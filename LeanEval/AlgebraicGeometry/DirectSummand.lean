@@ -56,6 +56,13 @@ instance {C : Type*} [Category* C] {J : GrothendieckTopology C} (R : Sheaf J Rin
     (SheafOfModules.evaluation R X).Additive where
   map_add := rfl
 
+/-- The composite of evaluation at `⊤` with restriction of scalars is additive. Both factors
+are additive, but the generic `Functor.Additive` instance for a composite does not fire at this
+elaborated form, so state it directly. -/
+instance (X : Scheme) {S : Type*} [Ring S] (φ : S →+* Γ(X, ⊤)) :
+    (SheafOfModules.evaluation X.ringCatSheaf ⟨⊤⟩ ⋙ ModuleCat.restrictScalars φ).Additive :=
+  ⟨rfl⟩
+
 @[eval_problem]
 theorem derived_direct_summand [HasDerivedCategory (ModuleCat A)]
     (X : Scheme) (f : X ⟶ Spec (.of A)) [IsProper f] (surj : Function.Surjective f)
