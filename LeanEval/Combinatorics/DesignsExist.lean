@@ -35,7 +35,7 @@ def DivisibilityCondition (n q r lam : ℕ) : Prop :=
 
 /-- Existence of designs. Theorem 0.1 in Kalai's Bourbaki notes. -/
 @[eval_problem]
-theorem keevash (q r lam : ℕ+) (hrq : r ≤ q) :
+theorem keevash (q r lam : ℕ+) (hrq : r < q) :
     ∃ N : ℕ, ∀ n > N, DivisibilityCondition n q r lam → Nonempty (Design (Fin n) q r lam) := by
   sorry
 
@@ -51,7 +51,7 @@ theorem steiner_triple_asymptotics :
 /-- Existence of resolvable designs (for which the set of blocks can be partitioned into partitions.
 Theorem 1.1 in *The existence of designs II*. -/
 @[eval_problem]
-theorem keevash_resolvable (q r lam : ℕ+) (hrq : r ≤ q) :
+theorem keevash_resolvable (q r lam : ℕ+) (hrq : r < q) :
     ∃ N : ℕ, ∀ n > N, DivisibilityCondition n q r lam → (q : ℕ) ∣ n →
       ∃ d : Design (Fin n) q r lam, ∃ p : Partition d.blocks,
         ∀ s ∈ p, ∃ p' : Partition (.univ : Set (Fin n)), p' = s := by
