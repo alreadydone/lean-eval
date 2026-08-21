@@ -1,4 +1,7 @@
 import Mathlib
+import Lake.Toml
+import Lake.Util.Message
+import Lean
 import Submission
 
 theorem mihailescu {x y m n : ℕ}

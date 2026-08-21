@@ -2,7 +2,6 @@ import ChallengeDeps
 
 open LeanEval.Geometry.MostowRigidity
 open MeasureTheory
-open MeasureTheory
 
 theorem mostow_rigidity (n : ℕ) (hn : 3 ≤ n) (Γ Λ : Subgroup (PO n 1))
     (disc_Γ : IsDiscrete (SetLike.coe Γ)) (disc_Λ : IsDiscrete (SetLike.coe Λ))

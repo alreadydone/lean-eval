@@ -3,7 +3,11 @@
 Topological reconstruction theorems for varieties
 
 - Problem ID: `kollar_lieblich_olsson_sawin`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Junyan Xu
 - Source: János Kollár, Max Lieblich, Martin Olsson, and Will Sawin. The Zariski topology, linear systems, and algebraic varieties.
 
@@ -13,8 +17,10 @@ trusted benchmark and fixed by the repository.
 Write your solution in `Submission.lean` and any additional local modules under
 `Submission/`.
 
-Participants may use Mathlib freely. Any helper code not already available in
-Mathlib must be inlined into the submission workspace.
+Participants may use declarations from the existing Mathlib imports. Broadening
+the import header (especially to `import Mathlib`) can change elaboration of the
+fixed statement; any added import must leave `lake build Solution` green. Helper
+code not available through compatible imports must be inlined into the workspace.
 
 Multi-file submissions are allowed through `Submission.lean` and additional local
 modules under `Submission/`.

@@ -3,7 +3,11 @@
 Adams: S^n is an H-space iff n = 0, 1, 3, 7
 
 - Problem ID: `hSpace_sphere_iff`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Vasily Ilin
 - Notes: Adams' Hopf-invariant-one theorem in its H-space formulation, stated against Mathlib's HSpace class. Mathlib's HSpace is the strictly-pointed variant (mu (e, e) = e holds strictly and the two-sided unit homotopies are rel the basepoint), a priori stronger than the classical homotopy-unital H-space; the iff is still exactly true: the forward direction follows a fortiori from Adams' theorem, which rules out even homotopy-unital multiplications, and the reverse direction transports the multiplications on the unit spheres of the reals, complexes, quaternions, and octonions, whose strict two-sided units make the required homotopies reflexive. Note that Mathlib has no octonions, so the reverse direction at n = 7 already requires building the octonion composition algebra, including norm multiplicativity. Both directions are forced by the iff, and for the forward direction the elementary exclusions (cup products for even n, Adem's Steenrod-operation argument reducing to n = 2^k - 1) still leave infinitely many cases n = 15, 31, 63, ... that need the full Hopf-invariant-one non-existence.
 - Source: J. F. Adams, 'On the non-existence of elements of Hopf invariant one', Ann. of Math. 72 (1960), 20-104; J. F. Adams and M. F. Atiyah, 'K-theory and the Hopf invariant', Quart. J. Math. Oxford 17 (1966), 31-38. See also A. Hatcher, 'Algebraic Topology', Section 4.B.
@@ -15,8 +19,10 @@ trusted benchmark and fixed by the repository.
 Write your solution in `Submission.lean` and any additional local modules under
 `Submission/`.
 
-Participants may use Mathlib freely. Any helper code not already available in
-Mathlib must be inlined into the submission workspace.
+Participants may use declarations from the existing Mathlib imports. Broadening
+the import header (especially to `import Mathlib`) can change elaboration of the
+fixed statement; any added import must leave `lake build Solution` green. Helper
+code not available through compatible imports must be inlined into the workspace.
 
 Multi-file submissions are allowed through `Submission.lean` and additional local
 modules under `Submission/`.

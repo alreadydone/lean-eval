@@ -3,7 +3,11 @@
 Serre finiteness for homotopy groups of spheres
 
 - Problem ID: `pi_sphere_infinite_iff`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Vasily Ilin
 - Notes: A two-way characterization of infinitude: pi_k(S^n) is infinite exactly at k = n and, for even n, at k = 2n-1 (phrased as k + 1 = 2*n to avoid truncated subtraction). The forward direction packages all of Serre's finiteness statements; the backward direction requires exhibiting infinitely many homotopy classes, i.e. degree theory for k = n and a Hopf-invariant or Whitehead-product argument for k = 2n-1 with n even. Quantifying over all k means no finiteness case can be dodged. The hypothesis 1 <= n is necessary: at n = k = 0 the right-hand side holds but pi_0(S^0) is a two-element set. Explicit basepoints follow LeanEval.Topology.HomotopyGroups.
 - Source: J.-P. Serre, 'Homologie singuliere des espaces fibres. Applications', Ann. of Math. 54 (1951), 425-505; J.-P. Serre, 'Groupes d'homotopie et classes de groupes abeliens', Ann. of Math. 58 (1953), 258-294. See also A. Hatcher, 'Spectral Sequences in Algebraic Topology', Theorem 1.21.
@@ -15,8 +19,10 @@ trusted benchmark and fixed by the repository.
 Write your solution in `Submission.lean` and any additional local modules under
 `Submission/`.
 
-Participants may use Mathlib freely. Any helper code not already available in
-Mathlib must be inlined into the submission workspace.
+Participants may use declarations from the existing Mathlib imports. Broadening
+the import header (especially to `import Mathlib`) can change elaboration of the
+fixed statement; any added import must leave `lake build Solution` green. Helper
+code not available through compatible imports must be inlined into the workspace.
 
 Multi-file submissions are allowed through `Submission.lean` and additional local
 modules under `Submission/`.

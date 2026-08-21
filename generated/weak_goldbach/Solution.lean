@@ -1,4 +1,7 @@
 import Mathlib
+import Lake.Toml
+import Lake.Util.Message
+import Lean
 import Submission
 
 theorem weak_goldbach (n : ℕ) (hn : 5 < n) (hodd : Odd n) :

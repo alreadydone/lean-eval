@@ -3,7 +3,11 @@
 Mihăilescu's theorem
 
 - Problem ID: `mihailescu`
-- Test Problem: no
+- Group: `formalization-evaluation`
+- Status: `draft`
+- Visible: yes
+- Statement Revision: 1
+- Tags: none
 - Submitter: Vasily Ilin
 - Notes: Mihăilescu's theorem (formerly Catalan's conjecture): if x and y are positive natural numbers, m and n are natural numbers greater than 1, and x^m = y^n + 1, then x = 3, y = 2, m = 2, and n = 3. Writing the equation with addition avoids the truncation semantics of subtraction on natural numbers. Mathlib has infrastructure for cyclotomic fields and units but no proof of Catalan's conjecture.
 - Source: P. Mihăilescu, Primary cyclotomic units and a proof of Catalan's conjecture, Journal für die reine und angewandte Mathematik 572 (2004), 167–195, https://doi.org/10.1515/crll.2004.048.
@@ -15,8 +19,10 @@ trusted benchmark and fixed by the repository.
 Write your solution in `Submission.lean` and any additional local modules under
 `Submission/`.
 
-Participants may use Mathlib freely. Any helper code not already available in
-Mathlib must be inlined into the submission workspace.
+Participants may use declarations from the existing Mathlib imports. Broadening
+the import header (especially to `import Mathlib`) can change elaboration of the
+fixed statement; any added import must leave `lake build Solution` green. Helper
+code not available through compatible imports must be inlined into the workspace.
 
 Multi-file submissions are allowed through `Submission.lean` and additional local
 modules under `Submission/`.
