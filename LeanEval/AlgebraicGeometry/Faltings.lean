@@ -89,7 +89,7 @@ def Adele.principal [BundledFunctionField K F] : F →+* Adele K F where
 variable (F)
 
 instance [BundledFunctionField K F] : Algebra F (Adele K F) where
-  smul x a := ⟨x • a, (.principal K x * a).2⟩
+  smul x a := ⟨x • a, (Adele.principal K x * a).2⟩
   algebraMap := Adele.principal K
   commutes' _ _ := mul_comm ..
   smul_def' _ _ := rfl
