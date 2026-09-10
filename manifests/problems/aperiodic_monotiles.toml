@@ -1,0 +1,15 @@
+id = "aperiodic_monotiles"
+title = "Aperiodic monotiles"
+group = "formalization-evaluation"
+status = "active"
+visible = true
+statement_revision = 1
+tags = []
+module = "LeanEval.Geometry.AperiodicMonotiles"
+holes = ["isAperiodic_tilingBy", "isAperiodic_chiralTilingBy"]
+submitter = "Junyan Xu"
+
+[[status_history]]
+status = "active"
+effective_date = "2026-09-11"
+reason = "policy"
