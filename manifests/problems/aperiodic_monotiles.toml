@@ -6,7 +6,7 @@ visible = true
 statement_revision = 1
 tags = []
 module = "LeanEval.Geometry.AperiodicMonotiles"
-holes = ["isAperiodic_tilingBy", "isAperiodic_chiralTilingBy"]
+holes = ["aperiodic_tilingBy", "aperiodic_chiralTilingBy"]
 submitter = "Junyan Xu"
 
 [[status_history]]
