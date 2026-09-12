@@ -146,7 +146,7 @@ invalidate these bindings. Section 5.2 records the deployed runtime separately.
 | Repository | Durable checkpoint | Protection state |
 | --- | --- | --- |
 | `lean-eval` | Completion-plan and runbook checkpoint `59c0c18b2d14015589927b6e810386025c93ba4b` | Required `verify` |
-| `lean-eval-submissions` | Retained-State binding `36e405e558be69d50e3093d3e188d24d6fc7cfa1`; replay packet `d26a3090a338358915cc94651ec7efddde71d241`; protected main `b686eb49743ff5340a34801c0f8f36d921aa9094`; deployed production Worker `6e0aeb2b5c71fb857f09feff6172c4ee7bdfae08` | Required `verify` |
+| `lean-eval-submissions` | Protected main and deployed production Worker `0aef118adbe2e2e48917827839c6b37714cc7c50` | Required `verify` |
 | `lean-eval-leaderboard` | Protected and deployed main `939d69c88292358adf60b124f29605215a1e422a` | Required `build`; exact Pages deployment and live readback complete |
 | `lean-eval-state` | Retained-baseline checkpoint `76b3b3e54f4be69161a00cd81576a58df8eae815` | Required `validate`; append-only descendants allowed |
 | `lean-eval-state-staging` | Launch-acceptance checkpoint `0849a95026ea3491ec55f1e0ef3b6ff2dff00fd5` | Required `validate`; append-only descendants allowed |
@@ -157,36 +157,18 @@ invalidate these bindings. Section 5.2 records the deployed runtime separately.
 ### 5.2 Deployed services
 
 Production serves deployed submissions implementation
-`6e0aeb2b5c71fb857f09feff6172c4ee7bdfae08` with durable intake and exactly
-the approved lifecycle routes enabled; protected `main`
-`b686eb49743ff5340a34801c0f8f36d921aa9094` retains the replay packet and adds
-bounded exact-shape private poll-response retries. Deployment, CI, readiness,
-health, non-mutating authorization denial, and protected-State validation pass.
+`0aef118adbe2e2e48917827839c6b37714cc7c50` with durable intake and exactly
+the approved lifecycle routes enabled. Deployment, CI, readiness, health, and
+protected-State validation pass.
 Staging intake and public lifecycle routes remain disabled, with its promotion
 canary enabled. Model consolidation, publication opt-out, production promotion
 canary, and general replay remain disabled.
 
-The source-App admission repair, private replay stream transfer, and bound
-start diagnostics are included in the launch commit. The exact post-repair
-private replay canary is terminal accepted; its credential, artifact, and
-temporary-executor cleanup readbacks pass. The post-launch replay packet was
-protected at submissions `d26a3090a338358915cc94651ec7efddde71d241`.
-Protected main `b686eb49743ff5340a34801c0f8f36d921aa9094` updates the current private
-controller binding to implementation `7c79adcfe020c7ab2258662647dd5518358ae075`
-and workflow SHA-256
-`0d86af8b627ca474fc882ef6f93996a29099d9349e2700d84c5b4aa4acf34c78`.
-At activation State checkpoint
-`4fae55f7699e80d5b50314cf678bcf6caa020ad8`, the retained queues contained
-161 public and 630 private queued entries. The last all-terminal checkpoint
-before the current runs, protected State
-`e5751a5b22b5663e1cdad7d87e9fa6f551852b40`, public accounting is 23
-accepted, one terminal failed, and 150 queued; private accounting is 14
-accepted, three terminal failed, one retryable failure, and 621 queued. Both
-controller variables are true, and exactly one current run in each sustained
-lane is active on protected submissions `main`. The private non-replenishing
-proof is terminal accepted at protected State
-`24bcb65c8849b95f569c8ee037503049c7fe568f`; its source-free artifact,
-credential scrub, sandbox destruction, and temporary-executor deletion pass.
+The frozen v1 public and private replay scopes are terminal. Production State
+validates with no historical replay running, controller variables are absent,
+and no task-scoped private Worker or container application remains. Temporary
+replay controllers and qualification machinery have been removed; canonical
+archives, plans, pins, schemas, and terminal State remain for reproducibility.
 
 Leaderboard commit `939d69c88292358adf60b124f29605215a1e422a` is protected and
 deployed. The live submit entry directs users to the production service,
@@ -205,10 +187,10 @@ The server-primary entry is live. The overlap began
 - [x] Read staging and production intake health.
 - [x] Read staging and production broker/replay health and current versions.
 - [x] Verify production serves deployed implementation
-      `6e0aeb2b5c71fb857f09feff6172c4ee7bdfae08` and reports durable intake plus
+      `0aef118adbe2e2e48917827839c6b37714cc7c50` and reports durable intake plus
       exactly the approved lifecycle routes.
 - [x] Verify general replay is disabled and historical replay-controller
-      variables are present only for an active bounded lane.
+      variables are absent.
 - [x] Verify automatic publication remains live.
 - [x] Verify the deployed launch Worker and its release, archive, and
       retained-State checkpoints form one coherent unit.
@@ -297,8 +279,8 @@ The bounded final core smoke, all-false restoration, validation, and fixture
 cleanup are complete.
 Launch restore commit `39b2e67f7583926a4f1d66b723b5d4cf4756dd32`
 completed the production launch. Current deployed descendant
-`6e0aeb2b5c71fb857f09feff6172c4ee7bdfae08` retains that contract and adds the
-reviewed private-replay correction. Its production deployment and exact live
+`0aef118adbe2e2e48917827839c6b37714cc7c50` retains that contract. Its
+production deployment and exact live
 readbacks pass; later documentation-only commits do not by themselves redeploy
 that runtime.
 
@@ -435,7 +417,7 @@ green staging run to substitute for launch readiness.
 The compact launch packet is protected in submissions migration head
 `7050f0e100323070375bc58c3510ec322cfcce1e`. The reviewed launch restore is
 `39b2e67f7583926a4f1d66b723b5d4cf4756dd32`; deployed descendant
-`6e0aeb2b5c71fb857f09feff6172c4ee7bdfae08` retains its contract. Exact
+`0aef118adbe2e2e48917827839c6b37714cc7c50` retains its contract. Exact
 deployed-commit, capability, authorization-denial, and protected-State readbacks
 pass.
 
@@ -468,7 +450,7 @@ write-free no-op, and enabled no-due-work pass all succeed.
       user-facing forms and documentation.
 - [x] Keep model consolidation disabled.
 - [x] Verify effective public health and one non-mutating authorization denial
-      against deployed submissions `6e0aeb2b5c71fb857f09feff6172c4ee7bdfae08`.
+      against deployed submissions `0aef118adbe2e2e48917827839c6b37714cc7c50`.
 - [x] Retain a separately reversible feature flag for every enabled family and
       verify the all-false rollback; do not substitute another staging matrix
       for this production readback.
@@ -477,7 +459,7 @@ write-free no-op, and enabled no-due-work pass all succeed.
 
 - [x] Enable production intake durably at launch restore
       `39b2e67f7583926a4f1d66b723b5d4cf4756dd32`; verify current deployed
-      descendant `6e0aeb2b5c71fb857f09feff6172c4ee7bdfae08` retains it.
+      descendant `0aef118adbe2e2e48917827839c6b37714cc7c50` retains it.
 - [x] Verify the exact active version, durable state, and
       protected State coherence.
 - [x] Submit one tightly controlled production canary only if it was part of
@@ -687,7 +669,7 @@ checker or persistent qualification machinery may be added to this phase.
 
 Production launch restore `39b2e67f7583926a4f1d66b723b5d4cf4756dd32`
 is live through deployed descendant
-`6e0aeb2b5c71fb857f09feff6172c4ee7bdfae08` with durable intake. Full
+`0aef118adbe2e2e48917827839c6b37714cc7c50` with durable intake. Full
 completion is deliberately calendar-bound and occurs only when every
 completion-plan criterion is actually satisfied.
 
@@ -703,7 +685,7 @@ Update this table in place; do not append a history beneath it.
 | Credential boundary | Complete | — |
 | 3. Final staging acceptance | Complete | — |
 | Production launch readiness | Complete | — |
-| 4. Launch | Complete: backend `6e0aeb2b5c71fb857f09feff6172c4ee7bdfae08` live with durable intake; leaderboard `939d69c88292358adf60b124f29605215a1e422a` protected, deployed, and read back | — |
+| 4. Launch | Complete: backend `0aef118adbe2e2e48917827839c6b37714cc7c50` live with durable intake; leaderboard `939d69c88292358adf60b124f29605215a1e422a` protected, deployed, and read back | — |
 | 5. Four-week overlap | In progress; automatic publication, durable server intake, and server-primary entry live; calendar-bound; future cutoff variable installed | Keep issue intake open through at least `2026-09-30T06:57:10Z`; the conditional closure notice matures `2026-09-16T23:06:35Z`, and the canary automatic-release checkpoint is `2026-11-02T03:50:01.002Z` |
 | 6. Historical completion | Complete: v1 public and private queues are terminal; no replay or task-scoped private resource remains; temporary controllers and qualification machinery are removed | — |
 | 7. Remaining product completion | In progress | Open problems and editorial work are complete; final live release/replay presentation and issue closure retain their calendar, stability, adoption, and readiness gates |
