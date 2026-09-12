@@ -52,10 +52,11 @@ intake also remains open during the overlap.
 
 The whole overhaul is complete only after production launch **and**:
 
-- every historical accepted result at the final cutoff has either a terminal
-  official-kernel-plus-nanoda replay record or a reviewed unavailable reason;
-- recoverable historical private archives have the required per-submission
-  envelope for replay;
+- every legacy accepted result whose problem belongs to the frozen 128-problem
+  v1 release set has either a terminal official-kernel-plus-nanoda replay
+  record or a reviewed unavailable reason;
+- recoverable historical private archives in that v1 scope have the required
+  per-submission envelope for replay;
 - the neutral open-problems tab exists (it may be empty initially);
 - the retained software-verification and editorial work is in its agreed
   state; and
@@ -120,6 +121,10 @@ The following remain part of the overhaul.
 
 ### 3.4 Historical replay and statistics
 
+- Historical migration in this overhaul is limited to legacy accepted Results
+  whose problem belongs to the frozen 128-problem v1 release set. Historical
+  Results outside that set are retained as data but are not an overhaul
+  completion requirement.
 - Exact original source, benchmark, toolchain, and component pins.
 - The ordinary Lean build/elaboration path (the official kernel) and nanoda.
 - Terminal distinctions between acceptance, checker rejection, orchestration
@@ -355,19 +360,21 @@ announced. During the overlap:
 Historical work may proceed in parallel with the overlap and other completion
 lanes, but it does not delay initial production launch.
 
-### 9.1 Freeze and classify the final corpus
+### 9.1 Freeze and classify the v1 corpus
 
-- At the announced issue-intake cutoff, generate the append-only delta from
-  the retained baseline inventory.
-- Every accepted result must be classified as public-source replayable,
-  private-archive replayable, or unavailable for a reviewed reason.
+- Freeze the legacy Results whose problem belongs to the 128-problem v1
+  release set. Record the exact problem-set and queue bindings so a later
+  Results-only commit cannot silently expand the migration.
+- Every accepted v1 result in that frozen scope must be classified as
+  public-source replayable, private-archive replayable, or unavailable for a
+  reviewed reason.
 - Use the smallest existing State event mechanism capable of recording the
   terminal disposition. Do not create a new aggregate transaction system unless
   an actual atomicity requirement is demonstrated.
 
 ### 9.2 Private archive migration
 
-- Reconcile the recoverable private archive/result bindings and the explicit
+- Reconcile the recoverable v1 private archive/result bindings and the explicit
   orphan set.
 - Use a dedicated migration Wrap role and custodian-supplied legacy identity.
 - Rewrap the per-submission data key without changing archive bytes or stable
@@ -384,8 +391,11 @@ lanes, but it does not delay initial production launch.
 - Publish the redacted verdict and measurement projection to the leaderboard.
 - Retain versioned checker identity/revision fields for future replay projects.
 
-Full historical completion means every result at the final cutoff has a
-terminal replay record or reviewed unavailable reason.
+Historical completion for this overhaul means every legacy result in the
+frozen v1 release scope has a terminal replay record or reviewed unavailable
+reason. Non-v1 historical Results and later replay campaigns are explicitly
+deferred; their canonical source/archive and checker-version fields remain so
+future work does not require another archive migration.
 
 ## 10. Open problems, editorial work, and retirement
 
@@ -416,7 +426,8 @@ After at least four weeks of announced overlap, close issue intake only if:
   presentation are stable;
 - submitter adoption is adequate;
 - at least two weeks of public closure notice has been given; and
-- the final historical cutoff and append-only delta have been recorded.
+- the frozen v1 historical scope and its terminal dispositions remain
+  recorded.
 
 ## 11. Repository and authorization boundary
 
@@ -504,8 +515,8 @@ The lifecycle overhaul is finished when all of the following are true:
   functions are available;
 - the leaderboard correctly exposes lifecycle, statements, standings,
   metadata, statistics, and released solutions;
-- every historical accepted result at the final cutoff has a terminal replay
-  or unavailable disposition using the official kernel and nanoda;
+- every legacy accepted result in the frozen v1 release scope has a terminal
+  replay or unavailable disposition using the official kernel and nanoda;
 - the neutral open-problems tab exists, even if empty;
 - the software-verification drafts and agreed editorial state are visible;
 - the four-week overlap and notice gates have passed and issue intake is
