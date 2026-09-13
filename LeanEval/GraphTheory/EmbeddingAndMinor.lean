@@ -6,6 +6,8 @@ import EvalTools.Markers
 
 This file states four theorems about embedding of graphs in surfaces:
 the Ringel–Youngs theorem, the four color theorem, Wagner's theorem, and Kuratowski's theorem.
+Finiteness assumptions in these theorems are probably unnecessary.
+
 It also defines the graph minor relation and state the Robertson–Seymour theorem.
 -/
 
@@ -127,7 +129,10 @@ noncomputable def iSupChromaticNumber (X : Type*) [TopologicalSpace X] : ℕ∞ 
 
 /-- The **Ringle–Youngs theorem** (1068, formerly **Heawood conjecture**), which determines the
 chromatic number of every closed surface (except the sphere, which is later work of Appel and Haken
-in 1976). References:
+in 1976). Allowing surfaces with boundaries (e.g. replacing `OrientableRel g 0` by
+`OrientableRel g n`) should not change the chromatic number.
+
+References:
 Ringel, G. and Youngs, J. W. T. "Solution of the Heawood Map-Coloring Problem."
 Proc. Nat. Acad. Sci. USA 60, 438-445, 1968.
 https://en.wikipedia.org/wiki/Heawood_conjecture
