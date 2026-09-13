@@ -68,7 +68,8 @@ def IsMinor (G' : SimpleGraph V') : Prop :=
 variable {G} (n : G.edgeSet → ℕ)
 
 /-- To subdivide a simple graph, we assign a natural number nₑ to each edge `e` of the graph, and
-divide the edge `e` into a path of length `nₑ + 1` (`nₑ = 0` means that the edge is not subdivided).
+divide the edge `e` into a path of length `nₑ + 1` (`nₑ = 0` means that the edge is not subdivided,
+and the `nₑ = -1` case can be used to define contraction).
 The subdivided graph can be obtained by identifying vertices of the disjoint union of the original
 graph (with all edges removed) together with one path graph (on `Fin (nₑ + 2)`) for each edge `e`
 of the original graph. `SubdivideType n` is the vertex type of the disjoint union. -/
