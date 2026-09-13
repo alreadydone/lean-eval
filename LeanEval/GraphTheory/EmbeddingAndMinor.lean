@@ -34,13 +34,12 @@ variable {V V' : Type*} (G : SimpleGraph V) (G' : SimpleGraph V')
 /-- The disjoint union of vertices and edges of a simple graph (every edge appears twice in
 opposite orientation). -/
 abbrev VertexEdgeSpace : Type _ :=
-  (Σ _ : V, Unit) ⊕ (Σ _ : {e : V × V // G.Adj e.1 e.2}, unitInterval)
+  (Σ _ : V, Unit) ⊕ (Σ _ : G.edgeSet, unitInterval)
 
 /-- The relation identifying repeated edges and endpoints of edges with vertices. -/
 inductive SpaceRel : G.VertexEdgeSpace → G.VertexEdgeSpace → Prop
-  | edge_fst e : SpaceRel (.inr ⟨e, 0⟩) (.inl ⟨e.1.1, ()⟩)
-  | edge_snd e : SpaceRel (.inr ⟨e, 1⟩) (.inl ⟨e.1.2, ()⟩)
-  | edge e t : SpaceRel (.inr ⟨e, t⟩) (.inr ⟨⟨(_, _), G.symm.1 _ _ e.2⟩, unitInterval.symm t⟩)
+  | fst e : SpaceRel (.inr ⟨e, 0⟩) (.inl ⟨e.1.out.1, ()⟩)
+  | snd e : SpaceRel (.inr ⟨e, 1⟩) (.inl ⟨e.1.out.2, ()⟩)
 
 /-- The topological space associated to a simple graph. -/
 abbrev Space : Type _ := Quot G.SpaceRel
@@ -77,8 +76,8 @@ def SubdivideType : Type _ := V ⊕ Σ e : G.edgeSet, Fin (n e + 2)
 
 /-- The relation to identify vertices of the disjoint union. -/
 inductive SubdivideRel : SubdivideType n → SubdivideType n → Prop
-  | mk_fst e : SubdivideRel (.inr ⟨e, 0⟩) (.inl e.1.out.fst)
-  | mk_snd e : SubdivideRel (.inr ⟨e, .last _⟩) (.inl e.1.out.snd)
+  | fst e : SubdivideRel (.inr ⟨e, 0⟩) (.inl e.1.out.fst)
+  | snd e : SubdivideRel (.inr ⟨e, .last _⟩) (.inl e.1.out.snd)
 
 /-- The subdivided simple graph. -/
 def subdivide : SimpleGraph (Quot (SubdivideRel n)) :=
@@ -139,13 +138,14 @@ Proc. Nat. Acad. Sci. USA 60, 438-445, 1968.
 https://en.wikipedia.org/wiki/Heawood_conjecture
 https://mathworld.wolfram.com/HeawoodConjecture.html -/
 @[eval_problem]
-theorem ringel_youngs :
-    let γ (g : ℝ) := Nat.floor ((7 + √(48 * g + 1)) / 2)
-    (∀ g : ℕ+, iSupChromaticNumber (Quot (OrientableRel g 0)) = γ g) ∧
-    ∀ p : ℕ+, iSupChromaticNumber (Quot (NonOrientableRel p 0)) = if p = 2 then 6 else γ (p / 2) := by
+theorem ringel_youngs (g : ℕ+) :
+    let γ (n : ℝ) := Nat.floor ((7 + √(48 * n + 1)) / 2)
+    iSupChromaticNumber (Quot (OrientableRel g 0)) = γ g ∧
+    iSupChromaticNumber (Quot (NonOrientableRel g 0)) = if g = 2 then 6 else γ (g / 2) := by
   sorry
 
-/-- The four color theorem. -/
+/-- The four color theorem. See https://en.wikipedia.org/wiki/Four_color_theorem and the
+Rocq proof https://github.com/rocq-community/fourcolor. -/
 @[eval_problem]
 theorem four_color : iSupChromaticNumber (ℝ × ℝ) = 4 := by
   sorry
