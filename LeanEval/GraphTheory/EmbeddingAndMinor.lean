@@ -6,7 +6,6 @@ import EvalTools.Markers
 
 This file states four theorems about embedding of graphs in surfaces:
 the Ringel–Youngs theorem, the four color theorem, Wagner's theorem, and Kuratowski's theorem.
-Finiteness assumptions in these theorems are probably unnecessary.
 
 It also defines the graph minor relation and state the Robertson–Seymour theorem.
 -/
@@ -43,9 +42,6 @@ inductive SpaceRel : G.VertexEdgeSpace → G.VertexEdgeSpace → Prop
 
 /-- The topological space associated to a simple graph. -/
 abbrev Space : Type _ := Quot G.SpaceRel
-
-/-- A simple graph is planar if it can be embedded into the plane. -/
-def Planar : Prop := ∃ f : G.Space → ℝ × ℝ, Topology.IsEmbedding f
 
 /-- A function is adapted to a graph if it has connected fibers.
 From https://github.com/leanprover-community/mathlib4/pull/36210. -/
@@ -164,11 +160,15 @@ that is a subdivision of K₅ or K_{3,3}.
 as a minor. Reference: Wagner, K. "Über eine Eigenschaft der ebenen Komplexe."
 Math. Ann. 114, 570-590, 1937.
 
-According to https://en.wikipedia.org/wiki/Kuratowski%27s_theorem, both theorems are equivalent. -/
+According to https://en.wikipedia.org/wiki/Kuratowski%27s_theorem, both theorems are equivalent.
+
+Finiteness of the vertex set can probably be relaxed to countability; uncountable sets do not
+embed discretely in an Euclidean space. -/
 @[eval_problem]
 theorem wagner_kuratowski {V : Type*} (G : SimpleGraph V) [Finite V] :
     List.TFAE
-    [ G.Planar, ¬ K5.IsMinor G ∧ ¬ K33.IsMinor G,
+    [ ∃ f : G.Space → ℝ × ℝ, Topology.IsEmbedding f,
+      ¬ K5.IsMinor G ∧ ¬ K33.IsMinor G,
       ∀ (S : G.Subgraph) (n5 : K5.edgeSet → ℕ) (n33 : K33.edgeSet → ℕ),
         IsEmpty ((K5.subdivide n5).Iso S.coe) ∧ IsEmpty ((K33.subdivide n33).Iso S.coe) ] := by
   sorry
