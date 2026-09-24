@@ -42,7 +42,7 @@ noncomputable def radonHurwitz (n : ℕ) : ℕ :=
 is ρ(n) - 1. -/
 @[eval_problem]
 theorem maxNumVecFieldsSphere_eq_radonHurwitz (n : ℕ+) :
-    maxNumVecFieldsSphere n = radonHurwitz n := by
+    maxNumVecFieldsSphere n = radonHurwitz n - 1 := by
   sorry
 
 end LeanEval.Topology.VectorFieldsSphere
