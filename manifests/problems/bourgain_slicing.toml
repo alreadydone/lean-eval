@@ -5,7 +5,6 @@ status = "active"
 visible = true
 statement_revision = 1
 tags = []
-test = false
 module = "LeanEval.Geometry.BourgainSlicing"
 holes = ["guan_lehec_klartag"]
 submitter = "Junyan Xu"
