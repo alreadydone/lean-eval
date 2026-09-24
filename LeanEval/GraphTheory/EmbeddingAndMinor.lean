@@ -170,7 +170,7 @@ theorem wagner_kuratowski {V : Type*} (G : SimpleGraph V) [Finite V] :
     List.TFAE
     [ G.Planar, ¬ K5.IsMinor G ∧ ¬ K33.IsMinor G,
       ∀ (S : G.Subgraph) (n5 : K5.edgeSet → ℕ) (n33 : K33.edgeSet → ℕ),
-        IsEmpty (K5.Iso S.coe) ∧ IsEmpty (K33.Iso S.coe) ] := by
+        IsEmpty ((K5.subdivide n5).Iso S.coe) ∧ IsEmpty ((K33.subdivide n33).Iso S.coe) ] := by
   sorry
 
 /-- The type of finite simple graphs. -/
