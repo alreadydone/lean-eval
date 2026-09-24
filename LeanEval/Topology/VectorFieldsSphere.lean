@@ -41,7 +41,7 @@ noncomputable def radonHurwitz (n : ℕ) : ℕ :=
 /-- The maximal number of pointwise linearly independent continuous vector fields on 𝕊ⁿ⁻¹
 is ρ(n) - 1. -/
 @[eval_problem]
-theorem maxNumVecFieldsSphere_eq_radonHurwitz (n : ℕ+) :
+theorem maxNumVecFieldsSphere_eq_radonHurwitz_sub_one (n : ℕ+) :
     maxNumVecFieldsSphere n = radonHurwitz n - 1 := by
   sorry
 

@@ -6,7 +6,7 @@ visible = true
 statement_revision = 1
 tags = []
 module = "LeanEval.Topology.VectorFieldsSphere"
-holes = ["maxNumVecFieldsSphere_eq_radonHurwitz"]
+holes = ["maxNumVecFieldsSphere_eq_radonHurwitz_sub_one"]
 submitter = "Junyan Xu"
 
 [[status_history]]
