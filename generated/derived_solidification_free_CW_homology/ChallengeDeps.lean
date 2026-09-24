@@ -1,4 +1,7 @@
 import Mathlib
+import Lake.Toml
+import Lake.Util.Message
+import Lean
 
 /-!
 # Derived solidification of free CW complexes
@@ -234,7 +237,7 @@ instance : PreservesFiniteColimits (ihom P) := by
     (ihom.adjunction P).rightAdjoint_preservesLimits
   rw [Functor.preservesFiniteColimits_iff_forall_exact_map_and_epi]
   intro S hS
-  haveI : Epi S.g := hS.epi_g
+  have : Epi S.g := hS.epi_g
   exact ⟨((Functor.preservesFiniteLimits_iff_forall_exact_map_and_mono (ihom P)).1
     inferInstance S hS).1, inferInstance⟩
 

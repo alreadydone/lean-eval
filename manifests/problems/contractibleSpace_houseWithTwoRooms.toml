@@ -1,8 +1,17 @@
 id = "contractibleSpace_houseWithTwoRooms"
 title = "Bing's house with two rooms is contractible"
-test = false
+group = "formalization-evaluation"
+status = "archived"
+visible = true
+statement_revision = 1
+tags = []
 module = "LeanEval.Topology.HouseWithTwoRooms"
 holes = ["contractibleSpace_houseWithTwoRooms"]
 submitter = "Junyan Xu"
 source = "Allen Hatcher, *Algebraic Topology*."
 informal_solution = "Show that a neighborhood of the space deformation retracts onto it and is homeomorphic to a 3-ball."
+
+[[status_history]]
+status = "archived"
+effective_date = "2026-08-20"
+reason = "policy"

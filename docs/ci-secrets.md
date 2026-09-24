@@ -1,22 +1,23 @@
 # CI secrets and access control for `leanprover/lean-eval`
 
 This document is the source of truth for every CI credential and branch-
-protection setting the repository depends on. It is written so that, on a
-fresh clone or a brand-new repo, you can reconstruct the entire CI auth
-posture from this file alone — no UI screenshots, no tribal knowledge.
+protection setting the repository depends on. It records the reconstructable
+CI authentication posture and explicitly identifies facts that GitHub's APIs
+cannot expose, rather than relying on screenshots or guesses.
 
 ## Audit checklist
 
 | Item | Type | Stored as | Used by |
 | --- | --- | --- | --- |
 | `lean-eval-regenerator` | GitHub App (owner: `kim-em`) | `LEAN_EVAL_REGENERATOR_CLIENT_ID`, `LEAN_EVAL_REGENERATOR_PRIVATE_KEY` | `regenerate-main.yml` |
-| `LEADERBOARD_WRITE_TOKEN` | Fine-grained PAT | `LEADERBOARD_WRITE_TOKEN` (in both `leanprover/lean-eval` and `leanprover/lean-eval-leaderboard`) | `notify-leaderboard.yml` (this repo); `bump-benchmark-snapshot.yml` (leaderboard) |
+| `LEADERBOARD_WRITE_TOKEN` | Fine-grained PAT | `LEADERBOARD_WRITE_TOKEN` (in all three caller repositories) | `notify-leaderboard.yml` (this repo); `bump-benchmark-snapshot.yml` (leaderboard); `submission.yml` (submissions) |
 | Ruleset `main protection` | Repository Ruleset | (config in this repo, applied via API) | branch protection on `main` |
 
 The submission pipeline's credentials (`lean-eval-bot`,
-`lean-eval-recorder`, and that repo's copy of `LEADERBOARD_WRITE_TOKEN`)
-moved with the pipeline to `leanprover/lean-eval-submissions`; they are
-documented in [that repo's `docs/ci-secrets.md`](https://github.com/leanprover/lean-eval-submissions/blob/main/docs/ci-secrets.md).
+`lean-eval-recorder`, `lean-eval-archiver`, and that repo's copy of
+`LEADERBOARD_WRITE_TOKEN`) moved with the pipeline to
+`leanprover/lean-eval-submissions`; they are documented in
+[that repo's `docs/ci-secrets.md`](https://github.com/leanprover/lean-eval-submissions/blob/main/docs/ci-secrets.md).
 
 To check the live state at any time:
 
@@ -51,15 +52,27 @@ branch protection.
 - `LEAN_EVAL_REGENERATOR_PRIVATE_KEY` — the full PEM contents of a private
   key generated for the app.
 
+Kim Morrison is the temporary credential custodian; no alternate custodian is
+recorded. Rotate the key by generating one replacement while the current key
+remains valid, replacing only `LEAN_EVAL_REGENERATOR_PRIVATE_KEY`, verifying a
+protected-main regeneration, and then deleting the old key in the App
+settings. Immediate revocation is deletion of the App key followed by removal
+or replacement of the repository secret. Do not change the App ID, installation
+scope, permissions, or ruleset bypass as part of a routine key rotation.
+
 ### Where used
 
 [`.github/workflows/regenerate-main.yml`](../.github/workflows/regenerate-main.yml),
-in the `Mint lean-eval-regenerator installation token` step, via
+in the `Mint fresh lean-eval-regenerator installation token` step, via
 `actions/create-github-app-token`, pinned to
-`bcd2ba49218906704ab6c1aa796996da409d3eb1` (v3.2.0). The token is used both for
-`actions/checkout` (so subsequent `git push` carries the same auth) and
-for the explicit push step that lands the regenerated workspaces on
-`main`.
+`bcd2ba49218906704ab6c1aa796996da409d3eb1` (v3.2.0). Because installation
+tokens expire after one hour and a full-catalog regeneration can take longer,
+the workflow checks out the public repository without persisted credentials and
+mints this write token only after regeneration finishes. The final step exposes
+the fresh token to GitHub CLI's Git credential helper for its push to `main`.
+The workflow also verifies that `main` stayed at the source commit used for
+generation, retrying generation from the latest commit when necessary and
+refusing to rebase stale generated output after a push race.
 
 ### Why an app and not `GITHUB_TOKEN`
 
@@ -124,7 +137,8 @@ for `repository_dispatch` (per
 
 ### Repository secrets
 
-The same token value is stored once per repo that needs it:
+One shared credential is intended to be stored once per repo that needs it;
+GitHub's secret APIs cannot prove equality between the encrypted copies:
 
 - `LEADERBOARD_WRITE_TOKEN` in `leanprover/lean-eval` (used by
   `notify-leaderboard.yml`).
@@ -137,6 +151,14 @@ When rotating the PAT, update **all three** secrets together. Forgetting
 one causes silent half-failures: e.g., dispatch fires but the bump's
 push step rejects, or vice versa.
 
+The recorded temporary custodian of the three stored copies is Kim Morrison.
+GitHub's repository APIs do not reveal the PAT issuer or expiry, and those
+current facts are not otherwise recorded, so do not guess them. At the next
+approved rotation, record the issuing account and expiry, replace all three
+copies, verify one dispatch from each caller, and only then revoke the old token
+in its issuing account. If its issuer is unavailable before then, disable the
+three calling workflows rather than broadening another credential.
+
 ### Reconstruction from scratch
 
 1. Open <https://github.com/settings/personal-access-tokens/new>.
@@ -147,13 +169,15 @@ push step rejects, or vice versa.
 3. Repository access: **Only select repositories** →
    `leanprover/lean-eval-leaderboard`.
 4. Repository permissions: **Contents: Read and write**.
-5. Save the token, then write it to both repos:
+5. Save the token, then write it to all three callers:
    ```bash
    # lean-eval is the side that fires the dispatch and pushes records.
    gh secret set LEADERBOARD_WRITE_TOKEN -R leanprover/lean-eval --body <TOKEN>
    # The leaderboard side checks itself out with this token so its
    # snapshot-bump push back to its own main bypasses branch protection.
    gh secret set LEADERBOARD_WRITE_TOKEN -R leanprover/lean-eval-leaderboard --body <TOKEN>
+   # The submissions workflow dispatches a leaderboard redeploy after recording results.
+   gh secret set LEADERBOARD_WRITE_TOKEN -R leanprover/lean-eval-submissions --body <TOKEN>
    ```
 
 ## Branch protection on `main` (Repository Ruleset)
@@ -232,10 +256,10 @@ with a bogus check of the same name.
 - `regenerate-main.yml`'s pushes to `main` will *not* re-trigger
   `regenerate-main.yml` itself: that workflow's `paths:` filter only
   fires on source changes (`LeanEval/**`, `EvalTools/**`,
-  `templates/**`, `manifests/problems/**`, `lakefile.toml`,
-  `lean-toolchain`), and the bot only writes under `generated/`. The
-  bypass doesn't change this; the `paths:` filter is what prevents the
-  loop.
+  `templates/**`, `manifests/**`, `lakefile.toml`,
+  `lean-toolchain`, and the workflow file itself), and the bot only writes
+  under `generated/`. The bypass doesn't change this; the `paths:` filter is
+  what prevents the loop.
 
   Other workflows on `main` push events *do* run on regenerator
   commits — most notably `ci.yml`'s `verify` job, which has no

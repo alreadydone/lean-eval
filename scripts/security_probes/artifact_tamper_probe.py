@@ -10,8 +10,8 @@ requires no sandbox escape. The attacker's submission would:
 
   1. Spawn a daemon during Submission's elaboration. Daemon inherits
      landrun's filesystem rules (which permit writes under `.lake/`).
-  2. Daemon detaches via setsid + double-fork, surviving the parent
-     `lake build Solution` exit (and thus surviving comparator's
+  2. Daemon detaches via `IO.Process.SpawnArgs.setsid`, surviving the
+     parent `lake build Solution` exit (and thus surviving comparator's
      landrun child).
   3. Daemon races to overwrite `.lake/build/lib/lean/Solution.olean` with a
      pre-prepared olean whose theorem statement matches Challenge but
@@ -19,9 +19,6 @@ requires no sandbox escape. The attacker's submission would:
   4. Comparator's `safeExport solutionModule` then exports the
      attacker's olean rather than the legitimate one. `verifyMatch`
      succeeds because the statement type matches Challenge.
-
-Codex flagged this attack class in the second-opinion pass. SECURITY.md
-must explicitly cite the result of this probe.
 
 Phases:
 
@@ -34,11 +31,15 @@ Phases:
 
   --phase=both (default) Run A then B, report both.
 
-This probe does NOT have a CI mode that asserts "no exploit" by default,
-because Phase B's outcome may motivate landing an upstream comparator
-patch (setsid + killpg around landrun, or copy-out olean before
-export). Once that mitigation is in place, add a CI assertion that
-Phase B reports REJECTED.
+LIMITATION: the exec-allowlist half of this probe does not establish that a
+daemon cannot be spawned. It denies `sh`, `setsid`, `bash`, `cp`, and `env`,
+but permits `lean`. Another Lean process can detach without an external binary
+because `IO.Process.SpawnArgs` has a native `setsid : Bool` field. This probe
+does not have a CI mode that asserts "no exploit" by default. The current
+comparator pin does not guarantee that descendants cannot survive between
+`safeLakeBuild` and `safeExport`; this limitation is tracked in
+https://github.com/leanprover/comparator/issues/77, with a proposed fix in
+https://github.com/leanprover/comparator/pull/78.
 """
 
 from __future__ import annotations
@@ -79,10 +80,11 @@ initialize do
   IO.FS.createDirAll outDir
   -- Marker A: write synchronously from within elaboration.
   IO.FS.writeFile (outDir / "marker-elab") "init-ran\n"
-  -- Probe what binaries the sandbox allows us to exec. If only `lean`
-  -- and `git` work, an attacker's Submission has no way to spawn a
-  -- daemon — the writable-.lake race attack collapses at the exec
-  -- step.
+  -- Probe what binaries the sandbox allows us to exec. NOTE: `lean`
+  -- succeeding below is not a negative result. `lean` is a
+  -- general-purpose interpreter, so an attacker's daemon can be another
+  -- `lean`; this list rules out convenient daemons, not all of them.
+  -- See leanprover/comparator#77.
   let results := #[
     (← tryExec "want_ok"   "lean"   #["--version"]),
     (← tryExec "want_ok"   "git"    #["--version"]),

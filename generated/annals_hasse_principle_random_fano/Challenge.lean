@@ -1,0 +1,12 @@
+import ChallengeDeps
+
+open HassePrincipleRandomFano
+open MvPolynomial Filter NumberField Real
+open scoped LinearAlgebra.Projectivization
+
+set_option autoImplicit false
+variable (d n : ℕ)
+
+theorem theorem_1_1 (hd : 2 ≤ d) (h₁ : d ≤ n) (h₂ : (d, n) ≠ (3, 3)) :
+    Tendsto (ρ d n) atTop (nhds (ρLoc d n)) := by
+  sorry

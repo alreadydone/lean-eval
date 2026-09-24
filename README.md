@@ -1,6 +1,7 @@
 # Lean Eval
 
-**[View the leaderboard →](https://lean-lang.org/eval/)**
+**[View the leaderboard →](https://lean-lang.org/eval/)** ·
+**[Submit a solution →](https://lean-lang.org/eval/submit/)**
 
 This repository is a comparator-based Lean benchmark for formal mathematics.
 Benchmark authors write trusted problem statements once in shared Lean modules, and the
@@ -57,7 +58,11 @@ owns; for the common single-theorem case it has one element.
 # manifests/problems/my_new_problem.toml
 id = "my_new_problem"
 title = "My new problem"
-test = false
+group = "formalization-evaluation"
+status = "draft"
+visible = true
+statement_revision = 1
+tags = []
 module = "LeanEval.SomeModule"
 holes = ["my_new_problem"]
 submitter = "Your Name"
@@ -70,13 +75,20 @@ The required fields are:
 
 - `id` (must equal the filename stem)
 - `title`
-- `test`
+- `group`
+- `status`
+- `visible`
+- `statement_revision`
+- `tags`
 - `module`
 - `holes`
 - `submitter`
 
 The one-file-per-problem layout means two PRs adding distinct problems
 never conflict on the manifest.
+
+See [Catalog metadata](docs/catalog-metadata.md) for lifecycle history, the tag
+registry, append-only named sets, and the deterministic v1 evidence tool.
 
 The manifest is the only entry point CI has into `LeanEval/`, so a module
 no manifest names is never built. `validate-manifest` therefore rejects any
@@ -213,7 +225,7 @@ export PATH="$(go env GOPATH)/bin:$PATH"
 lean_eval_root="$(pwd)"  # run this setup from the lean-eval repository root
 git clone https://github.com/leanprover/lean4export.git
 ( cd lean4export
-  git checkout 4e7915201d3f9f04470d9eae002fa695f7cdc589
+  git checkout 076e8e57707e813375e8f9da8bf989799ace9680
   cp "$lean_eval_root/lean-toolchain" lean-toolchain
   lake build lean4export )
 export PATH="$PWD/lean4export/.lake/build/bin:$PATH"
@@ -221,7 +233,7 @@ export PATH="$PWD/lean4export/.lake/build/bin:$PATH"
 # comparator — clone, check out the pin (adds `def`-hole support), and build.
 git clone https://github.com/leanprover/comparator.git
 ( cd comparator
-  git checkout 71b52ec29e06d4b7d882726553b1ceb99a2499e0
+  git checkout d03acab154d269c06e60e4de7e4cc85deebff94b
   lake build comparator )
 export PATH="$PWD/comparator/.lake/build/bin:$PATH"
 
@@ -237,9 +249,9 @@ export PATH="$PWD/nanoda_lib/target/release:$PATH"
 ```
 
 `lean4export` and `comparator` are Lean programs. The pinned lean4export source
-uses Lean v4.32.0 by default, but its build command above deliberately selects
-the workspace's exact toolchain by copying `lean-toolchain`; Lean v4.32.0 and v4.32.2
-have incompatible olean headers. Comparator builds `Challenge.olean` with the
+uses Lean v4.34.0 by default, and its build command above deliberately selects
+the workspace's exact toolchain by copying `lean-toolchain`; different Lean
+releases have incompatible olean headers. Comparator builds `Challenge.olean` with the
 workspace toolchain and then reads it back with `lean4export`, so exact
 compatibility is required. If the formats differ you get
 `failed to read file '.../Challenge.olean', incompatible header` — that error
@@ -279,12 +291,46 @@ The scorer prefers `workspaces/<problem-id>/` when present and falls back to
 
 ## Submission Rules
 
-To **submit a solution** to the public leaderboard, open a submission issue on
-the submissions repository:
+For current instructions to **submit a solution**, start at the stable page:
 
-> **[github.com/leanprover/lean-eval-submissions](https://github.com/leanprover/lean-eval-submissions)**
+> **[lean-lang.org/eval/submit/](https://lean-lang.org/eval/submit/)**
 
-That repository owns the hosted submission pipeline and the stored results.
+That page is the primary authenticated submission path from
+`2026-09-02T06:57:10Z`. The application itself is at
+`https://lean-eval-submission-server.lean-eval.workers.dev/`; this change of
+origin is expected.
+
+[Submission issue
+intake](https://github.com/leanprover/lean-eval-submissions/issues/new?template=submit.yml)
+remains available as a fallback through at least `2026-09-30T06:57:10Z`, four
+weeks after the overlap began. Conditional on stable operation, adequate
+adoption, no unresolved severity-high incident, and a reconciled final corpus,
+that is the planned retirement time. This notice was issued at
+`2026-09-02T23:06:35Z`, more than two weeks in advance. Retirement will be
+postponed if any gate is not satisfied.
+
+Scheduled release is recommended for authenticated intake, while submitters
+may keep accepted source private instead. Once selected, scheduled release
+cannot be changed back to private. Accepted source is published under the
+Apache License 2.0 exactly two UTC calendar months after acceptance. A
+submitter who initially chooses private source may later change that choice
+once to scheduled release.
+
+The service takes a problem ID and resolves its group and current statement
+revision from the protected LeanEval catalog; clients do not supply those
+canonical fields. Formalization problems must be visible and active.
+Software-verification problems may be visible and draft or active. Public
+source repositories must use scheduled publication; withholding is available
+only for private repositories.
+
+Before acceptance, the submitter explicitly authorizes private fetch, archive,
+build, and execution of the exact commit, indefinite encrypted retention even
+after rejection or failure, and public display of the result and submitted
+metadata. Do not submit secrets. Every new request is archived with a fresh
+per-submission key envelope before evaluation, and the service evaluates only
+the selected problem. Exact resubmissions by the same owner return the original
+submission, and each owner may have at most four active submissions.
+
 This repository (`leanprover/lean-eval`) holds only the problem set and the
 comparator/sandbox integration.
 
@@ -318,6 +364,8 @@ In practice, solvers should normally work in `Submission.lean` and `Submission/`
 
 - [`LeanEval/`](/home/kim/lean-evals/LeanEval): trusted authored problem statements
 - [`manifests/problems/`](manifests/problems/): one TOML file per problem, named `<id>.toml`
+- [`manifests/tags.toml`](manifests/tags.toml): stable tag registry
+- [`manifests/sets/`](manifests/sets/): versioned and optionally frozen named problem sets
 - [`generated/`](/home/kim/lean-evals/generated): generated comparator workspaces
 - [`scripts/`](/home/kim/lean-evals/scripts): generation, validation, and scoring helpers
 - [`PLAN.md`](/home/kim/lean-evals/PLAN.md): deferred design and roadmap notes

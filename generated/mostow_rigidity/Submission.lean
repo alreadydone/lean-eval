@@ -3,7 +3,6 @@ import Submission.Helpers
 
 open LeanEval.Geometry.MostowRigidity
 open MeasureTheory
-open MeasureTheory
 
 namespace Submission
 

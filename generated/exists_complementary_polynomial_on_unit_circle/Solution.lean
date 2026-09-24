@@ -1,4 +1,9 @@
-import Mathlib
+import Mathlib.Algebra.Polynomial.Basic
+import Mathlib.Algebra.Polynomial.Degree.Defs
+import Mathlib.Analysis.Complex.Circle
+import Lake.Toml
+import Lake.Util.Message
+import Lean
 import Submission
 
 open Polynomial

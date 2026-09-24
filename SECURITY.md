@@ -126,7 +126,7 @@ verifies on every run of the test suite that `lake env -- <cmd>` (and
 nested `lake env -- lake env -- <cmd>`) on a workspace whose
 `Submission.lean` has top-level `initialize` and `#eval` markers does
 NOT produce those markers in stdout. Confirmed on the pinned toolchain
-(Lean v4.32.2, 2026-07-29). If a future lake version starts evaluating project Lean
+(Lean v4.34.0, 2026-09-16). If a future lake version starts evaluating project Lean
 during `lake env`, this probe must be re-run before the toolchain
 bump lands.
 
@@ -136,7 +136,7 @@ documents the rule and the regression history (commit `3474943`
 violated it in 2026-04, reverted in #92 in 2026-05). `lake update` and
 `lake exe cache get` are the only shell-outs allowed.
 
-**Writable `.lake/`, and why the obvious tampering attack does not work.**
+**Writable `.lake/` self-tampering is a known limitation.**
 Comparator gives `safeLakeBuild` `--rwx <workspace>/.lake`, which is
 necessary because lake writes its build outputs there. The natural
 attack to consider is: a `Submission.lean` `initialize` block spawns a
@@ -147,23 +147,36 @@ to PID 1, not killed), and races to overwrite `Solution.olean` between
 reading it — getting comparator to verify against an
 attacker-controlled olean.
 
-We ran [scripts/security_probes/artifact_tamper_probe.py](scripts/security_probes/artifact_tamper_probe.py)
-on Linux (kernel 6.12 + Lean v4.32.2 + landrun 5ed4a3db + comparator
-71b52ec) on 2026-07-29 and the attack is **structurally impossible at
-the spawn step**. Inside the sandbox, `IO.Process.spawn` succeeds for
-the whitelisted `lean` and `git` binaries; `sh`, `setsid`, `bash`, `cp`,
-`/bin/sh`, and `/usr/bin/env` all return exit 255 ("could not execute
-external process"). Phase B also confirmed by SHA-256 that the
-deliberately distinct prepared olean was not installed. Comparator's
-`safeLakeBuild` only `--rox`-whitelists `leanPrefix` and `gitLocation`;
-landrun denies exec of anything else. The attacker has no way to
-spawn a daemon, so there is nothing to race against `safeExport`.
+[scripts/security_probes/artifact_tamper_probe.py](scripts/security_probes/artifact_tamper_probe.py)
+shows that `IO.Process.spawn` succeeds for the whitelisted `lean` and
+`git` binaries while `sh`, `setsid`, `bash`, `cp`, `/bin/sh`, and
+`/usr/bin/env` are denied. Phase B verifies by SHA-256 that its deliberately
+distinct prepared olean is not installed. Neither result rules out the attack:
+`lean` is a general-purpose interpreter, so the daemon can be another `lean`
+running an attacker-written `initialize` block. Detaching it needs no external
+binary because `IO.Process.SpawnArgs` has a native `setsid : Bool` field.
+Orphaned children are reparented rather than killed when the landrun child
+exits. In addition, `executablePaths := #[leanPrefix, gitLocation]`
+whitelists exec across the *entire* Lean prefix (`lake`, `clang`,
+`ld.lld`, `leanc`, ...), not just `lean`; and comparator passes `-ldd`,
+which whitelists the dynamic loader, and a permitted loader can load a
+readable ELF that is not itself exec-whitelisted.
 
-This is a strong assumption to depend on. If a future comparator pin
-broadens the executable allowlist (e.g. adds `sh`), or if a Lean
-toolchain change allows the elaborator to spawn binaries by some other
-path, this conclusion needs to be re-derived. Re-run the probe after
-any landrun, comparator, or lean-toolchain pin bump.
+So the premise that no persistent child is possible does not hold, and
+`safeExport` has nothing guaranteeing it reads the olean that
+`safeLakeBuild` produced. We have no working exploit, so this is an
+unsound argument rather than a demonstrated attack, and note that any
+substituted olean is still replayed through the kernel and
+`external_kernels`. This known limitation is tracked upstream at
+https://github.com/leanprover/comparator/issues/77, with a proposed fix
+in https://github.com/leanprover/comparator/pull/78 that runs each
+landrun invocation as PID 1 of a fresh PID namespace, so the kernel
+tears down any survivors before comparator proceeds. The current pin does not
+contain that proposed fix.
+
+This applies to every runner we use today; it has nothing to do with
+any particular kernel. Re-derive it after any landrun, comparator, or
+lean-toolchain pin bump.
 
 ## 4. Trust model for the comparator
 
@@ -199,12 +212,12 @@ time, the upstream publisher controls our supply chain.
 
 | Dependency | Repo | Pinned to | Purpose | Last bumped |
 |---|---|---|---|---|
-| Lean toolchain | leanprover/lean4 | `v4.32.2` | compiler and Lake | 2026-07-29 |
-| mathlib | leanprover-community/mathlib4 | `905b95818eb32af7874a58b427f50c1711a5e96c` | theorem library | 2026-07-29 |
-| lean4-cli | leanprover/lean4-cli | `88679d088c9720c27ebdf2ba4dafe17341747f94` | command-line parsing | 2026-07-29 |
+| Lean toolchain | leanprover/lean4 | `v4.34.0` | compiler and Lake | 2026-09-16 |
+| mathlib | leanprover-community/mathlib4 | `5ed2965256430c3649e86755f9576b54eca72435` | theorem library | 2026-09-16 |
+| lean4-cli | leanprover/lean4-cli | `e92c9f15fdfacc8536f31cfb3b7ad26c3c8cd204` | command-line parsing | 2026-09-16 |
 | landrun | zouuup/landrun | `5ed4a3db3a4ad930d577215c6b9abaa19df7f99f` | Linux landlock sandbox | 2026-05-04 |
-| lean4export | leanprover/lean4export | `4e7915201d3f9f04470d9eae002fa695f7cdc589` | exports olean to text | 2026-07-29 |
-| comparator | leanprover/comparator | `71b52ec29e06d4b7d882726553b1ceb99a2499e0` | the verifier | pre-2026-05 |
+| lean4export | leanprover/lean4export | `076e8e57707e813375e8f9da8bf989799ace9680` | exports olean to text | 2026-09-16 |
+| comparator | leanprover/comparator | `d03acab154d269c06e60e4de7e4cc85deebff94b` | the verifier | 2026-09-16 |
 | nanoda | robsimmons/nanoda_lib | `68d5ca9db226849b41a6fff59d796ff19d0a8840` | independent kernel (external checker) | 2026-07-29 |
 | `jlumbroso/free-disk-space` | (action) | `54081f138730dfa15788a46383842cd2f914a1be` | runner disk cleanup | 2026-05-04 |
 | `actions/checkout` | (action) | `3d3c42e5aac5ba805825da76410c181273ba90b1` (v7.0.1) | repo checkout | 2026-07-30 |
@@ -304,13 +317,12 @@ escaping, the triage gate) are in the submissions repo's `SECURITY.md`.
    the probe's mock workspace shape, a real false negative is possible.
    Re-run the probe by hand on a clean Linux box after any landrun
    bump.
-2. **Writable-`.lake` self-tampering** (Section 3). Currently neutralised
-   by landrun's exec restriction (only `lean` can be exec'd from inside
-   the sandbox; `sh`/`setsid`/etc. are denied), so the attacker cannot
-   spawn the daemon the attack requires. This depends on comparator's
-   `executablePaths` staying narrow. If a future comparator pin adds
-   `sh` (or similar) to `executablePaths`, re-run `artifact_tamper_probe`
-   and assume the attack is back in play until proven otherwise.
+2. **Writable-`.lake` self-tampering** (Section 3). **Not currently
+   mitigated at the pinned comparator commit.** A `lean` descendant can
+   outlive `safeLakeBuild` and race `safeExport`. No working exploit is
+   known, and a substituted olean is still kernel-checked. Tracked at
+   https://github.com/leanprover/comparator/issues/77; proposed fix in
+   https://github.com/leanprover/comparator/pull/78.
 3. **`lake env` behaviour across lake versions.** The `lake_env_probe`
    confirms current behaviour. Lake version bumps must re-run it.
 4. **`definition_names` author trap.** Comparator only requires that

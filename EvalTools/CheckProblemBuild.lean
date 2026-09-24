@@ -2,6 +2,8 @@ import EvalTools.Manifest
 
 namespace EvalTools
 
+open LeanEvalGenerator.Core
+
 set_option autoImplicit false
 
 private def hasSubstr (haystack pattern : String) : Bool :=
@@ -17,10 +19,11 @@ problem modules emit by design.
 
 The separate invocations are intentional: passing the complete catalog to one
 `lake build` lets Lake schedule every independent module at once. -/
-def runCheckProblemBuild (root : System.FilePath) : IO UInt32 := do
+def runCheckProblemBuild (root : System.FilePath)
+    (requestedModules : Array String := #[]) : IO UInt32 := do
   try
     let entries ← loadManifest root
-    let modules := uniqueModules entries
+    let modules ← selectManifestModules entries requestedModules
     let mut disallowed := []
     for moduleName in modules do
       let output ← runCmdCheckedCaptured "lake" #["build", moduleName] root
