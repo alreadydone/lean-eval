@@ -2537,6 +2537,22 @@
     "generated_path": "generated/hopf_rinow"
   },
   {
+    "id": "hopf_s6_complex_structure",
+    "title": "The Hopf problem: a complex structure on the 6-sphere",
+    "group": "formalization-evaluation",
+    "status": "active",
+    "visible": true,
+    "statement_revision": 1,
+    "tags": [],
+    "submitter": "Jack McCarthy",
+    "module": "LeanEval.Geometry.HopfS6",
+    "holes": [
+      "instChartedSpaceS6",
+      "instIsManifoldS6"
+    ],
+    "generated_path": "generated/hopf_s6_complex_structure"
+  },
+  {
     "id": "hopf_umlaufsatz",
     "title": "The Hopf Umlaufsatz (theorem of turning tangents)",
     "group": "formalization-evaluation",
