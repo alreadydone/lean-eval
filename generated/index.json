@@ -1435,6 +1435,21 @@
     "generated_path": "generated/ckmrv_fourier_interpolation"
   },
   {
+    "id": "classification_finite_simple_groups",
+    "title": "The classification of finite simple groups",
+    "group": "formalization-evaluation",
+    "status": "active",
+    "visible": true,
+    "statement_revision": 1,
+    "tags": [],
+    "submitter": "Kim Morrison",
+    "module": "LeanEval.GroupTheory.ClassificationFiniteSimpleGroups",
+    "holes": [
+      "classification_finite_simple_groups"
+    ],
+    "generated_path": "generated/classification_finite_simple_groups"
+  },
+  {
     "id": "coc_strong_normalization",
     "title": "Strong normalization and consistency for the calculus of constructions with a universe hierarchy",
     "group": "software-verification",
