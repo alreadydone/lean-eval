@@ -37,7 +37,8 @@ def IsMeromorphicAt (c : OnePoint ℝ) (f : UpperHalfPlane → ℂ) (k : ℤ) : 
 in general, if `[G : H] = n` then the `n!`th power of every element of `G` is in `H`. -/
 @[eval_problem]
 theorem unbounded_denominators (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.FiniteIndex]
-    (k : ℤ) (f : SlashInvariantForm Γ k) (mdiff : MDiff f) (mero : ∀ c, IsMeromorphicAt c f k)
+    (k : ℤ) (f : SlashInvariantForm Γ k) (mdiff : MDiff f)
+    (bdd : UpperHalfPlane.IsBoundedAtImInfty f) (mero : ∀ c, IsMeromorphicAt c f k)
     (int : ∀ n, IsIntegral ℤ (UpperHalfPlane.qExpansion Γ.index.factorial f n)) :
     ∃ N, ∀ γ ∈ CongruenceSubgroup.Gamma N, SlashAction.map k γ ⇑f = f := by
   sorry
