@@ -12,6 +12,11 @@ Cᵏ-diffeomorphisms.
 This essentially says the classification of Cᵏ-manifolds (k ≥ 1) is the same problem as
 the classification of smooth (or real analytic) manifolds.
 
+Counterexamples abound if the Hausdorff assumption is removed, but it is not clear whether the
+paracompact assumption is necessary. https://en.wikipedia.org/wiki/Long_line_(topology)#Properties
+claims that every smooth structure on the long line extends to infinitely many real analytic
+structures, but this appears to be an overclaim, see https://mathoverflow.net/questions/404692.
+
 ## References
 
 * Koji Shiga. Some aspects of real-analytic manifolds and differentiable manifolds.
@@ -23,8 +28,6 @@ the classification of smooth (or real analytic) manifolds.
 * https://en.wikipedia.org/wiki/Differential_structure#Existence_and_uniqueness_theorems
 -/
 
-namespace LeanEval.Analysis.C1ToAnalytic
-
 variable (k n : WithTop ℕ∞)
 variable (M N V W : Type*) [TopologicalSpace M] [TopologicalSpace N]
 variable [NormedAddCommGroup V] [NormedSpace ℝ V]
@@ -34,7 +37,7 @@ open scoped Manifold
 
 /-- A Cᵏ-structure on a manifold can be upgraded to a compatible Cⁿ-structure if `1 ≤ k ≤ n`
 (if `n ≤ k` this is trivial). We use two isomorphic model vector spaces V and W in the statement
-to avoid introducing two `ChartedSpace V M` instances. The `k ≥ n` case is trivial. -/
+to avoid introducing two `ChartedSpace V M` instances. -/
 @[eval_problem]
 theorem exists_isManifold_of_le (hk : 1 ≤ k) [FiniteDimensional ℝ V] (e : V ≃ₗ[ℝ] W)
     [ChartedSpace V M] [IsManifold 𝓘(ℝ,V) k M] [T2Space M] [ParacompactSpace M] :
@@ -53,5 +56,3 @@ theorem exists_homotopy_of_diffeomorph (hk : 1 ≤ k) (hkn : k ≤ n) [FiniteDim
     ∃ H : ℝ × M → N, ContMDiff (𝓘(ℝ,ℝ).prod 𝓘(ℝ,V)) 𝓘(ℝ,W) k H ∧
       (H ⟨0, ·⟩) = f ∧ ∃ g : M ≃ₘ^n⟮𝓘(ℝ,V), 𝓘(ℝ,W)⟯ N, (H ⟨1, ·⟩) = g := by
   sorry
-
-end LeanEval.Analysis.C1ToAnalytic
